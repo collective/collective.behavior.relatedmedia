@@ -23,6 +23,13 @@
         <value>preview</value>
     </record>
 
+    <record name="collective.behavior.relatedimages.preview_scale_direction">
+        <field type="plone.registry.field.TextLine">
+            <title>Gallery preview image scale cropping direction</title>
+        </field>
+        <value>down</value>
+    </record>
+
     <record name="collective.behavior.relatedimages.include_leadimage">
         <field type="plone.registry.field.Bool">
             <title>Include lead image</title>

@@ -34,6 +34,8 @@ class RelatedImagesViewlet(ViewletBase):
             'collective.behavior.relatedimages.first_image_scale')
         img_scale = api.portal.get_registry_record(
             'collective.behavior.relatedimages.preview_scale')
+        img_scale_dir = api.portal.get_registry_record(
+            'collective.behavior.relatedimages.preview_scale_direction')
         gallery = []
 
         if include_leadimage:
@@ -56,7 +58,8 @@ class RelatedImagesViewlet(ViewletBase):
             img_obj = img.to_object
             if img_obj:
                 scales = img_obj.restrictedTraverse('@@images')
-                scale = scales.scale('image', scale=img_scale)
+                scale = scales.scale('image', scale=img_scale,
+                                      direction=img_scale_dir)
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(url=large_scale_url, tag=scale.tag()))
