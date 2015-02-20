@@ -10,4 +10,4 @@ Images are shown in a viewlet (activated in IBelowContentTitle)
 If `pat-upload`_ (mockup) is installed, you can drag'n'drop images to your
 content easily.
 
-.. `pat-upload`_: http://plone.github.io/mockup/dev/#pattern/dropzone
+.. _`pat-upload`: http://plone.github.io/mockup/dev/#pattern/dropzone
