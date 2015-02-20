@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <record name="collective.behavior.relatedimages.media_container_path">
+        <field type="plone.registry.field.TextLine">
+            <title>Media Container</title>
+            <description>Full traversable path to media container (remember to add Plone ID!)</description>
+        </field>
+        <value>/Plone/media</value>
+    </record>
+
+    <record name="collective.behavior.relatedimages.first_image_scale">
+        <field type="plone.registry.field.TextLine">
+            <title>Gallery first image scale</title>
+        </field>
+        <value>large</value>
+    </record>
+
+    <record name="collective.behavior.relatedimages.preview_scale">
+        <field type="plone.registry.field.TextLine">
+            <title>Gallery preview image scale</title>
+        </field>
+        <value>preview</value>
+    </record>
+
+    <record name="collective.behavior.relatedimages.include_leadimage">
+        <field type="plone.registry.field.Bool">
+            <title>Include lead image</title>
+            <description>show content LeadImage as first image</description>
+        </field>
+        <value>True</value>
+    </record>
+
+</registry>

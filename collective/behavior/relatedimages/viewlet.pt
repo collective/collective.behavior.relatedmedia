@@ -1,0 +1,15 @@
+<div id="related-images">
+
+    <div tal:condition="view/is_admin"
+         class="pat-upload"
+         tal:attributes='data-pat-upload string:{"url": "${context/absolute_url}/@@upload_related_images",
+                                                 "autoUpdateContainerSelector": "#related-images"}' />
+
+    <a tal:repeat="img view/images" class="image-item" rel="prettyPhoto[relatedImages]"
+       tal:attributes="href img/url;
+                       class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
+       <img tal:replace="structure img/tag" />
+    </a>
+
+    <div class="visualClear"><!-- --></div>
+</div>

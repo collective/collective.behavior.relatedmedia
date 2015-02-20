@@ -3,9 +3,19 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.behavior.relatedimages">
 
     <five:registerPackage package="." initialize=".initialize" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Related images behavior"
+        directory="profiles/default"
+        description="Manage content related images"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
     <include package="plone.behavior" file="meta.zcml"/>
 
@@ -14,6 +24,21 @@
         description="Manager content related images"
         provides=".behavior.IRelatedImages"
         for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <browser:viewlet
+        name="collective.behavior.related_images"
+        for="collective.behavior.relatedimages.IRelatedImages"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".browser.RelatedImagesViewlet"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="upload_related_images"
+        for="collective.behavior.relatedimages.IRelatedImages"
+        class=".browser.Uploader"
+        permission="cmf.ModifyPortalContent"
         />
 
     <configure zcml:condition="installed plone.app.widgets">
