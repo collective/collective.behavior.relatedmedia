@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.behavior.relatedimages">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <configure zcml:condition="installed plone.app.widgets">
+        <adapter factory=".widget.RelatedImagesFieldWidget" />
+    </configure>
+
+</configure>
