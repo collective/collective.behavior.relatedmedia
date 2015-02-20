@@ -8,7 +8,7 @@ from zope.interface.declarations import provider
 @provider(IFormFieldProvider)
 class IRelatedImages(form.Schema):
 
-    relates_images = RelationList(
+    related_images = RelationList(
         title=u'Related Images',
         default=[],
         value_type=RelationChoice(

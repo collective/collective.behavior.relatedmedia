@@ -13,7 +13,7 @@ else:
     from zope.component import adapter
     from zope.interface import implementer
 
-    from ..behavior import IRelatedImages
+    from .behavior import IRelatedImages
 
 
     @adapter(getSpecification(IRelatedImages['related_images']), IFormLayer)

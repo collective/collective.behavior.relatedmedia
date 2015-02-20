@@ -2,9 +2,19 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.behavior.relatedimages">
 
     <five:registerPackage package="." initialize=".initialize" />
+
+    <include package="plone.behavior" file="meta.zcml"/>
+
+    <plone:behavior
+        title="Related Images"
+        description="Manager content related images"
+        provides=".behavior.IRelatedImages"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
 
     <configure zcml:condition="installed plone.app.widgets">
         <adapter factory=".widget.RelatedImagesFieldWidget" />
