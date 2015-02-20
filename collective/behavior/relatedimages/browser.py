@@ -91,7 +91,6 @@ class Uploader(BrowserView):
 
     def get_media_container(self):
         container = None
-        import pdb; pdb.set_trace()
         try:
             container_path = api.portal.get_registry_record(
                 'collective.behavior.relatedimages.media_container_path')
