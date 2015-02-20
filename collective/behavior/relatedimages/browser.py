@@ -48,7 +48,8 @@ class RelatedImagesViewlet(ViewletBase):
             first_img_scales = None
 
         if first_img_scales:
-            scale = first_img_scales.scale('image', scale=first_img_scale)
+            scale = first_img_scales.scale('image', scale=first_img_scale,
+                direction=img_scale_dir)
             if scale:
                 large_scale_url = first_img_scales.scale('image',
                     scale='large').url
@@ -59,7 +60,7 @@ class RelatedImagesViewlet(ViewletBase):
             if img_obj:
                 scales = img_obj.restrictedTraverse('@@images')
                 scale = scales.scale('image', scale=img_scale,
-                                      direction=img_scale_dir)
+                    direction=img_scale_dir)
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(url=large_scale_url, tag=scale.tag()))
