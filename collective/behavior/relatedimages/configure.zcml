@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:plone="http://namespaces.plone.org/plone"
@@ -28,7 +29,7 @@
 
     <browser:viewlet
         name="collective.behavior.related_images"
-        for="collective.behavior.relatedimages.IRelatedImages"
+        for="collective.behavior.relatedimages.behavior.IRelatedImages"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".browser.RelatedImagesViewlet"
         permission="zope2.View"
@@ -36,7 +37,7 @@
 
     <browser:page
         name="upload_related_images"
-        for="collective.behavior.relatedimages.IRelatedImages"
+        for="collective.behavior.relatedimages.behavior.IRelatedImages"
         class=".browser.Uploader"
         permission="cmf.ModifyPortalContent"
         />
@@ -44,5 +45,7 @@
     <configure zcml:condition="installed plone.app.widgets">
         <adapter factory=".widget.RelatedImagesFieldWidget" />
     </configure>
+
+    <i18n:registerTranslations directory="locales" />
 
 </configure>

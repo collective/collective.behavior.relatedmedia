@@ -1,4 +1,6 @@
-from .behavior import IRelatedImages
+from zope.i18nmessageid.message import MessageFactory
+
+messageFactory = MessageFactory('collective.behavior.relatedimages')
 
 
 def initialize(context):
