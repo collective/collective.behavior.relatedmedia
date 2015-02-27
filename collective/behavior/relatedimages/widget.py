@@ -19,4 +19,7 @@ else:
     @adapter(getSpecification(IRelatedImages['related_images']), IFormLayer)
     @implementer(IFieldWidget)
     def RelatedImagesFieldWidget(field, request):
-        return FieldWidget(field, RelatedItemsWidget(request))
+        widget = FieldWidget(field, RelatedItemsWidget(request))
+        # this needs https://github.com/plone/plone.app.widgets/pull/87
+        widget.selectable_types = ["Image", ]
+        return widget

@@ -15,7 +15,7 @@ class IRelatedImages(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=_(u"Pictures"),
-            source=CatalogSource(portal_type='Image'),
+            source=CatalogSource(portal_type=['Image', 'Folder']),
         ),
         required=False,
     )
