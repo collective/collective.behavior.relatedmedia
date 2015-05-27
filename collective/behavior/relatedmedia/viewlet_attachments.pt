@@ -1,0 +1,8 @@
+<ul id="related-attachments">
+
+    <li tal:repeat="att view/attachments" class="attachment-item">
+        <a tal:attributes="href att/url">
+            <span tal:content="att/title" /> (<span tal:content="att/size" />)
+        </a>
+    </li>
+</ul>

@@ -8,7 +8,7 @@ from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.dexterity.utils import safe_unicode, safe_utf8, \
     createContentInContainer
-from plone.namedfile.file import NamedBlobImage
+from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from z3c.relationfield import RelationValue
 from zope.app.intid.interfaces import IIntIds
 from zope.component import getUtility
@@ -18,7 +18,7 @@ from .behavior import IRelatedImages
 
 
 class RelatedImagesViewlet(ViewletBase):
-    index = ViewPageTemplateFile('viewlet.pt')
+    index = ViewPageTemplateFile('viewlet_images.pt')
 
     @property
     def is_admin(self):
@@ -68,6 +68,22 @@ class RelatedImagesViewlet(ViewletBase):
         return gallery
 
 
+class RelatedAttachmentsViewlet(ViewletBase):
+    index = ViewPageTemplateFile('viewlet_attachments.pt')
+
+    def attachments(self):
+        context = aq_inner(self.context)
+        atts = IRelatedImages(aq_inner(context)).related_attachments
+        for att in atts:
+            att_obj = att.to_object
+            if att_obj:
+                yield dict(
+                    url=att_obj.absolute_url(),
+                    title=att.Title(),
+                    size=att.getSize(),
+                )
+
+
 class Uploader(BrowserView):
 
     def __init__(self, context, request):
@@ -76,10 +92,13 @@ class Uploader(BrowserView):
 
     def __call__(self):
         req_file = self.request.get('file')
+        c_type = req_file.headers.get('content-type', '')
+        file_data = req_file.read()
+        file_name = safe_unicode(req_file.filename)
         media_container = self.get_media_container()
-        if req_file.headers.get('content-type', '').startswith("image/"):
-            blob = NamedBlobImage(data=req_file.read(),
-                filename=safe_unicode(req_file.filename))
+        behavior = IRelatedImages(self.context)
+        if c_type.startswith("image/"):
+            blob = NamedBlobImage(data=file_data, filename=file_name)
             img = createContentInContainer(media_container, "Image",
                 image=blob)
             # safe image as leadImage if none exists
@@ -88,9 +107,16 @@ class Uploader(BrowserView):
                 ILeadImage(self.context).image = blob
             else:
                 to_id = self.intids.getId(img)
-                imgs = IRelatedImages(self.context).related_images
+                imgs = list(behavior.related_images)
                 imgs.append(RelationValue(to_id))
-                IRelatedImages(self.context).related_images = imgs
+                behavior.related_images = imgs
+        else:
+            blob = NamedBlobFile(data=file_data, filename=file_name)
+            att = createContentInContainer(media_container, "File", file=blob)
+            to_id = self.intids.getId(att)
+            atts = list(behavior.related_attachments)
+            atts.append(RelationValue(to_id))
+            behavior.related_attachments = atts
         return u"done"
 
     def get_media_container(self):

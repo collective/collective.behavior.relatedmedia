@@ -1,0 +1,4 @@
+<div tal:condition="view/is_admin"
+         class="pat-upload"
+         tal:attributes='data-pat-upload string:{"url": "${context/absolute_url}/@@upload_related_media",
+                                                 "autoUpdateContainerSelector": "#related-images"}' />

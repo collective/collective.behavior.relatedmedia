@@ -19,3 +19,13 @@ class IRelatedImages(form.Schema):
         ),
         required=False,
     )
+
+    related_attachments = RelationList(
+        title=_(u"label_attachmets", default=u"Related Attachments"),
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Files"),
+            source=CatalogSource(portal_type=['File', 'Folder']),
+        ),
+        required=False,
+    )

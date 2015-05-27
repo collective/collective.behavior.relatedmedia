@@ -35,8 +35,24 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="collective.behavior.related_attachments"
+        for="collective.behavior.relatedimages.behavior.IRelatedImages"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".browser.RelatedAttachmentsViewlet"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="collective.behavior.relatedmedia.uploader"
+        for="collective.behavior.relatedimages.behavior.IRelatedImages"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        template="viewlet_uploader.pt"
+        permission="zope2.View"
+        />
+
     <browser:page
-        name="upload_related_images"
+        name="upload_related_media"
         for="collective.behavior.relatedimages.behavior.IRelatedImages"
         class=".browser.Uploader"
         permission="cmf.ModifyPortalContent"
@@ -44,6 +60,7 @@
 
     <configure zcml:condition="installed plone.app.widgets">
         <adapter factory=".widget.RelatedImagesFieldWidget" />
+        <adapter factory=".widget.RelatedAttachmentsFieldWidget" />
     </configure>
 
     <i18n:registerTranslations directory="locales" />

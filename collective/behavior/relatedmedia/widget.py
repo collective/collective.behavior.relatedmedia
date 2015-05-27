@@ -23,3 +23,12 @@ else:
         # this needs https://github.com/plone/plone.app.widgets/pull/87
         widget.selectable_types = ["Image", ]
         return widget
+
+    @adapter(getSpecification(IRelatedImages['related_attachments']),
+        IFormLayer)
+    @implementer(IFieldWidget)
+    def RelatedAttachmentsFieldWidget(field, request):
+        widget = FieldWidget(field, RelatedItemsWidget(request))
+        # this needs https://github.com/plone/plone.app.widgets/pull/87
+        widget.selectable_types = ["File", ]
+        return widget
