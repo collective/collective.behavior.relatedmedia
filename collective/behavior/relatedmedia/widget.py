@@ -13,10 +13,10 @@ else:
     from zope.component import adapter
     from zope.interface import implementer
 
-    from .behavior import IRelatedImages
+    from .behavior import IRelatedMedia
 
 
-    @adapter(getSpecification(IRelatedImages['related_images']), IFormLayer)
+    @adapter(getSpecification(IRelatedMedia['related_images']), IFormLayer)
     @implementer(IFieldWidget)
     def RelatedImagesFieldWidget(field, request):
         widget = FieldWidget(field, RelatedItemsWidget(request))
@@ -24,7 +24,7 @@ else:
         widget.selectable_types = ["Image", ]
         return widget
 
-    @adapter(getSpecification(IRelatedImages['related_attachments']),
+    @adapter(getSpecification(IRelatedMedia['related_attachments']),
         IFormLayer)
     @implementer(IFieldWidget)
     def RelatedAttachmentsFieldWidget(field, request):

@@ -9,7 +9,7 @@ Images are shown in a viewlet (activated in IBelowContentTitle)
 
 Attachments are also shown in a viewlet (activated in IBelowContentBody)
 
-If `pat-upload`_ (mockup) is installed, you can drag'n'drop images to your
+If `pat-upload`_ (mockup) is installed, you can drag'n'drop images and files to your
 content easily.
 
 .. _`pat-upload`: http://plone.github.io/mockup/dev/#pattern/dropzone

@@ -8,7 +8,7 @@ from . import messageFactory as _
 
 
 @provider(IFormFieldProvider)
-class IRelatedImages(form.Schema):
+class IRelatedMedia(form.Schema):
 
     related_images = RelationList(
         title=_(u'Related Images'),

@@ -14,28 +14,23 @@ from zope.app.intid.interfaces import IIntIds
 from zope.component import getUtility
 from zope.component.hooks import getSite
 
-from .behavior import IRelatedImages
+from .behavior import IRelatedMedia
 
 
 class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
 
-    @property
-    def is_admin(self):
-        sm = getSecurityManager()
-        return sm.checkPermission('Modify portal content', self.context)
-
     def images(self):
         context = aq_inner(self.context)
-        imgs = IRelatedImages(aq_inner(context)).related_images
+        imgs = IRelatedMedia(aq_inner(context)).related_images
         include_leadimage = api.portal.get_registry_record(
-            'collective.behavior.relatedimages.include_leadimage')
+            'collective.behavior.relatedmedia.include_leadimage')
         first_img_scale = api.portal.get_registry_record(
-            'collective.behavior.relatedimages.first_image_scale')
+            'collective.behavior.relatedmedia.first_image_scale')
         img_scale = api.portal.get_registry_record(
-            'collective.behavior.relatedimages.preview_scale')
+            'collective.behavior.relatedmedia.preview_scale')
         img_scale_dir = api.portal.get_registry_record(
-            'collective.behavior.relatedimages.preview_scale_direction')
+            'collective.behavior.relatedmedia.preview_scale_direction')
         gallery = []
 
         if include_leadimage:
@@ -71,17 +66,29 @@ class RelatedImagesViewlet(ViewletBase):
 class RelatedAttachmentsViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_attachments.pt')
 
+    @property
+    def available(self):
+        return len(IRelatedMedia(aq_inner(self.context)).related_attachments)
+
     def attachments(self):
-        context = aq_inner(self.context)
-        atts = IRelatedImages(aq_inner(context)).related_attachments
+        atts = IRelatedMedia(aq_inner(self.context)).related_attachments
         for att in atts:
             att_obj = att.to_object
             if att_obj:
                 yield dict(
                     url=att_obj.absolute_url(),
-                    title=att.Title(),
-                    size=att.getSize(),
+                    title=att_obj.Title(),
+                    size=att_obj.getObjSize(),
                 )
+
+
+class UploaderViewlet(ViewletBase):
+    index = ViewPageTemplateFile('viewlet_uploader.pt')
+
+    @property
+    def is_admin(self):
+        sm = getSecurityManager()
+        return sm.checkPermission('Modify portal content', self.context)
 
 
 class Uploader(BrowserView):
@@ -96,7 +103,7 @@ class Uploader(BrowserView):
         file_data = req_file.read()
         file_name = safe_unicode(req_file.filename)
         media_container = self.get_media_container()
-        behavior = IRelatedImages(self.context)
+        behavior = IRelatedMedia(self.context)
         if c_type.startswith("image/"):
             blob = NamedBlobImage(data=file_data, filename=file_name)
             img = createContentInContainer(media_container, "Image",
@@ -123,7 +130,7 @@ class Uploader(BrowserView):
         container = None
         try:
             container_path = api.portal.get_registry_record(
-                'collective.behavior.relatedimages.media_container_path')
+                'collective.behavior.relatedmedia.media_container_path')
             portal = getSite()
             container = portal.restrictedTraverse(safe_utf8(container_path))
         except:

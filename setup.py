@@ -3,7 +3,7 @@ import os
 
 version = '1.0a1'
 
-setup(name='collective.behavior.relatedimages',
+setup(name='collective.behavior.relatedmedia',
       version=version,
       description="Adds RelationList and Viewlet/Portlet to manage " \
         "content related images",
@@ -27,6 +27,7 @@ setup(name='collective.behavior.relatedimages',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.behavior',
       ],
       entry_points="""
       # -*- Entry points: -*-
