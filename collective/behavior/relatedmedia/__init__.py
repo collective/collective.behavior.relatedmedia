@@ -1,6 +1,6 @@
 from zope.i18nmessageid.message import MessageFactory
 
-messageFactory = MessageFactory('collective.behavior.relatedimages')
+messageFactory = MessageFactory('collective.behavior.relatedmedia')
 
 
 def initialize(context):

@@ -27,6 +27,8 @@ class RelatedImagesViewlet(ViewletBase):
             'collective.behavior.relatedmedia.include_leadimage')
         first_img_scale = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.first_image_scale')
+        first_img_scale_dir = api.portal.get_registry_record(
+            'collective.behavior.relatedmedia.first_image_scale_direction')
         img_scale = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.preview_scale')
         img_scale_dir = api.portal.get_registry_record(
@@ -44,7 +46,7 @@ class RelatedImagesViewlet(ViewletBase):
 
         if first_img_scales:
             scale = first_img_scales.scale('image', scale=first_img_scale,
-                direction=img_scale_dir)
+                direction=first_img_scale_dir)
             if scale:
                 large_scale_url = first_img_scales.scale('image',
                     scale='large').url

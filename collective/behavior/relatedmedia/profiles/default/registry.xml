@@ -11,9 +11,16 @@
 
     <record name="collective.behavior.relatedmedia.first_image_scale">
         <field type="plone.registry.field.TextLine">
-            <title>Gallery first image scale</title>
+            <title>Gallery lead image scale</title>
         </field>
         <value>large</value>
+    </record>
+
+    <record name="collective.behavior.relatedmedia.first_image_scale_direction">
+        <field type="plone.registry.field.TextLine">
+            <title>Gallery lead image scale cropping direction</title>
+        </field>
+        <value>down</value>
     </record>
 
     <record name="collective.behavior.relatedmedia.preview_scale">
