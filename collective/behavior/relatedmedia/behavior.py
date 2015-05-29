@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from operator import attrgetter
 from persistent.dict import PersistentDict
 from plone import api
 from plone.app.vocabularies.catalog import CatalogSource
@@ -24,10 +25,11 @@ class ImageScalesVocabulary(object):
 
     def __call__(self, context):
         props = api.portal.get_tool('portal_properties')
-        terms = []
+        terms = set()
         for s in props.imaging_properties.allowed_sizes:
             k, v = s.split(' ')
-            terms.append(SimpleTerm(k, title="{0} ({1})".format(k, v)))
+            if k not in map(attrgetter('value'), terms):
+                terms.add(SimpleTerm(k, title="{0} ({1})".format(k, v)))
         return SimpleVocabulary(terms)
 
 
