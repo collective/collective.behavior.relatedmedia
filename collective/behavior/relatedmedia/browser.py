@@ -20,22 +20,16 @@ from .behavior import IRelatedMedia
 class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
 
+    def gallery_css_klass(self):
+        return IRelatedMedia(aq_inner(self.context)).gallery_css_class or u""
+
     def images(self):
         context = aq_inner(self.context)
-        imgs = IRelatedMedia(aq_inner(context)).related_images
-        include_leadimage = api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.include_leadimage')
-        first_img_scale = api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.first_image_scale')
-        first_img_scale_dir = api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.first_image_scale_direction')
-        img_scale = api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.preview_scale')
-        img_scale_dir = api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.preview_scale_direction')
+        rm_behavior = IRelatedMedia(context)
+        imgs = rm_behavior.related_images
         gallery = []
 
-        if include_leadimage:
+        if rm_behavior.include_leadimage:
             first_img_scales = context.restrictedTraverse('@@images')
         elif len(imgs):
             first_img = imgs.pop(0)
@@ -45,8 +39,10 @@ class RelatedImagesViewlet(ViewletBase):
             first_img_scales = None
 
         if first_img_scales:
-            scale = first_img_scales.scale('image', scale=first_img_scale,
-                direction=first_img_scale_dir)
+            scale = first_img_scales.scale('image',
+                scale=rm_behavior.first_image_scale,
+                direction=rm_behavior.first_image_scale_direction and 'down' \
+                or 'thumbnail')
             if scale:
                 large_scale_url = first_img_scales.scale('image',
                     scale='large').url
@@ -56,8 +52,9 @@ class RelatedImagesViewlet(ViewletBase):
             img_obj = img.to_object
             if img_obj:
                 scales = img_obj.restrictedTraverse('@@images')
-                scale = scales.scale('image', scale=img_scale,
-                    direction=img_scale_dir)
+                scale = scales.scale('image', scale=rm_behavior.preview_scale,
+                    direction=rm_behavior.preview_scale_direction and 'down' \
+                    or 'thumbnail')
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(url=large_scale_url, tag=scale.tag()))

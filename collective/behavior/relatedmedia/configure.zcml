@@ -20,6 +20,18 @@
 
     <include package="plone.behavior" file="meta.zcml"/>
 
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        factory=".behavior.ImageScalesVocabulary"
+        name="collective.relatedmedia.imagescales"
+        />
+
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        factory=".behavior.GalleryCSSClassesVocabulary"
+        name="collective.relatedmedia.gallerycssclasses"
+        />
+
     <plone:behavior
         title="Related Media"
         description="Manage content-related images and attachments"
@@ -80,6 +92,24 @@
         profile="collective.behavior.relatedmedia:default"
         title="Package rename"
         description="'collective.behavior.relatedimages' -> 'collective.behavior.relatedmedia'"
+        sortkey="1"
         handler=".upgrades.package_rename" />
+
+    <gs:registerProfile
+        name="local_config"
+        title="Profile for upgrade step 'Local configuration'"
+        directory="profiles/upgrades/local_config"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <gs:upgradeStep
+        source="1002"
+        destination="1003"
+        profile="collective.behavior.relatedmedia:default"
+        title="Local gallery configuration"
+        description="expose gallery image settings to local tab"
+        sortkey="2"
+        handler=".upgrades.local_gallery_configuration" />
 
 </configure>

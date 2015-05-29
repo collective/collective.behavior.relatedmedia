@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <record name="collective.behavior.relatedmedia.first_image_scale" remove="true" />
+    <record name="collective.behavior.relatedmedia.first_image_scale_direction" remove="true" />
+    <record name="collective.behavior.relatedmedia.preview_scale" remove="true" />
+    <record name="collective.behavior.relatedmedia.preview_scale_direction" remove="true" />
+    <record name="collective.behavior.relatedmedia.include_leadimage" remove="true" />
+
+</registry>

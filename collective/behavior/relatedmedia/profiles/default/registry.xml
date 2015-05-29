@@ -9,40 +9,18 @@
         <value>/Plone/media</value>
     </record>
 
-    <record name="collective.behavior.relatedmedia.first_image_scale">
-        <field type="plone.registry.field.TextLine">
-            <title>Gallery lead image scale</title>
+    <record name="collective.behavior.relatedmedia.image_gallery_cssclass">
+        <field type="plone.registry.field.Tuple">
+            <title>Gallery CSS classes</title>
+            <value_type type="plone.registry.field.ASCIILine">
+                <title>CSS Class</title>
+            </value_type>
         </field>
-        <value>large</value>
-    </record>
-
-    <record name="collective.behavior.relatedmedia.first_image_scale_direction">
-        <field type="plone.registry.field.TextLine">
-            <title>Gallery lead image scale cropping direction</title>
-        </field>
-        <value>down</value>
-    </record>
-
-    <record name="collective.behavior.relatedmedia.preview_scale">
-        <field type="plone.registry.field.TextLine">
-            <title>Gallery preview image scale</title>
-        </field>
-        <value>preview</value>
-    </record>
-
-    <record name="collective.behavior.relatedmedia.preview_scale_direction">
-        <field type="plone.registry.field.TextLine">
-            <title>Gallery preview image scale cropping direction</title>
-        </field>
-        <value>down</value>
-    </record>
-
-    <record name="collective.behavior.relatedmedia.include_leadimage">
-        <field type="plone.registry.field.Bool">
-            <title>Include lead image</title>
-            <description>show content LeadImage as first image</description>
-        </field>
-        <value>True</value>
+        <value>
+            <element>floatLeft</element>
+            <element>floatRight</element>
+            <element>fullWidth</element>
+        </value>
     </record>
 
 </registry>
