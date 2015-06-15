@@ -10,7 +10,7 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
 ptc.setupPloneSite()
 
-import collective.behavior.relatedimages
+import collective.behavior.relatedmedia
 
 class TestCase(ptc.PloneTestCase):
     class layer(PloneSite):
@@ -18,7 +18,7 @@ class TestCase(ptc.PloneTestCase):
         def setUp(cls):
             fiveconfigure.debug_mode = True
             zcml.load_config('configure.zcml',
-                             collective.behavior.relatedimages)
+                             collective.behavior.relatedmedia)
             fiveconfigure.debug_mode = False
 
         @classmethod
@@ -31,21 +31,21 @@ def test_suite():
 
         # Unit tests
         #doctestunit.DocFileSuite(
-        #    'README.txt', package='collective.behavior.relatedimages',
+        #    'README.txt', package='collective.behavior.relatedmedia',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
         #doctestunit.DocTestSuite(
-        #    module='collective.behavior.relatedimages.mymodule',
+        #    module='collective.behavior.relatedmedia.mymodule',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
 
         # Integration tests that use PloneTestCase
         #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='collective.behavior.relatedimages',
+        #    'README.txt', package='collective.behavior.relatedmedia',
         #    test_class=TestCase),
 
         #ztc.FunctionalDocFileSuite(
-        #    'browser.txt', package='collective.behavior.relatedimages',
+        #    'browser.txt', package='collective.behavior.relatedmedia',
         #    test_class=TestCase),
 
         ])

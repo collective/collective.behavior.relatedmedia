@@ -1,10 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-05-29 09:51+0000\n"
-"PO-Revision-Date: 2015-05-29 11:51+0100\n"
-"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-02-25 15:38+0000\n"
+"PO-Revision-Date: 2015-02-25 16:41+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,72 +11,15 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
+"Language-Team: \n"
 "Language: de\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.7.4\n"
 
-#: collective/behavior/relatedmedia/behavior.py:73
-msgid "Crop first image"
-msgstr "Erstes Bild zuschneiden"
-
-#: collective/behavior/relatedmedia/behavior.py:87
-msgid "Crop image"
-msgstr "Bilder zuschneiden"
-
-#: collective/behavior/relatedmedia/behavior.py:74
-msgid "Downsize or crop the image to the given boundaries"
-msgstr "Wenn aktiviert werden die Bilder auf die Größe zugeschnitten/vergrößert. Ansonsten werden Sie eingepasst."
-
-#: collective/behavior/relatedmedia/behavior.py:103
-msgid "Files"
-msgstr "Dateien"
-
-#: collective/behavior/relatedmedia/behavior.py:66
-msgid "First image scale"
-msgstr "Größe des ersten Bildes"
-
-#: collective/behavior/relatedmedia/behavior.py:81
-msgid "Gallery image preview scale"
-msgstr "Größe der Vorschaubilder in der Galerie"
-
-#: collective/behavior/relatedmedia/behavior.py:94
-msgid "Gallery layout"
-msgstr "Galerie Layout"
-
-#: collective/behavior/relatedmedia/behavior.py:80
-msgid "Image scale"
-msgstr "Bildgröße"
-
-#: collective/behavior/relatedmedia/behavior.py:58
-msgid "Include Leadimage"
-msgstr "\"Leadimage\" inkludieren"
-
-#: collective/behavior/relatedmedia/behavior.py:51
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:17
 msgid "Pictures"
 msgstr "Bilder"
 
-#: collective/behavior/relatedmedia/behavior.py:109
-msgid "Related Media"
-msgstr "Verknüpfte Medien"
-
-#: collective/behavior/relatedmedia/behavior.py:67
-msgid "Size for the first image in the gallery"
-msgstr "Größe des ersten Bildes in der Galerie"
-
-#: collective/behavior/relatedmedia/behavior.py:59
-msgid "Wether or not include the Leadimage in the gallery viewlet"
-msgstr "Wenn vorhanden wird das \"Leadimage\" in der Galerie miteinbezogen"
-
-#. Default: "Related Attachments"
-#: collective/behavior/relatedmedia/behavior.py:100
-msgid "label_attachments"
-msgstr "Verknüpfte Dateien"
-
-#. Default: "Related Images"
-#: collective/behavior/relatedmedia/behavior.py:48
-msgid "label_images"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:14
+msgid "Related Images"
 msgstr "Verknüpfte Bilder"
-
-#. Default: "Attachments"
-#: collective/behavior/relatedmedia/viewlet_attachments.pt:3
-msgid "title_attachments"
-msgstr "Downloads"
