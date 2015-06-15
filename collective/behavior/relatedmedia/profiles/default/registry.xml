@@ -4,9 +4,9 @@
     <record name="collective.behavior.relatedmedia.media_container_path">
         <field type="plone.registry.field.TextLine">
             <title>Media Container</title>
-            <description>Full traversable path to media container (remember to add Plone ID!)</description>
+            <description>Traversable path to media container. We respect IPloneSiteRoot, INavigationRoot and IChildSite (lineage) as "/"</description>
         </field>
-        <value>/Plone/media</value>
+        <value>/media</value>
     </record>
 
     <record name="collective.behavior.relatedmedia.image_gallery_cssclass">

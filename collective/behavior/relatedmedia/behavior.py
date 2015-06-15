@@ -1,16 +1,11 @@
-from Acquisition import aq_inner
 from operator import attrgetter
-from persistent.dict import PersistentDict
 from plone import api
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.dexterity.interfaces import IDexterityContent
 from plone.directives import form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
-from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter
 from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm

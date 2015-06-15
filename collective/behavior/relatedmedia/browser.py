@@ -1,6 +1,7 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_parent, aq_inner
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
@@ -11,8 +12,7 @@ from plone.dexterity.utils import safe_unicode, safe_utf8, \
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from z3c.relationfield import RelationValue
 from zope.app.intid.interfaces import IIntIds
-from zope.component import getUtility
-from zope.component.hooks import getSite
+from zope.component import getUtility, getMultiAdapter
 
 from .behavior import IRelatedMedia
 
@@ -127,13 +127,27 @@ class Uploader(BrowserView):
 
     def get_media_container(self):
         container = None
+        config_media_path = api.portal.get_registry_record(
+            'collective.behavior.relatedmedia.media_container_path')
+        pstate = getMultiAdapter((self.context, self.request),
+            name='plone_portal_state')
+        nav_root = pstate.navigation_root()
+        media_path = "{}{}".format('/'.join(nav_root.getPhysicalPath()),
+            config_media_path)
         try:
-            container_path = api.portal.get_registry_record(
-                'collective.behavior.relatedmedia.media_container_path')
-            portal = getSite()
-            container = portal.restrictedTraverse(safe_utf8(container_path))
+            container = self.context.restrictedTraverse(safe_utf8(media_path))
         except:
-            pass
+            # try to create media folder
+            container = nav_root
+            for f_id in config_media_path.split('/'):
+                if not f_id:
+                    continue
+                if not hasattr(container, f_id):
+                    container = createContentInContainer(container, 'Folder',
+                        id=f_id, title=f_id, exclude_from_nav=True,
+                        checkConstraints=False)
+                else:
+                    container = container[f_id]
         if container is None:
             container = aq_inner(self.context)
             while not IFolderish.providedBy(container):
