@@ -44,9 +44,13 @@ class RelatedImagesViewlet(ViewletBase):
                 direction=rm_behavior.first_image_scale_direction and 'down' \
                 or 'thumbnail')
             if scale:
+                import pdb; pdb.set_trace()
                 large_scale_url = first_img_scales.scale('image',
                     scale='large').url
-                gallery.append(dict(url=large_scale_url, tag=scale.tag()))
+                gallery.append(dict(
+                    url=large_scale_url,
+                    tag=scale.tag(),
+                    title=scale.context.Title()))
 
         for img in imgs:
             img_obj = img.to_object
@@ -57,7 +61,11 @@ class RelatedImagesViewlet(ViewletBase):
                     or 'thumbnail')
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
-                    gallery.append(dict(url=large_scale_url, tag=scale.tag()))
+                    gallery.append(dict(
+                        url=large_scale_url,
+                        tag=scale.tag(),
+                        title=img_obj.Title(),
+                    ))
 
         return gallery
 

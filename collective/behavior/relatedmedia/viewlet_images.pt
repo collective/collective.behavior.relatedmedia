@@ -6,6 +6,7 @@
        tal:attributes="href img/url;
                        class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
        <img tal:replace="structure img/tag" />
+       <span class="caption" tal:content="img/title">image caption</span>
     </a>
 
     <div class="visualClear"><!-- --></div>
