@@ -1,7 +1,6 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_parent, aq_inner
 from Products.CMFCore.interfaces import IFolderish
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
@@ -15,6 +14,8 @@ from zope.app.intid.interfaces import IIntIds
 from zope.component import getUtility, getMultiAdapter
 
 from .behavior import IRelatedMedia
+
+import transaction
 
 
 class RelatedImagesViewlet(ViewletBase):
@@ -44,7 +45,6 @@ class RelatedImagesViewlet(ViewletBase):
                 direction=rm_behavior.first_image_scale_direction and 'down' \
                 or 'thumbnail')
             if scale:
-                import pdb; pdb.set_trace()
                 large_scale_url = first_img_scales.scale('image',
                     scale='large').url
                 gallery.append(dict(
@@ -85,7 +85,8 @@ class RelatedAttachmentsViewlet(ViewletBase):
                 yield dict(
                     url=att_obj.absolute_url(),
                     title=att_obj.Title(),
-                    size=att_obj.getObjSize(),
+                    size="{:.1f} MB".format(
+                        att_obj.file.getSize() / 1024.0 / 1024.0),
                 )
 
 
@@ -120,6 +121,7 @@ class Uploader(BrowserView):
             ILeadImage(self.context).image is None:
                 ILeadImage(self.context).image = blob
             else:
+                transaction.commit()
                 to_id = self.intids.getId(img)
                 imgs = list(behavior.related_images)
                 imgs.append(RelationValue(to_id))
