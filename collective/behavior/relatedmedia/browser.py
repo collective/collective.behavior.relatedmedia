@@ -28,16 +28,19 @@ class RelatedImagesViewlet(ViewletBase):
         context = aq_inner(self.context)
         rm_behavior = IRelatedMedia(context)
         imgs = rm_behavior.related_images
+        first_img_scales = None
         gallery = []
 
-        if rm_behavior.include_leadimage:
+        if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
             first_img_scales = context.restrictedTraverse('@@images')
+            first_img_caption = ILeadImage(context).image_caption
         elif len(imgs):
             first_img = imgs.pop(0)
-            first_img_scales = first_img.to_object.restrictedTraverse(
-                '@@images')
-        else:
-            first_img_scales = None
+            first_img_obj = first_img.to_object
+            if first_img_obj:
+                first_img_scales = first_img_obj.restrictedTraverse(
+                    '@@images')
+                first_img_caption = first_img_obj.Title()
 
         if first_img_scales:
             scale = first_img_scales.scale('image',
@@ -50,7 +53,7 @@ class RelatedImagesViewlet(ViewletBase):
                 gallery.append(dict(
                     url=large_scale_url,
                     tag=scale.tag(),
-                    title=scale.context.Title()))
+                    title=first_img_caption))
 
         for img in imgs:
             img_obj = img.to_object
