@@ -1,8 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-02-25 15:38+0000\n"
-"PO-Revision-Date: 2015-02-25 16:41+0100\n"
+"POT-Creation-Date: 2015-07-14 10:34+0000\n"
+"PO-Revision-Date: 2015-07-14 12:47+0200\n"
+"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,15 +13,76 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
-"Language-Team: \n"
 "Language: de\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.2\n"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:17
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:69
+msgid "Crop first image"
+msgstr "Erstes Bild zuschneiden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:83
+msgid "Crop image"
+msgstr "Bild zuschneiden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:70
+msgid "Downsize or crop the image to the given boundaries"
+msgstr "Bilder auf die ausgewählte Größe zuschneiden/skalieren"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:91
+msgid "Feel free to add/remove classes in your registry.xml"
+msgstr "die css Klassen können über das registry.xml angepasst werden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:99
+msgid "Files"
+msgstr "Dateien"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:62
+msgid "First image scale"
+msgstr "Hauptbild"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:77
+msgid "Gallery image preview scale"
+msgstr "Größe der Galeriebilder"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:90
+msgid "Gallery layout"
+msgstr "Galerie Layout CSS Klasse"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:76
+msgid "Image scale"
+msgstr "Größe der weiteren Bilder"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:54
+msgid "Include Leadimage"
+msgstr "\"Leadimage\" berücksichtigen"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:47
 msgid "Pictures"
 msgstr "Bilder"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:14
-msgid "Related Images"
-msgstr "Verknüpfte Bilder"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:105
+msgid "Related Media"
+msgstr "Verknüpfte Medien"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:63
+msgid "Size for the first image in the gallery"
+msgstr "Größe des ersten Bildes"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:55
+msgid "Wether or not include the Leadimage in the gallery viewlet"
+msgstr "Soll das \"Leadimage\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
+
+#. Default: "Related Attachments"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:96
+msgid "label_attachments"
+msgstr "Downloads"
+
+#. Default: "Related Images"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:44
+msgid "label_images"
+msgstr "Bilder"
+
+#. Default: "Attachments"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/viewlet_attachments.pt:3
+msgid "title_attachments"
+msgstr "Downloads"

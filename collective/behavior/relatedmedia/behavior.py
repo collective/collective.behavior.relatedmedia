@@ -88,6 +88,7 @@ class IRelatedMedia(form.Schema):
 
     gallery_css_class = schema.Choice(
         title=_("Gallery layout"),
+        description=_("Feel free to add/remove classes in your registry.xml"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
     )
 
