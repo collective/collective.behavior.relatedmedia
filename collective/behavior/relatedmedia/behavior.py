@@ -4,6 +4,7 @@ from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
 from plone.supermodel import model
+from z3c.form import widget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.interface import provider, implementer
@@ -88,7 +89,6 @@ class IRelatedMedia(form.Schema):
     gallery_css_class = schema.Choice(
         title=_("Gallery layout"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
-        default='fullWidth',
     )
 
     related_attachments = RelationList(
@@ -105,3 +105,11 @@ class IRelatedMedia(form.Schema):
         fields=['related_images', 'include_leadimage',
         'first_image_scale', 'first_image_scale_direction', 'preview_scale',
         'preview_scale_direction', 'gallery_css_class', 'related_attachments'])
+
+
+def default_css_class_factory(widget):
+    return api.portal.get_registry_record('collective.behavior.relatedmedia' \
+            '.image_gallery_default_class')
+
+default_css_class_value = widget.ComputedWidgetAttribute(
+    default_css_class_factory, field=IRelatedMedia['gallery_css_class'])

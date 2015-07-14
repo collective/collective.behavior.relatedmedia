@@ -22,7 +22,7 @@ class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
 
     def gallery_css_klass(self):
-        return IRelatedMedia(aq_inner(self.context)).gallery_css_class or u""
+        return IRelatedMedia(aq_inner(self.context)).gallery_css_class
 
     def images(self):
         context = aq_inner(self.context)

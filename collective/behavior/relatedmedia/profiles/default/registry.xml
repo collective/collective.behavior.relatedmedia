@@ -23,4 +23,12 @@
         </value>
     </record>
 
+    <record name="collective.behavior.relatedmedia.image_gallery_default_class">
+        <field type="plone.registry.field.TextLine">
+            <title>Default gallery class for new articles</title>
+            <description>You can customize this in your theme/registry.xml file</description>
+        </field>
+        <value>fullWidth</value>
+    </record>
+
 </registry>
