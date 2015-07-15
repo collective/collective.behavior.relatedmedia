@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-07-14 10:34+0000\n"
-"PO-Revision-Date: 2015-07-14 12:47+0200\n"
+"POT-Creation-Date: 2015-07-15 13:44+0000\n"
+"PO-Revision-Date: 2015-07-15 15:45+0200\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,43 +16,43 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.8.2\n"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:69
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:75
 msgid "Crop first image"
 msgstr "Erstes Bild zuschneiden"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:83
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:89
 msgid "Crop image"
 msgstr "Bild zuschneiden"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:70
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:76
 msgid "Downsize or crop the image to the given boundaries"
 msgstr "Bilder auf die ausgewählte Größe zuschneiden/skalieren"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:91
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:97
 msgid "Feel free to add/remove classes in your registry.xml"
 msgstr "die css Klassen können über das registry.xml angepasst werden"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:99
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:105
 msgid "Files"
 msgstr "Dateien"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:62
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:68
 msgid "First image scale"
 msgstr "Hauptbild"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:77
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:83
 msgid "Gallery image preview scale"
 msgstr "Größe der Galeriebilder"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:90
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:96
 msgid "Gallery layout"
 msgstr "Galerie Layout CSS Klasse"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:76
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:82
 msgid "Image scale"
 msgstr "Größe der weiteren Bilder"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:54
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:60
 msgid "Include Leadimage"
 msgstr "\"Leadimage\" berücksichtigen"
 
@@ -60,20 +60,24 @@ msgstr "\"Leadimage\" berücksichtigen"
 msgid "Pictures"
 msgstr "Bilder"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:105
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:111
 msgid "Related Media"
 msgstr "Verknüpfte Medien"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:63
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:54
+msgid "Show image titles as caption"
+msgstr "Zeige Bildtitel als Unterschrift"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:69
 msgid "Size for the first image in the gallery"
 msgstr "Größe des ersten Bildes"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:55
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:61
 msgid "Wether or not include the Leadimage in the gallery viewlet"
 msgstr "Soll das \"Leadimage\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
 
 #. Default: "Related Attachments"
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:96
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:102
 msgid "label_attachments"
 msgstr "Downloads"
 
