@@ -50,6 +50,12 @@ class IRelatedMedia(form.Schema):
         required=False,
     )
 
+    show_titles_as_caption = schema.Bool(
+        title=_("Show image titles as caption"),
+        default=False,
+        required=False,
+    )
+
     include_leadimage = schema.Bool(
         title=_("Include Leadimage"),
         description=_("Wether or not include the Leadimage in the " \
@@ -102,15 +108,15 @@ class IRelatedMedia(form.Schema):
         required=False,
     )
 
-    model.fieldset('relatedmedia', label=_("Related Media"),
-        fields=['related_images', 'include_leadimage',
+    model.fieldset('relatedmedia', label=_("Related Media"), fields=[
+        'related_images', 'show_titles_as_caption', 'include_leadimage',
         'first_image_scale', 'first_image_scale_direction', 'preview_scale',
         'preview_scale_direction', 'gallery_css_class', 'related_attachments'])
 
 
 def default_css_class_factory(widget):
     return api.portal.get_registry_record('collective.behavior.relatedmedia' \
-            '.image_gallery_default_class')
+        '.image_gallery_default_class')
 
 default_css_class_value = widget.ComputedWidgetAttribute(
     default_css_class_factory, field=IRelatedMedia['gallery_css_class'])
