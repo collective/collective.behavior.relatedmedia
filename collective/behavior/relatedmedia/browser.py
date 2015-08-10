@@ -125,7 +125,6 @@ class Uploader(BrowserView):
             ILeadImage(self.context).image is None:
                 ILeadImage(self.context).image = blob
             else:
-                transaction.commit()
                 to_id = self.intids.getId(img)
                 imgs = list(behavior.related_images)
                 imgs.append(RelationValue(to_id))
