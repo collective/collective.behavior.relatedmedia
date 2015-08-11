@@ -7,6 +7,7 @@ from plone.supermodel import model
 from z3c.form import widget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
+from zope.component.hooks import getSite
 from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
@@ -14,6 +15,22 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from . import messageFactory as _
 
 RELATED_MEDIA_CONFIG_STORAGE_KEY = "__collective.related.media.local_config__"
+
+
+class MediaCatalogSource(CatalogSource):
+
+    def search_catalog(self, user_query):
+        query = user_query.copy()
+        query.update(self.query)
+        portal = api.portal.get()
+        catalog = api.portal.get_tool('portal_catalog')
+        nav_root = api.portal.get_navigation_root(getSite())
+        portal_media_path = "{}{}".format('/'.join(portal.getPhysicalPath()),
+            api.portal.get_registry_record(
+            'collective.behavior.relatedmedia.media_container_path'))
+        query.update(dict(path=[portal_media_path,
+            '/'.join(nav_root.getPhysicalPath())]))
+        return catalog(query)
 
 
 @implementer(IVocabularyFactory)
@@ -42,10 +59,9 @@ class IRelatedMedia(form.Schema):
 
     related_images = RelationList(
         title=_('label_images', default=u'Related Images'),
-        default=[],
         value_type=RelationChoice(
             title=_(u"Pictures"),
-            source=CatalogSource(portal_type=['Image', 'Folder']),
+            source=MediaCatalogSource(portal_type="Image"),
         ),
         required=False,
     )
@@ -100,14 +116,17 @@ class IRelatedMedia(form.Schema):
 
     related_attachments = RelationList(
         title=_(u"label_attachments", default=u"Related Attachments"),
-        default=[],
         value_type=RelationChoice(
             title=_(u"Files"),
-            source=CatalogSource(portal_type=['File', 'Folder']),
+            source=MediaCatalogSource(portal_type="File"),
         ),
         required=False,
     )
 
+    form.widget(
+        related_images='plone.app.widgets.dx.RelatedItemsFieldWidget',
+        related_attachments='plone.app.widgets.dx.RelatedItemsFieldWidget',
+    )
     model.fieldset('relatedmedia', label=_("Related Media"), fields=[
         'related_images', 'show_titles_as_caption', 'include_leadimage',
         'first_image_scale', 'first_image_scale_direction', 'preview_scale',

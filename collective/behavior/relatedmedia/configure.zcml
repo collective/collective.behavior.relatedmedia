@@ -70,11 +70,6 @@
         permission="cmf.ModifyPortalContent"
         />
 
-    <configure zcml:condition="installed plone.app.widgets">
-        <adapter factory=".widget.RelatedImagesFieldWidget" />
-        <adapter factory=".widget.RelatedAttachmentsFieldWidget" />
-    </configure>
-
     <i18n:registerTranslations directory="locales" />
 
     <!-- default value adapter for gallery_css_class ... read default value from registry

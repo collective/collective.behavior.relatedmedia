@@ -15,8 +15,6 @@ from zope.component import getUtility, getMultiAdapter
 
 from .behavior import IRelatedMedia
 
-import transaction
-
 
 class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
@@ -142,9 +140,7 @@ class Uploader(BrowserView):
         container = None
         config_media_path = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.media_container_path')
-        pstate = getMultiAdapter((self.context, self.request),
-            name='plone_portal_state')
-        nav_root = pstate.navigation_root()
+        nav_root = api.portal.get_navigation_root(self.context)
         media_path = "{}{}".format('/'.join(nav_root.getPhysicalPath()),
             config_media_path)
         try:
