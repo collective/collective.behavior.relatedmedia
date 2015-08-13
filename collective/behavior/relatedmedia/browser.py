@@ -77,7 +77,8 @@ class RelatedAttachmentsViewlet(ViewletBase):
 
     @property
     def available(self):
-        return len(IRelatedMedia(aq_inner(self.context)).related_attachments)
+        att = IRelatedMedia(aq_inner(self.context)).related_attachments or []
+        return len(att)
 
     def attachments(self):
         atts = IRelatedMedia(aq_inner(self.context)).related_attachments
