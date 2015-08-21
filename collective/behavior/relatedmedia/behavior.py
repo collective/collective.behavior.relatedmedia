@@ -139,3 +139,12 @@ def default_css_class_factory(widget):
 
 default_css_class_value = widget.ComputedWidgetAttribute(
     default_css_class_factory, field=IRelatedMedia['gallery_css_class'])
+
+
+def default_preview_scale_direction(widget):
+    return api.portal.get_registry_record('collective.behavior.relatedmedia' \
+        '.image_gallery_default_preview_scale_direction')
+
+default_preview_scale_direction_value = widget.ComputedWidgetAttribute(
+    default_preview_scale_direction,
+    field=IRelatedMedia['preview_scale_direction'])

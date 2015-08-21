@@ -76,6 +76,7 @@
          see http://pythonhosted.org/z3c.form/widget.html#dynamically-changing-attribute-values
     -->
     <adapter factory=".behavior.default_css_class_value" name="default" />
+    <adapter factory=".behavior.default_preview_scale_direction_value" name="default" />
 
     <!-- upgrade -->
     <gs:registerProfile

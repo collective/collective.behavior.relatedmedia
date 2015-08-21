@@ -31,4 +31,12 @@
         <value>fullWidth</value>
     </record>
 
+    <record name="collective.behavior.relatedmedia.image_gallery_default_preview_scale_direction">
+        <field type="plone.registry.field.Bool">
+            <title>Default setting for cropping gallery images</title>
+            <description>You can customize this in your theme/registry.xml file</description>
+        </field>
+        <value>False</value>
+    </record>
+
 </registry>

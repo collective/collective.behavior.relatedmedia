@@ -11,7 +11,7 @@ from plone.dexterity.utils import safe_unicode, safe_utf8, \
 from plone.namedfile.file import NamedBlobImage, NamedBlobFile
 from z3c.relationfield import RelationValue
 from zope.app.intid.interfaces import IIntIds
-from zope.component import getUtility, getMultiAdapter
+from zope.component import getUtility
 
 from .behavior import IRelatedMedia
 
