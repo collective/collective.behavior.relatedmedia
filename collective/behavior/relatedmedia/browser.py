@@ -5,6 +5,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.contenttypes.indexers import getIcon_file
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.dexterity.utils import safe_unicode, safe_utf8, \
     createContentInContainer
@@ -90,6 +91,7 @@ class RelatedAttachmentsViewlet(ViewletBase):
                     title=att_obj.Title(),
                     size="{:.1f} MB".format(
                         att_obj.file.getSize() / 1024.0 / 1024.0),
+                    icon=getIcon_file(att_obj),
                 )
 
 

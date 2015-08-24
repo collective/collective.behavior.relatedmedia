@@ -1,11 +1,13 @@
 <tal:block condition="view/available"
     i18n:domain="collective.behavior.relatedmedia">
     <h2 i18n:translate="title_attachments">Attachments</h2>
-    <ul id="related-attachments">
+    <ul id="related-attachments" class="visualNoMarker">
 
         <li tal:repeat="att view/attachments" class="attachment-item">
             <a tal:attributes="href att/url">
-                <span tal:content="att/title" /> (<span tal:content="att/size" />)
+                <img tal:condition="att/icon|nothing" border="0"
+                     tal:attributes="src string:${view/site_url}/${att/icon}"
+                /> <span tal:content="att/title" /> (<span tal:content="att/size" />)
             </a>
         </li>
     </ul>
