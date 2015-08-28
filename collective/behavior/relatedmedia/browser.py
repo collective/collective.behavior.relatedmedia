@@ -16,6 +16,8 @@ from zope.component import getUtility
 
 from .behavior import IRelatedMedia
 
+import json
+
 
 class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
@@ -137,7 +139,9 @@ class Uploader(BrowserView):
             atts = list(behavior.related_attachments)
             atts.append(RelationValue(to_id))
             behavior.related_attachments = atts
-        return u"done"
+        return json.dumps(dict(
+            status=u"done",
+        ))
 
     def get_media_container(self):
         container = None

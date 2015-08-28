@@ -31,6 +31,7 @@ setup(name='collective.behavior.relatedmedia',
           # -*- Extra requirements: -*-
           'plone.behavior',
           'plone.app.dexterity',
+          'plone.app.widgets',
       ],
       entry_points="""
       # -*- Entry points: -*-

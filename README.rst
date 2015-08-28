@@ -1,6 +1,6 @@
-##################################
-Content Related Images/Attachments
-##################################
+############################################
+Dexterity Content Related Images/Attachments
+############################################
 
 
 What can this package do for you?
