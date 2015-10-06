@@ -1,5 +1,5 @@
 <div tal:condition="view/is_admin"
-     class="pat-upload"
+     class="pat-upload visualNoPrint"
      tal:attributes='data-pat-upload string:{"url": "${context/absolute_url}/upload_related_media"}'
 /><script type="text/javascript">
 $(".pat-upload").on("uploadAllCompleted", function(response, path) {
