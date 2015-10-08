@@ -54,7 +54,8 @@ class RelatedImagesViewlet(ViewletBase):
                     scale='large').url
                 gallery.append(dict(
                     url=large_scale_url,
-                    tag=scale.tag(),
+                    tag=scale.tag(title=first_img_caption,
+                        alt=first_img_caption),
                     title=first_img_caption))
 
         for img in imgs:
