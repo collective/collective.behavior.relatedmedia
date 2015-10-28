@@ -36,7 +36,6 @@
         title="Related Media"
         description="Manage content-related images and attachments"
         provides=".behavior.IRelatedMedia"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <browser:viewlet

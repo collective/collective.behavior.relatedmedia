@@ -33,7 +33,7 @@ class RelatedImagesViewlet(ViewletBase):
     def images(self):
         context = aq_inner(self.context)
         rm_behavior = IRelatedMedia(context)
-        imgs = rm_behavior.related_images
+        imgs = rm_behavior.related_images or []
         tcap = rm_behavior.show_titles_as_caption
         first_img_scales = None
         gallery = []
