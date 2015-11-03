@@ -130,14 +130,16 @@ class Uploader(BrowserView):
                 ILeadImage(self.context).image = blob
             else:
                 to_id = self.intids.getId(img)
-                imgs = list(behavior.related_images)
+                imgs = behavior.related_images and \
+                    list(behavior.related_images) or []
                 imgs.append(RelationValue(to_id))
                 behavior.related_images = imgs
         else:
             blob = NamedBlobFile(data=file_data, filename=file_name)
             att = createContentInContainer(media_container, "File", file=blob)
             to_id = self.intids.getId(att)
-            atts = list(behavior.related_attachments)
+            atts = behavior.related_attachments and \
+                list(behavior.related_attachments) or []
             atts.append(RelationValue(to_id))
             behavior.related_attachments = atts
         return json.dumps(dict(
