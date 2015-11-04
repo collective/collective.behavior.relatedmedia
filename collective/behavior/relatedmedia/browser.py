@@ -56,7 +56,7 @@ class RelatedImagesViewlet(ViewletBase):
                     url=large_scale_url,
                     tag=scale.tag(title=first_img_caption,
                         alt=first_img_caption),
-                    title=first_img_caption))
+                    title=tcap and first_img_caption or u''))
 
         for img in imgs:
             img_obj = img.to_object
