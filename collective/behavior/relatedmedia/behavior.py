@@ -64,6 +64,7 @@ class IRelatedMedia(form.Schema):
             source=MediaCatalogSource(portal_type="Image"),
         ),
         required=False,
+        default=[],
     )
 
     show_titles_as_caption = schema.Bool(
@@ -121,6 +122,7 @@ class IRelatedMedia(form.Schema):
             source=MediaCatalogSource(portal_type="File"),
         ),
         required=False,
+        default=[],
     )
 
     form.widget(
