@@ -23,7 +23,12 @@ class RelatedImagesViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_images.pt')
 
     def gallery_css_klass(self):
-        return IRelatedMedia(aq_inner(self.context)).gallery_css_class
+        css_class = IRelatedMedia(aq_inner(self.context)).gallery_css_class
+        if css_class:
+            return css_class
+        dflt_css_class = api.portal.get_registry_record(
+            'collective.behavior.relatedmedia.image_gallery_default_class')
+        return dflt_css_class
 
     def images(self):
         context = aq_inner(self.context)
