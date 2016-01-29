@@ -4,7 +4,8 @@
     <ul id="related-attachments" class="visualNoMarker">
 
         <li tal:repeat="att view/attachments" class="attachment-item">
-            <a tal:attributes="href att/url">
+            <a tal:attributes="href att/url;
+                               target att/target">
                 <img tal:condition="att/icon|nothing" border="0"
                      tal:attributes="src string:${view/site_url}/${att/icon}"
                 /> <span tal:content="att/title" /> (<span tal:content="att/size" />)

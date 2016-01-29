@@ -91,6 +91,9 @@ class RelatedAttachmentsViewlet(ViewletBase):
 
     def attachments(self):
         atts = IRelatedMedia(aq_inner(self.context)).related_attachments
+        _target_blank = api.portal.get_registry_record(
+            'collective.behavior.relatedmedia.open_attachment_in_new_window')
+        link_target = _target_blank and 'blank' or 'top'
         for att in atts:
             att_obj = att.to_object
             if att_obj:
@@ -100,6 +103,7 @@ class RelatedAttachmentsViewlet(ViewletBase):
                     size="{:.1f} MB".format(
                         att_obj.file.getSize() / 1024.0 / 1024.0),
                     icon=getIcon_file(att_obj),
+                    target=link_target,
                 )
 
 

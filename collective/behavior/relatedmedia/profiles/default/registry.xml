@@ -39,4 +39,11 @@
         <value>False</value>
     </record>
 
+    <record name="collective.behavior.relatedmedia.open_attachment_in_new_window">
+        <field type="plone.registry.field.Bool">
+            <title>Open Attachment links in new window</title>
+        </field>
+        <value>True</value>
+    </record>
+
 </registry>
