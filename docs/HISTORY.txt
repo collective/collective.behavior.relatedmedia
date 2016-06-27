@@ -4,8 +4,8 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue with disapearing images when 'include_leadimage' was deactivated
+  [petschki]
 
 1.0b1 (2015-07-15)
 ------------------

@@ -36,18 +36,21 @@ class RelatedImagesViewlet(ViewletBase):
         imgs = rm_behavior.related_images or []
         tcap = rm_behavior.show_titles_as_caption
         first_img_scales = None
+        further_images = []
         gallery = []
 
         if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
             first_img_scales = context.restrictedTraverse('@@images')
             first_img_caption = ILeadImage(context).image_caption
+            further_images = imgs
         elif len(imgs):
-            first_img = imgs.pop(0)
+            first_img = imgs[0]
             first_img_obj = first_img.to_object
             if first_img_obj:
                 first_img_scales = first_img_obj.restrictedTraverse(
                     '@@images')
                 first_img_caption = tcap and first_img_obj.Title() or u''
+                further_images = imgs[1:]
 
         if first_img_scales:
             scale = first_img_scales.scale('image',
@@ -63,7 +66,7 @@ class RelatedImagesViewlet(ViewletBase):
                         alt=first_img_caption),
                     title=tcap and first_img_caption or u''))
 
-        for img in imgs:
+        for img in further_images:
             img_obj = img.to_object
             if img_obj:
                 scales = img_obj.restrictedTraverse('@@images')
