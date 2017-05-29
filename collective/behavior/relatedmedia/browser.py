@@ -1,17 +1,19 @@
 from AccessControl import getSecurityManager
-from Acquisition import aq_parent, aq_inner
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from Products.CMFCore.interfaces import IFolderish
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from plone.app.contenttypes.indexers import getIcon_file
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.dexterity.utils import safe_unicode, safe_utf8, \
-    createContentInContainer
-from plone.namedfile.file import NamedBlobImage, NamedBlobFile
+from plone.dexterity.utils import createContentInContainer
+from plone.dexterity.utils import safe_unicode
+from plone.dexterity.utils import safe_utf8
+from plone.namedfile.file import NamedBlobFile
+from plone.namedfile.file import NamedBlobImage
 from z3c.relationfield import RelationValue
-from zope.app.intid.interfaces import IIntIds
+from zope.intid.interfaces import IIntIds
 from zope.component import getUtility
 
 from .behavior import IRelatedMedia
@@ -53,16 +55,17 @@ class RelatedImagesViewlet(ViewletBase):
                 further_images = imgs[1:]
 
         if first_img_scales:
-            scale = first_img_scales.scale('image',
-                scale=rm_behavior.first_image_scale,
-                direction=rm_behavior.first_image_scale_direction and 'down' \
-                or 'thumbnail')
+            scale = first_img_scales.scale(
+                'image', scale=rm_behavior.first_image_scale,
+                direction=rm_behavior.first_image_scale_direction and
+                'down' or 'thumbnail')
             if scale:
-                large_scale_url = first_img_scales.scale('image',
-                    scale='large').url
+                large_scale_url = first_img_scales.scale(
+                    'image', scale='large').url
                 gallery.append(dict(
                     url=large_scale_url,
-                    tag=scale.tag(title=first_img_caption,
+                    tag=scale.tag(
+                        title=first_img_caption,
                         alt=first_img_caption),
                     title=tcap and first_img_caption or u''))
 
@@ -70,9 +73,10 @@ class RelatedImagesViewlet(ViewletBase):
             img_obj = img.to_object
             if img_obj:
                 scales = img_obj.restrictedTraverse('@@images')
-                scale = scales.scale('image', scale=rm_behavior.preview_scale,
-                    direction=rm_behavior.preview_scale_direction and 'down' \
-                    or 'thumbnail')
+                scale = scales.scale(
+                    'image', scale=rm_behavior.preview_scale,
+                    direction=rm_behavior.preview_scale_direction and
+                    'down' or 'thumbnail')
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(
@@ -105,7 +109,7 @@ class RelatedAttachmentsViewlet(ViewletBase):
                     title=att_obj.Title(),
                     size="{:.1f} MB".format(
                         att_obj.file.getSize() / 1024.0 / 1024.0),
-                    icon=getIcon_file(att_obj),
+                    icon=att_obj.getIcon(),
                     target=link_target,
                 )
 
@@ -134,11 +138,11 @@ class Uploader(BrowserView):
         behavior = IRelatedMedia(self.context)
         if c_type.startswith("image/"):
             blob = NamedBlobImage(data=file_data, filename=file_name)
-            img = createContentInContainer(media_container, "Image",
-                image=blob)
+            img = createContentInContainer(
+                media_container, "Image", image=blob)
             # safe image as leadImage if none exists
             if ILeadImage.providedBy(self.context) and \
-            ILeadImage(self.context).image is None:
+               ILeadImage(self.context).image is None:
                 ILeadImage(self.context).image = blob
             else:
                 to_id = self.intids.getId(img)
@@ -163,8 +167,8 @@ class Uploader(BrowserView):
         config_media_path = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.media_container_path')
         nav_root = api.portal.get_navigation_root(self.context)
-        media_path = "{}{}".format('/'.join(nav_root.getPhysicalPath()),
-            config_media_path)
+        media_path = "{}{}".format(
+            '/'.join(nav_root.getPhysicalPath()), config_media_path)
         try:
             container = self.context.restrictedTraverse(safe_utf8(media_path))
         except:
@@ -174,9 +178,9 @@ class Uploader(BrowserView):
                 if not f_id:
                     continue
                 if not hasattr(container, f_id):
-                    container = createContentInContainer(container, 'Folder',
-                        id=f_id, title=f_id, exclude_from_nav=True,
-                        checkConstraints=False)
+                    container = createContentInContainer(
+                        container, 'Folder', id=f_id, title=f_id,
+                        exclude_from_nav=True, checkConstraints=False)
                 else:
                     container = container[f_id]
         if container is None:
