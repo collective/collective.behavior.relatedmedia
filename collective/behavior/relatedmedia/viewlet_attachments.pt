@@ -1,5 +1,5 @@
-<tal:block condition="view/available"
-    i18n:domain="collective.behavior.relatedmedia">
+<div tal:condition="view/available" class="visualNoPrint"
+     i18n:domain="collective.behavior.relatedmedia">
     <h2 i18n:translate="title_attachments">Attachments</h2>
     <ul id="related-attachments" class="visualNoMarker">
 
@@ -12,4 +12,4 @@
             </a>
         </li>
     </ul>
-</tal:block>
+</div>
