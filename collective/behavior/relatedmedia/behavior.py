@@ -25,11 +25,12 @@ class MediaCatalogSource(CatalogSource):
         portal = api.portal.get()
         catalog = api.portal.get_tool('portal_catalog')
         nav_root = api.portal.get_navigation_root(getSite())
-        portal_media_path = "{}{}".format('/'.join(portal.getPhysicalPath()),
+        portal_media_path = "{}{}".format('/'.join(
+            portal.getPhysicalPath()),
             api.portal.get_registry_record(
             'collective.behavior.relatedmedia.media_container_path'))
-        query.update(dict(path=[portal_media_path,
-            '/'.join(nav_root.getPhysicalPath())]))
+        query.update(dict(
+            path=[portal_media_path, '/'.join(nav_root.getPhysicalPath())]))
         return catalog(query)
 
 
@@ -75,8 +76,8 @@ class IRelatedMedia(form.Schema):
 
     include_leadimage = schema.Bool(
         title=_("Include Leadimage"),
-        description=_("Wether or not include the Leadimage in the " \
-            "gallery viewlet"),
+        description=_(
+            "Wether or not include the Leadimage in the gallery viewlet"),
         default=True,
         required=False,
     )
@@ -124,11 +125,6 @@ class IRelatedMedia(form.Schema):
         required=False,
         default=[],
     )
-
-    form.widget(
-        related_images='plone.app.widgets.dx.RelatedItemsFieldWidget',
-        related_attachments='plone.app.widgets.dx.RelatedItemsFieldWidget',
-    )
     model.fieldset('relatedmedia', label=_("Related Media"), fields=[
         'related_images', 'show_titles_as_caption', 'include_leadimage',
         'first_image_scale', 'first_image_scale_direction', 'preview_scale',
@@ -136,16 +132,19 @@ class IRelatedMedia(form.Schema):
 
 
 def default_css_class_factory(widget):
-    return api.portal.get_registry_record('collective.behavior.relatedmedia' \
-        '.image_gallery_default_class')
+    return api.portal.get_registry_record(
+        'collective.behavior.relatedmedia.image_gallery_default_class')
+
 
 default_css_class_value = widget.ComputedWidgetAttribute(
     default_css_class_factory, field=IRelatedMedia['gallery_css_class'])
 
 
 def default_preview_scale_direction(widget):
-    return api.portal.get_registry_record('collective.behavior.relatedmedia' \
-        '.image_gallery_default_preview_scale_direction')
+    return api.portal.get_registry_record(
+        'collective.behavior.relatedmedia.'
+        'image_gallery_default_preview_scale_direction')
+
 
 default_preview_scale_direction_value = widget.ComputedWidgetAttribute(
     default_preview_scale_direction,
