@@ -2,7 +2,7 @@
      tal:define="images view/images|nothing"
      tal:condition="images">
 
-    <a tal:repeat="img images" class="image-item" rel="prettyPhoto[relatedImages]"
+    <a tal:repeat="img images" class="image-item" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
        tal:attributes="href img/url;
                        class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
        <img tal:replace="structure img/tag" />
