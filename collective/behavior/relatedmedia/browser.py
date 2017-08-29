@@ -10,6 +10,7 @@ from plone.app.layout.viewlets.common import ViewletBase
 from plone.dexterity.utils import createContentInContainer
 from plone.dexterity.utils import safe_unicode
 from plone.dexterity.utils import safe_utf8
+from plone.event.interfaces import IOccurrence
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 from z3c.relationfield import RelationValue
@@ -34,6 +35,9 @@ class RelatedImagesViewlet(ViewletBase):
 
     def images(self):
         context = aq_inner(self.context)
+        if IOccurrence.providedBy(context):
+            # support for related images on event occurrences
+            context = context.aq_parent
         rm_behavior = IRelatedMedia(context)
         imgs = rm_behavior.related_images or []
         tcap = rm_behavior.show_titles_as_caption
@@ -97,7 +101,11 @@ class RelatedAttachmentsViewlet(ViewletBase):
         return len(att)
 
     def attachments(self):
-        atts = IRelatedMedia(aq_inner(self.context)).related_attachments
+        context = aq_inner(self.context)
+        if IOccurrence.providedBy(context):
+            # support for related images on event occurrences
+            context = context.aq_parent
+        atts = IRelatedMedia(context).related_attachments
         _target_blank = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.open_attachment_in_new_window')
         link_target = _target_blank and 'blank' or 'top'
@@ -128,6 +136,9 @@ class Uploader(BrowserView):
     def __init__(self, context, request):
         super(Uploader, self).__init__(context, request)
         self.intids = getUtility(IIntIds)
+        if IOccurrence.providedBy(context):
+            # support for related images on event occurrences
+            self.context = aq_inner(context).aq_parent
 
     def __call__(self):
         req_file = self.request.get('file')
