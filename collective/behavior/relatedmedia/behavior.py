@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from operator import attrgetter
 from plone import api
 from plone.app.vocabularies.catalog import CatalogSource
@@ -5,12 +6,15 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
 from plone.supermodel import model
 from z3c.form import widget
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component.hooks import getSite
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 from . import messageFactory as _
 
