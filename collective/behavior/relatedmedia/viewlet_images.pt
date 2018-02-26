@@ -4,6 +4,7 @@
 
     <a tal:repeat="img images" class="image-item" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
        tal:attributes="href img/url;
+                       data-caption img/title;
                        class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
        <img tal:replace="structure img/tag" />
        <span class="caption"
