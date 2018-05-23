@@ -70,8 +70,11 @@ class RelatedImagesViewlet(ViewletBase):
                     url=large_scale_url,
                     tag=scale.tag(
                         title=first_img_caption,
-                        alt=first_img_caption),
-                    title=tcap and first_img_caption or u''))
+                        alt=first_img_caption,
+                    ),
+                    caption=tcap and first_img_caption or u'',
+                    title=first_img_caption,
+                ))
 
         for img in further_images:
             img_obj = img.to_object
@@ -86,7 +89,8 @@ class RelatedImagesViewlet(ViewletBase):
                     gallery.append(dict(
                         url=large_scale_url,
                         tag=scale.tag(),
-                        title=tcap and img_obj.Title() or u'',
+                        caption=tcap and img_obj.Title() or u'',
+                        title=img_obj.Title(),
                     ))
 
         return gallery
