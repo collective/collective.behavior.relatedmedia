@@ -1,11 +1,21 @@
 Changelog
 =========
 
-1.0b2 (unreleased)
+1.0 (unreleased)
 ------------------
 
 - Fix issue with disapearing images when 'include_leadimage' was deactivated
   [petschki]
+
+- support for Event Occurrences.
+  [petschki]
+
+- add markup for fancybox library
+  [petschki]
+
+- Separate viewlet caption and overlay caption
+  [petschki]
+
 
 1.0b1 (2015-07-15)
 ------------------
