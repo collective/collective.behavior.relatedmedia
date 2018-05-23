@@ -26,15 +26,19 @@ class MediaCatalogSource(CatalogSource):
     def search_catalog(self, user_query):
         query = user_query.copy()
         query.update(self.query)
-        portal = api.portal.get()
         catalog = api.portal.get_tool('portal_catalog')
-        nav_root = api.portal.get_navigation_root(getSite())
-        portal_media_path = "{}{}".format('/'.join(
-            portal.getPhysicalPath()),
-            api.portal.get_registry_record(
-            'collective.behavior.relatedmedia.media_container_path'))
-        query.update(dict(
-            path=[portal_media_path, '/'.join(nav_root.getPhysicalPath())]))
+        if 'UID' not in query:
+            # restrict to configured path when adding media
+            portal = api.portal.get()
+            nav_root = api.portal.get_navigation_root(getSite())
+            portal_media_path = "{}{}".format('/'.join(
+                portal.getPhysicalPath()),
+                api.portal.get_registry_record(
+                'collective.behavior.relatedmedia.media_container_path'))
+            query.update(dict(path=[portal_media_path, '/'.join(nav_root.getPhysicalPath())]))  # noqa
+        elif 'path' in query:
+            # show selected items regardless of path
+            del query['path']
         return catalog(query)
 
 
