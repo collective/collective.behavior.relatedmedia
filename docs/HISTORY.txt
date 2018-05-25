@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2018-05-25)
 ----------------
 
 - fix image_size vocabulary. Plone 5 compatibility.
