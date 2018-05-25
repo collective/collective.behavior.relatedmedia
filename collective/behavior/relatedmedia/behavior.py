@@ -69,7 +69,7 @@ class IRelatedMedia(form.Schema):
     include_leadimage = schema.Bool(
         title=_("Include Leadimage"),
         description=_(
-            "Wether or not include the Leadimage in the gallery viewlet"),
+            "Whether or not include the Leadimage in the gallery viewlet"),
         default=True,
         required=False,
     )
@@ -83,7 +83,7 @@ class IRelatedMedia(form.Schema):
 
     first_image_scale_direction = schema.Bool(
         title=_("Crop first image"),
-        description=_("Downsize or crop the image to the given boundaries"),
+        description=_("Crop the image to the selected boundaries above"),
         default=False,
         required=False,
     )
@@ -97,7 +97,7 @@ class IRelatedMedia(form.Schema):
 
     preview_scale_direction = schema.Bool(
         title=_("Crop image"),
-        description=_("Downsize or crop the image to the given boundaries"),
+        description=_("Crop the image to the selected boundaries above"),
         default=False,
         required=False,
     )
