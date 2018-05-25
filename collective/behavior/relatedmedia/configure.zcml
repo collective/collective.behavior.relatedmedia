@@ -22,12 +22,6 @@
 
     <utility
         provides="zope.schema.interfaces.IVocabularyFactory"
-        factory=".behavior.ImageScalesVocabulary"
-        name="collective.relatedmedia.imagescales"
-        />
-
-    <utility
-        provides="zope.schema.interfaces.IVocabularyFactory"
         factory=".behavior.GalleryCSSClassesVocabulary"
         name="collective.relatedmedia.gallerycssclasses"
         />

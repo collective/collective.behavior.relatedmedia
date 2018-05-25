@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from operator import attrgetter
+from collective.behavior.relatedmedia import messageFactory as _
 from plone import api
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
@@ -13,10 +13,7 @@ from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
-from . import messageFactory as _
 
 RELATED_MEDIA_CONFIG_STORAGE_KEY = "__collective.related.media.local_config__"
 
@@ -40,19 +37,6 @@ class MediaCatalogSource(CatalogSource):
             # show selected items regardless of path
             del query['path']
         return catalog(query)
-
-
-@implementer(IVocabularyFactory)
-class ImageScalesVocabulary(object):
-
-    def __call__(self, context):
-        props = api.portal.get_tool('portal_properties')
-        terms = set()
-        for s in props.imaging_properties.allowed_sizes:
-            k, v = s.split(' ')
-            if k not in map(attrgetter('value'), terms):
-                terms.add(SimpleTerm(k, title="{0} ({1})".format(k, v)))
-        return SimpleVocabulary(terms)
 
 
 @implementer(IVocabularyFactory)
@@ -93,7 +77,7 @@ class IRelatedMedia(form.Schema):
     first_image_scale = schema.Choice(
         title=_("First image scale"),
         description=_("Size for the first image in the gallery"),
-        vocabulary="collective.relatedmedia.imagescales",
+        vocabulary="plone.app.vocabularies.ImagesScales",
         default='large',
     )
 
@@ -107,7 +91,7 @@ class IRelatedMedia(form.Schema):
     preview_scale = schema.Choice(
         title=_("Image scale"),
         description=_("Gallery image preview scale"),
-        vocabulary="collective.relatedmedia.imagescales",
+        vocabulary="plone.app.vocabularies.ImagesScales",
         default='preview',
     )
 
