@@ -5,16 +5,15 @@ version = '1.2.dev0'
 
 setup(name='collective.behavior.relatedmedia',
       version=version,
-      description="Adds Various configuration fields and " \
-        "viewlets to manage and show content related images and attachments",
-      long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      description="Adds Various configuration fields and viewlets to manage "
+                  "and show content related images and attachments",
+      long_description=open("README.rst").read() + "\n" + open(os.path.join("docs", "HISTORY.txt")).read(),  # noqa
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: GNU General Public License (GPL)",
         ],
       keywords='',
