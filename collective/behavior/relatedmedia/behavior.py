@@ -3,7 +3,6 @@ from collective.behavior.relatedmedia import messageFactory as _
 from plone import api
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
 from plone.supermodel import model
 from z3c.form import widget
 from z3c.relationfield.schema import RelationChoice
@@ -48,7 +47,7 @@ class GalleryCSSClassesVocabulary(object):
 
 
 @provider(IFormFieldProvider)
-class IRelatedMedia(form.Schema):
+class IRelatedMedia(model.Schema):
 
     related_images = RelationList(
         title=_('label_images', default=u'Related Images'),
