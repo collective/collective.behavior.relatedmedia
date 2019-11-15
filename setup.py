@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2.dev0'
+version = '2.0.dev0'
 
 setup(name='collective.behavior.relatedmedia',
       version=version,
@@ -31,6 +31,7 @@ setup(name='collective.behavior.relatedmedia',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.api',
           'plone.behavior',
           'plone.app.dexterity',
       ],

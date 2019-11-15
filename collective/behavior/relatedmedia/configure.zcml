@@ -3,6 +3,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:gs="http://namespaces.zope.org/genericsetup"
@@ -56,7 +57,7 @@
         permission="zope2.View"
         />
 
-    <browser:viewlet
+    <!--browser:viewlet
         name="collective.behavior.relatedmedia.uploader"
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
@@ -69,7 +70,7 @@
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         class=".browser.Uploader"
         permission="cmf.ModifyPortalContent"
-        />
+        /-->
 
     <i18n:registerTranslations directory="locales" />
 
@@ -78,6 +79,20 @@
     -->
     <adapter factory=".behavior.default_css_class_value" name="default" />
     <adapter factory=".behavior.default_preview_scale_direction_value" name="default" />
+
+
+    <!-- automaticall generated related_media_base_path on creation -->
+    <subscriber
+        for=".behavior.IRelatedMedia
+             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".events.create_media_base_path"
+        />
+
+    <subscriber
+        for=".behavior.IRelatedMedia
+             Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+        handler=".events.sync_workflow_state"
+        />
 
     <!-- upgrade -->
     <gs:registerProfile
