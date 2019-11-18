@@ -94,6 +94,22 @@
         handler=".events.sync_workflow_state"
         />
 
+    <!-- data converter -->
+    <adapter
+        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+        for="zope.schema.interfaces.ICollection
+             collective.behavior.relatedmedia.widget.RelatedMediaWidget"
+        />
+
+    <!-- render-widget override -->
+    <browser:page
+        name="ploneform-render-widget"
+        for=".interfaces.IRelatedMediaWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        class=".widget.RelatedMediaRenderWidget"
+        permission="zope.Public"
+        />
+
     <!-- upgrade -->
     <gs:registerProfile
         name="package_rename"

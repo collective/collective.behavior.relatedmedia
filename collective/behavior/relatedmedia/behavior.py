@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.widget import RelatedMediaWidget
+from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -28,23 +28,28 @@ class GalleryCSSClassesVocabulary(object):
 @provider(IFormFieldProvider)
 class IRelatedMedia(model.Schema):
 
-    related_media_base_path = RelationChoice(
+    related_media_base_path = RelationList(
         title=_('label_base_path', default='Base Path'),
         description=_(
             'label_base_path_desc',
             default='Base path for uploaded content. If not given '
                     'the base path is automatically generated as '
                     '[configured media root path]/[this id].'),
-        vocabulary='plone.app.vocabularies.Catalog',
+        value_type=RelationChoice(
+            title=_(u"Base Path"),
+            vocabulary='plone.app.vocabularies.Catalog',
+        ),
+        default=[],
         required=False,
     )
     form.widget(
         'related_media_base_path',
-        RelatedMediaWidget,
+        RelatedMediaFieldWidget,
         vocabulary='plone.app.vocabularies.Catalog',
         pattern_options={
             'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
             'selectableTypes': ['Folder'],
+            'maximumSelectionSize': 1,
         },
     )
 
