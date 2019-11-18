@@ -28,18 +28,14 @@ class GalleryCSSClassesVocabulary(object):
 @provider(IFormFieldProvider)
 class IRelatedMedia(model.Schema):
 
-    related_media_base_path = RelationList(
+    related_media_base_path = RelationChoice(
         title=_('label_base_path', default='Base Path'),
         description=_(
             'label_base_path_desc',
             default='Base path for uploaded content. If not given '
                     'the base path is automatically generated as '
                     '[configured media root path]/[this id].'),
-        value_type=RelationChoice(
-            title=_(u"Base Path"),
-            vocabulary='plone.app.vocabularies.Catalog',
-        ),
-        default=[],
+        vocabulary='plone.app.vocabularies.Catalog',
         required=False,
     )
     form.widget(
@@ -49,26 +45,6 @@ class IRelatedMedia(model.Schema):
         pattern_options={
             'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
             'selectableTypes': ['Folder'],
-            'maximumSelectionSize': 1,
-        },
-    )
-
-    related_images = RelationList(
-        title=_('label_images', default=u'Related Images'),
-        value_type=RelationChoice(
-            title=_(u"Pictures"),
-            vocabulary='plone.app.vocabularies.Catalog',
-        ),
-        required=False,
-        default=[],
-    )
-    form.widget(
-        'related_images',
-        RelatedItemsFieldWidget,
-        vocabulary='plone.app.vocabularies.Catalog',
-        pattern_options={
-            'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
-            'selectableTypes': ['Image'],
         },
     )
 
@@ -120,6 +96,25 @@ class IRelatedMedia(model.Schema):
         vocabulary="collective.relatedmedia.gallerycssclasses",
     )
 
+    related_images = RelationList(
+        title=_('label_images', default=u'Related Images'),
+        value_type=RelationChoice(
+            title=_(u"Pictures"),
+            vocabulary='plone.app.vocabularies.Catalog',
+        ),
+        required=False,
+        default=[],
+    )
+    form.widget(
+        'related_images',
+        RelatedItemsFieldWidget,
+        vocabulary='plone.app.vocabularies.Catalog',
+        pattern_options={
+            'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
+            'selectableTypes': ['Image'],
+        },
+    )
+
     related_attachments = RelationList(
         title=_(u"label_attachments", default=u"Related Attachments"),
         value_type=RelationChoice(
@@ -166,7 +161,6 @@ class IRelatedMedia(model.Schema):
 
     model.fieldset('relatedmedia', label=_("Related Media"), fields=[
         'related_media_base_path',
-        'related_images',
         'show_titles_as_caption',
         'include_leadimage',
         'first_image_scale',
@@ -174,6 +168,7 @@ class IRelatedMedia(model.Schema):
         'preview_scale',
         'preview_scale_direction',
         'gallery_css_class',
+        'related_images',
         'related_attachments',
     ])
 

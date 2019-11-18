@@ -17,6 +17,7 @@
         directory="profiles/default"
         description="Manage content-related images and attachments"
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title"
         />
 
     <gs:registerProfile
@@ -57,21 +58,6 @@
         permission="zope2.View"
         />
 
-    <!--browser:viewlet
-        name="collective.behavior.relatedmedia.uploader"
-        for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        class=".browser.UploaderViewlet"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="upload_related_media"
-        for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
-        class=".browser.Uploader"
-        permission="cmf.ModifyPortalContent"
-        /-->
-
     <i18n:registerTranslations directory="locales" />
 
     <!-- default value adapter for gallery_css_class ... read default value from registry
@@ -94,10 +80,10 @@
         handler=".events.sync_workflow_state"
         />
 
-    <!-- data converter -->
+    <!-- reuse data converter from plone.app.z3cform.converters -->
     <adapter
-        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
-        for="zope.schema.interfaces.ICollection
+        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
+        for="z3c.relationfield.interfaces.IRelationChoice
              collective.behavior.relatedmedia.widget.RelatedMediaWidget"
         />
 

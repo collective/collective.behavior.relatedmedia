@@ -52,7 +52,7 @@ class RelatedMediaRenderWidget(RenderWidget):
         view_context = self.widget_context
         if not getattr(view_context, 'related_media_base_path', False):
             return
-        return view_context.related_media_base_path[0].to_object
+        return view_context.related_media_base_path.to_object
 
     def get_actions(self):
         actions = []

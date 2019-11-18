@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-11-15 09:52+0000\n"
+"POT-Creation-Date: 2019-11-18 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,104 +14,112 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../behavior.py:115
+#: ../widget.py:72
+msgid "Created on"
+msgstr ""
+
+#: ../behavior.py:73
 msgid "Crop first image"
 msgstr ""
 
-#: ../behavior.py:129
+#: ../behavior.py:87
 msgid "Crop image"
 msgstr ""
 
-#: ../behavior.py:116
+#: ../behavior.py:74
 msgid "Crop the image to the selected boundaries above"
 msgstr ""
 
-#: ../behavior.py:137
+#: ../behavior.py:95
 msgid "Feel free to add/remove classes in your registry.xml"
 msgstr ""
 
-#: ../behavior.py:144
+#: ../behavior.py:121
 msgid "Files"
 msgstr ""
 
-#: ../behavior.py:108
+#: ../behavior.py:66
 msgid "First image scale"
 msgstr ""
 
-#: ../behavior.py:123
+#: ../behavior.py:81
 msgid "Gallery image preview scale"
 msgstr ""
 
-#: ../behavior.py:136
+#: ../behavior.py:94
 msgid "Gallery layout"
 msgstr ""
 
-#: ../behavior.py:122
+#: ../behavior.py:80
 msgid "Image scale"
 msgstr ""
 
-#: ../behavior.py:100
+#: ../behavior.py:58
 msgid "Include Leadimage"
 msgstr ""
 
-#: ../configure.zcml:19
+#: ../configure.zcml:21
 msgid "Manage content-related images and attachments"
 msgstr ""
 
-#: ../behavior.py:77
+#: ../behavior.py:102
 msgid "Pictures"
 msgstr ""
 
-#: ../configure.zcml:114
+#: ../configure.zcml:123
 msgid "Profile for upgrade step 'Local configuration'"
 msgstr ""
 
-#: ../configure.zcml:97
+#: ../configure.zcml:106
 msgid "Profile for upgrade step 'Package rename'"
 msgstr ""
 
-#: ../behavior.py:160
-#: ../configure.zcml:41
+#: ../behavior.py:162
+#: ../configure.zcml:43
 msgid "Related Media"
 msgstr ""
 
-#: ../configure.zcml:19
+#: ../configure.zcml:21
 msgid "Related media behavior"
 msgstr ""
 
-#: ../behavior.py:94
+#: ../behavior.py:52
 msgid "Show image titles as caption"
 msgstr ""
 
-#: ../behavior.py:109
+#: ../behavior.py:67
 msgid "Size for the first image in the gallery"
 msgstr ""
 
-#: ../configure.zcml:27
+#: ../widget.py:73
+msgid "Title"
+msgstr ""
+
+#: ../configure.zcml:29
 msgid "Uninstallation profile"
 msgstr ""
 
-#: ../behavior.py:101
+#: ../behavior.py:59
 msgid "Whether or not include the Leadimage in the gallery viewlet"
 msgstr ""
 
 #. Default: "Related Attachments"
-#: ../behavior.py:142
+#: ../behavior.py:119
 msgid "label_attachments"
 msgstr ""
 
 #. Default: "Base Path"
-#: ../behavior.py:55
+#: ../behavior.py:32
 msgid "label_base_path"
 msgstr ""
 
 #. Default: "Base path for uploaded content. If not given the base path is automatically generated as [configured media root path]/[this id]."
-#: ../behavior.py:56
+#: ../behavior.py:33
 msgid "label_base_path_desc"
 msgstr ""
 
 #. Default: "Related Images"
-#: ../behavior.py:75
+#: ../behavior.py:100
 msgid "label_images"
 msgstr ""
 

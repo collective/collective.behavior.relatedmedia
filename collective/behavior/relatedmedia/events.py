@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import transaction
-
 from collective.behavior.relatedmedia.utils import get_media_root
 from plone import api
 from plone.dexterity.utils import createContentInContainer
@@ -32,7 +30,6 @@ def create_media_base_path(obj, event):
             id=media_base_id,
             title=obj.Title(),
         )
-        transaction.commit()
     else:
         # XXX: this should never happen?
         media_base = media_root[media_base_id]
@@ -40,7 +37,7 @@ def create_media_base_path(obj, event):
     _rel = create_relation('/'.join(media_base.getPhysicalPath()))
     # fix RelationValue properties
     _setRelation(obj, 'related_media_base_path', _rel)
-    obj.related_media_base_path = [_rel, ]
+    obj.related_media_base_path = _rel
 
 
 def sync_workflow_state(obj, event):
@@ -52,7 +49,7 @@ def sync_workflow_state(obj, event):
 
     try:
         api.content.transition(
-            obj=obj.related_media_base_path.to_object,
+            obj=obj.related_media_base_path,
             transition=event.status['action'],
         )
     except api.exc.InvalidParameterError:

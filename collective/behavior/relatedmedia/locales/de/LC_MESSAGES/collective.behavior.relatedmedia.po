@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-11-15 09:48+0000\n"
-"PO-Revision-Date: 2019-11-15 10:54+0100\n"
+"POT-Creation-Date: 2019-11-18 15:43+0000\n"
+"PO-Revision-Date: 2019-11-18 16:44+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,103 +16,111 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: ../behavior.py:115
+#: ../widget.py:72
+msgid "Created on"
+msgstr ""
+
+#: ../behavior.py:73
 msgid "Crop first image"
 msgstr "Erstes Bild zuschneiden"
 
-#: ../behavior.py:129
+#: ../behavior.py:87
 msgid "Crop image"
 msgstr "Bild zuschneiden"
 
-#: ../behavior.py:116
+#: ../behavior.py:74
 msgid "Crop the image to the selected boundaries above"
 msgstr "Bilder auf die ausgewählte Größe zuschneiden/skalieren"
 
-#: ../behavior.py:137
+#: ../behavior.py:95
 msgid "Feel free to add/remove classes in your registry.xml"
 msgstr "die css Klassen können über das registry.xml angepasst werden"
 
-#: ../behavior.py:144
+#: ../behavior.py:121
 msgid "Files"
 msgstr "Dateien"
 
-#: ../behavior.py:108
+#: ../behavior.py:66
 msgid "First image scale"
 msgstr "Hauptbild"
 
-#: ../behavior.py:123
+#: ../behavior.py:81
 msgid "Gallery image preview scale"
 msgstr "Größe der Galeriebilder"
 
-#: ../behavior.py:136
+#: ../behavior.py:94
 msgid "Gallery layout"
 msgstr "Galerie Layout CSS Klasse"
 
-#: ../behavior.py:122
+#: ../behavior.py:80
 msgid "Image scale"
 msgstr "Größe der weiteren Bilder"
 
-#: ../behavior.py:100
+#: ../behavior.py:58
 msgid "Include Leadimage"
 msgstr "\"Leadimage\" berücksichtigen"
 
-#: ../configure.zcml:19
+#: ../configure.zcml:21
 msgid "Manage content-related images and attachments"
 msgstr "Verwaltung von verknüpften Bildern und Dateien"
 
-#: ../behavior.py:77
+#: ../behavior.py:102
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../configure.zcml:114
+#: ../configure.zcml:123
 msgid "Profile for upgrade step 'Local configuration'"
 msgstr ""
 
-#: ../configure.zcml:97
+#: ../configure.zcml:106
 msgid "Profile for upgrade step 'Package rename'"
 msgstr ""
 
-#: ../behavior.py:160 ../configure.zcml:41
+#: ../behavior.py:162 ../configure.zcml:43
 msgid "Related Media"
 msgstr "Verknüpfte Medien"
 
-#: ../configure.zcml:19
+#: ../configure.zcml:21
 msgid "Related media behavior"
-msgstr ""
+msgstr "Verknüpfte Medien"
 
-#: ../behavior.py:94
+#: ../behavior.py:52
 msgid "Show image titles as caption"
 msgstr "Zeige Bildtitel als Unterschrift"
 
-#: ../behavior.py:109
+#: ../behavior.py:67
 msgid "Size for the first image in the gallery"
 msgstr "Größe des ersten Bildes"
 
-#: ../configure.zcml:27
+#: ../widget.py:73
+msgid "Title"
+msgstr ""
+
+#: ../configure.zcml:29
 msgid "Uninstallation profile"
 msgstr ""
 
-#: ../behavior.py:101
+#: ../behavior.py:59
 msgid "Whether or not include the Leadimage in the gallery viewlet"
 msgstr "Soll das \\\"Vorschaubild\\\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
 
 #. Default: "Related Attachments"
-#: ../behavior.py:142
+#: ../behavior.py:119
 msgid "label_attachments"
 msgstr "Downloads"
 
 #. Default: "Base Path"
-#: ../behavior.py:55
+#: ../behavior.py:32
 msgid "label_base_path"
 msgstr "Medienordner"
 
 #. Default: "Base path for uploaded content. If not given the base path is automatically generated as [configured media root path]/[this id]."
-#: ../behavior.py:56
+#: ../behavior.py:33
 msgid "label_base_path_desc"
 msgstr "Alle Bilder und Dateien des Medienordners werden bei diesem Artikel ausgegeben. Beim Erstellen wird dieser Ordner automatisch erstellt."
 
 #. Default: "Related Images"
-#: ../behavior.py:75
+#: ../behavior.py:100
 msgid "label_images"
 msgstr "Bilder"
 
