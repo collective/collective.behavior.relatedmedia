@@ -41,3 +41,7 @@ def get_media_root(context, as_path=False):
         return '/'.join(media_container.getPhysicalPath())
 
     return media_container
+
+
+def media_root_path(context):
+    return get_media_root(context, as_path=True)

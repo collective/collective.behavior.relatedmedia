@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.utils import get_media_root
+from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -53,7 +53,7 @@ class IRelatedMedia(model.Schema):
         pattern_options={
             'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
             'selectableTypes': ['Folder'],
-            'basePath': lambda context: get_media_root(context, as_path=True),
+            'basePath': media_root_path,
         },
     )
 
