@@ -10,7 +10,8 @@ def create_media_base_path(obj, event):
     """ automatically create related base path
     """
 
-    if obj.related_media_base_path:
+    if obj.related_media_base_path or getattr(obj.REQUEST, 'translation_info', {}):  # noqa
+        # if we already have a value or we create a translation just return
         return
 
     media_root = get_media_root(obj)

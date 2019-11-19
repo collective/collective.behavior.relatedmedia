@@ -2,6 +2,7 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <record name="collective.behavior.relatedmedia.media_container_path" remove="True" />
+    <record name="collective.behavior.relatedmedia.media_container_in_assets_folder" remove="True" />
     <record name="collective.behavior.relatedmedia.image_gallery_cssclass" remove="True" />
     <record name="collective.behavior.relatedmedia.image_gallery_default_class" remove="True" />
     <record name="collective.behavior.relatedmedia.image_gallery_default_preview_scale_direction" remove="True" />

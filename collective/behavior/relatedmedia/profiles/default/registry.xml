@@ -9,6 +9,14 @@
         <value>/media</value>
     </record>
 
+    <record name="collective.behavior.relatedmedia.media_container_in_assets_folder">
+        <field type="plone.registry.field.Bool">
+            <title>Create Media Container in Assets Folder (language independent)?</title>
+            <description>If True, the Media Container path defined above is generated in the language independend Assets folder. This requires plone.app.multilingual.</description>
+        </field>
+        <value>False</value>
+    </record>
+
     <record name="collective.behavior.relatedmedia.image_gallery_cssclass">
         <field type="plone.registry.field.Tuple">
             <title>Gallery CSS classes</title>

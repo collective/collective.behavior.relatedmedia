@@ -49,6 +49,7 @@ class RelatedMediaRenderWidget(RenderWidget):
 
     @property
     def upload_context(self):
+        # this triggers also visibility of structure pattern
         view_context = self.widget_context
         if not getattr(view_context, 'related_media_base_path', False):
             return
