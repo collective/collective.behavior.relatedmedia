@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2019-11-18 15:43+0000\n"
-"PO-Revision-Date: 2019-11-18 16:44+0100\n"
+"PO-Revision-Date: 2019-11-20 16:37+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr ""
 
 #: ../behavior.py:59
 msgid "Whether or not include the Leadimage in the gallery viewlet"
-msgstr "Soll das \\\"Vorschaubild\\\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
+msgstr "Soll das \"Vorschaubild\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
 
 #. Default: "Related Attachments"
 #: ../behavior.py:119

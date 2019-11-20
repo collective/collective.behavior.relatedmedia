@@ -6,6 +6,7 @@ from plone.app.content.browser.contents import get_top_site_from_url
 from plone.app.content.browser.file import TUS_ENABLED
 from plone.app.content.interfaces import IStructureAction
 from plone.app.content.utils import json_dumps
+from plone.app.uuid.utils import uuidToObject
 from plone.app.widgets.utils import get_widget_form
 from plone.app.z3cform.views import RenderWidget
 from plone.app.z3cform.widget import RelatedItemsWidget
@@ -52,6 +53,9 @@ class RelatedMediaRenderWidget(RenderWidget):
     def upload_context(self):
         # this triggers also visibility of structure pattern
         view_context = self.widget_context
+        if self.request.get('base_path_uuid'):
+            # reload structure pattern on value updates
+            return uuidToObject(self.request.get('base_path_uuid'))
         if not getattr(view_context, 'related_media_base_path', False):
             return
         return view_context.related_media_base_path.to_object
@@ -85,15 +89,16 @@ class RelatedMediaRenderWidget(RenderWidget):
         options = {
             'vocabularyUrl': '%splone.app.vocabularies.Catalog' % (
                 base_vocabulary),
-            'urlStructure': {
-                'base': base_url,
-                'appended': '/folder_contents'
-            },
             'moveUrl': '%s{path}/fc-itemOrder' % base_url,
             'indexOptionsUrl': '%s/@@qsOptions' % base_url,
             'contextInfoUrl': '%s{path}/@@fc-contextInfo' % base_url,
             'setDefaultPageUrl': '%s{path}/@@fc-setDefaultPage' % base_url,
             'buttons': list(self.get_actions()),
+            'activeColumns': [
+                'ModificationDate',
+                'getObjSize',
+            ],
+            'activeColumnsCookie': 'relatedMediaActiveColumns',
             'rearrange': {
                 'properties': self.get_indexes(),
                 'url': '%s{path}/@@fc-rearrange' % base_url
@@ -105,6 +110,7 @@ class RelatedMediaRenderWidget(RenderWidget):
                 'initialFolder': IUUID(upload_context, None),
                 'useTus': TUS_ENABLED
             },
+            'traverseView': True,
             'thumb_scale': 'thumb',
         }
         return json_dumps(options)
