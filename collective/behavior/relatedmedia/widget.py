@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.resources import add_resource_on_request
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaWidget
 from plone.app.content.browser.contents import get_top_site_from_url
 from plone.app.content.browser.file import TUS_ENABLED
@@ -92,8 +93,6 @@ class RelatedMediaRenderWidget(RenderWidget):
             'indexOptionsUrl': '%s/@@qsOptions' % base_url,
             'contextInfoUrl': '%s{path}/@@fc-contextInfo' % base_url,
             'setDefaultPageUrl': '%s{path}/@@fc-setDefaultPage' % base_url,
-            'availableColumns': {},
-            'attributes': ['Title', 'path', 'getURL', 'getIcon', 'getMimeIcon', 'portal_type'],  # noqa
             'buttons': list(self.get_actions()),
             'rearrange': {
                 'properties': self.get_indexes(),
@@ -109,3 +108,7 @@ class RelatedMediaRenderWidget(RenderWidget):
             'thumb_scale': 'thumb',
         }
         return json_dumps(options)
+
+    def __call__(self):
+        add_resource_on_request(self.request, 'relatedmedia')
+        return super(RelatedMediaRenderWidget, self).__call__()

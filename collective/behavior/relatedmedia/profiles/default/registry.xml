@@ -54,4 +54,10 @@
         <value>True</value>
     </record>
 
+    <records
+          prefix="plone.resources/relatedmedia"
+          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js">++plone++collective.behavior.relatedmedia.resources/relatedmedia.js</value>
+    </records>
+
 </registry>

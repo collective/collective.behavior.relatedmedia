@@ -46,6 +46,12 @@
         permission="zope2.View"
         />
 
+    <plone:static
+        directory="resources"
+        name="collective.behavior.relatedmedia.resources"
+        type="plone"
+    />
+
     <browser:viewlet
         name="collective.behavior.related_attachments"
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
