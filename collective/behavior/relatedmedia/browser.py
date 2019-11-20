@@ -26,7 +26,11 @@ class RelatedImagesViewlet(ViewletBase):
             # support for related images on event occurrences
             context = context.aq_parent
         rm_behavior = IRelatedMedia(context)
-        imgs = rm_behavior.related_images or []
+        imgs = []
+        if rm_behavior.related_media_base_path:
+            rm_base = rm_behavior.related_media_base_path.to_object
+            imgs = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type='Image')]  # noqa
+        imgs += [i.to_object for i in rm_behavior.related_images]
         tcap = rm_behavior.show_titles_as_caption
         first_img_scales = None
         further_images = []
@@ -38,11 +42,10 @@ class RelatedImagesViewlet(ViewletBase):
             further_images = imgs
         elif len(imgs):
             first_img = imgs[0]
-            first_img_obj = first_img.to_object
-            if first_img_obj:
-                first_img_scales = first_img_obj.restrictedTraverse(
+            if first_img:
+                first_img_scales = first_img.restrictedTraverse(
                     '@@images')
-                first_img_caption = tcap and first_img_obj.Title() or u''
+                first_img_caption = tcap and first_img.Title() or u''
                 further_images = imgs[1:]
 
         if first_img_scales:
@@ -64,9 +67,8 @@ class RelatedImagesViewlet(ViewletBase):
                 ))
 
         for img in further_images:
-            img_obj = img.to_object
-            if img_obj:
-                scales = img_obj.restrictedTraverse('@@images')
+            if img:
+                scales = img.restrictedTraverse('@@images')
                 scale = scales.scale(
                     'image', scale=rm_behavior.preview_scale,
                     direction=rm_behavior.preview_scale_direction and
@@ -76,8 +78,8 @@ class RelatedImagesViewlet(ViewletBase):
                     gallery.append(dict(
                         url=large_scale_url,
                         tag=scale.tag(),
-                        caption=tcap and img_obj.Title() or u'',
-                        title=img_obj.Title(),
+                        caption=tcap and img.Title() or u'',
+                        title=img.Title(),
                     ))
 
         return gallery
@@ -87,28 +89,31 @@ class RelatedAttachmentsViewlet(ViewletBase):
     index = ViewPageTemplateFile('viewlet_attachments.pt')
 
     @property
-    def available(self):
-        att = IRelatedMedia(aq_inner(self.context)).related_attachments or []
-        return len(att)
-
     def attachments(self):
         context = aq_inner(self.context)
         if IOccurrence.providedBy(context):
             # support for related images on event occurrences
             context = context.aq_parent
-        atts = IRelatedMedia(context).related_attachments
+        behav = IRelatedMedia(context)
+        att = []
+        if behav.related_media_base_path:
+            rm_base = behav.related_media_base_path.to_object
+            att = [f.getObject() for f in rm_base.restrictedTraverse('@@contentlisting')(portal_type='File')]  # noqa
+        att += [f.to_object for f in behav.related_attachments]
+        return att
+
+    def get_attachments(self):
         _target_blank = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.open_attachment_in_new_window')
         link_target = _target_blank and 'blank' or 'top'
-        for att in atts:
-            att_obj = att.to_object
-            if att_obj:
+        for att in self.attachments:
+            if att:
                 yield dict(
-                    url=att_obj.absolute_url(),
-                    title=att_obj.Title(),
+                    url=att.absolute_url(),
+                    title=att.Title(),
                     size="{:.1f} MB".format(
-                        att_obj.file.getSize() / 1024.0 / 1024.0),
-                    icon=att_obj.getIcon(),
+                        att.file.getSize() / 1024.0 / 1024.0),
+                    icon=att.getIcon(),
                     target=link_target,
                 )
 

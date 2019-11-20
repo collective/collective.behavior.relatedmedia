@@ -7,7 +7,7 @@ require([
       // unbind toolbar reload on structure changes
       $("body").off('structure-url-changed');
       // hide breadcrumbs
-      $('.fc-breadcrumbs-container').hide();
+      $('.fc-breadcrumbs-container').remove();
     }.bind(this));
   });
 });
