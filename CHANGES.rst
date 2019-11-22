@@ -6,4 +6,7 @@ Changelog
 ----------------
 
 - Python 3 / Plone 5.2 compatibility
-  [petschk]
+  [petschki]
+
+- Media Base Path feature
+  [petschki]

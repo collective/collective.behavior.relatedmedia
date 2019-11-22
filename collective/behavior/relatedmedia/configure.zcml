@@ -7,6 +7,8 @@
     xmlns:gs="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.behavior.relatedmedia">
 
+    <i18n:registerTranslations directory="locales" />
+
     <gs:registerProfile
         name="default"
         title="Related media behavior"
@@ -46,12 +48,6 @@
         permission="zope2.View"
         />
 
-    <plone:static
-        directory="resources"
-        name="collective.behavior.relatedmedia.resources"
-        type="plone"
-    />
-
     <browser:viewlet
         name="collective.behavior.related_attachments"
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
@@ -60,7 +56,11 @@
         permission="zope2.View"
         />
 
-    <i18n:registerTranslations directory="locales" />
+    <plone:static
+        directory="resources"
+        name="collective.behavior.relatedmedia.resources"
+        type="plone"
+    />
 
     <!-- default value adapter for gallery_css_class ... read default value from registry
          see http://pythonhosted.org/z3c.form/widget.html#dynamically-changing-attribute-values
@@ -96,6 +96,15 @@
         layer="plone.app.z3cform.interfaces.IPloneFormLayer"
         class=".widget.RelatedMediaRenderWidget"
         permission="zope.Public"
+        />
+
+
+    <!-- controlpanel -->
+    <browser:page
+        name="relatedmedia-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".browser.RelatedMediaControlPanel"
+        permission="cmf.ManagePortal"
         />
 
     <include file="upgrades.zcml" />

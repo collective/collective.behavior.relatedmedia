@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
+from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.viewlets.common import ViewletBase
@@ -118,5 +120,14 @@ class RelatedAttachmentsViewlet(ViewletBase):
                 )
 
 
-class RelatedMediaControlPanel(controlpanel.RegistryEditForm):
-    """ TODO: configlet """
+class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
+    """ controlpanel """
+
+    schema = IRelatedMediaSettings
+    label = _('Related Media Settings')
+    schema_prefix = "collective.behavior.relatedmedia"
+    control_panel_view = "relatedmedia-controlpanel"
+
+
+class RelatedMediaControlPanel(controlpanel.ControlPanelFormWrapper):
+    form = RelatedMediaControlPanelForm

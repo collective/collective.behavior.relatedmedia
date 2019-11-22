@@ -40,7 +40,7 @@
         destination="2001"
         profile="collective.behavior.relatedmedia:default"
         title="Upgrade registry"
-        import_steps="plone.app.registry"
+        import_steps="plone.app.registry controlpanel"
         run_deps="True" />
 
 </configure>

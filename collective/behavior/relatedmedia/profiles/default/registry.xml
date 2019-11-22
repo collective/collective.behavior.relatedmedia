@@ -1,58 +1,21 @@
 <?xml version="1.0"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <record name="collective.behavior.relatedmedia.media_container_path">
-        <field type="plone.registry.field.TextLine">
-            <title>Media Container</title>
-            <description>Traversable path to media container. We respect IPloneSiteRoot, INavigationRoot and IChildSite (lineage) as "/"</description>
-        </field>
-        <value>/media</value>
-    </record>
+    <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
+             prefix="collective.behavior.relatedmedia">
 
-    <record name="collective.behavior.relatedmedia.media_container_in_assets_folder">
-        <field type="plone.registry.field.Bool">
-            <title>Create Media Container in Assets Folder (language independent)?</title>
-            <description>If True, the Media Container path defined above is generated in the language independend Assets folder. This requires plone.app.multilingual.</description>
-        </field>
-        <value>False</value>
-    </record>
+        <value key="media_container_path">/media</value>
 
-    <record name="collective.behavior.relatedmedia.image_gallery_cssclass">
-        <field type="plone.registry.field.Tuple">
-            <title>Gallery CSS classes</title>
-            <value_type type="plone.registry.field.ASCIILine">
-                <title>CSS Class</title>
-            </value_type>
-        </field>
-        <value>
+        <value key="image_gallery_cssclass" purge="false">
             <element>floatLeft</element>
             <element>floatRight</element>
             <element>fullWidth</element>
         </value>
-    </record>
 
-    <record name="collective.behavior.relatedmedia.image_gallery_default_class">
-        <field type="plone.registry.field.TextLine">
-            <title>Default gallery class for new articles</title>
-            <description>You can customize this in your theme/registry.xml file</description>
-        </field>
-        <value>fullWidth</value>
-    </record>
+        <value key='image_gallery_default_class'>fullWidth</value>
 
-    <record name="collective.behavior.relatedmedia.image_gallery_default_preview_scale_direction">
-        <field type="plone.registry.field.Bool">
-            <title>Default setting for cropping gallery images</title>
-            <description>You can customize this in your theme/registry.xml file</description>
-        </field>
-        <value>False</value>
-    </record>
 
-    <record name="collective.behavior.relatedmedia.open_attachment_in_new_window">
-        <field type="plone.registry.field.Bool">
-            <title>Open Attachment links in new window</title>
-        </field>
-        <value>True</value>
-    </record>
+    </records>
 
     <records
           prefix="plone.resources/relatedmedia"
