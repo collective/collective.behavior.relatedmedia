@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.dexterity.utils import createContentInContainer
+from plone.protect.interfaces import IDisableCSRFProtection
+from zope.globalrequest import getRequest
+from zope.interface import alsoProvides
 
 
 def get_media_root(context, as_path=False):
@@ -26,6 +29,9 @@ def get_media_root(context, as_path=False):
 
     if media_container is None and media_container_path:
         # try to create media container path
+        # XXX: this is a write on read when accessing the behavior
+        #      the first time
+        alsoProvides(getRequest(), IDisableCSRFProtection)
         media_container = nav_root
         for f_id in media_container_path.split('/'):
             if not f_id:
