@@ -1,0 +1,46 @@
+<configure xmlns="http://namespaces.zope.org/genericsetup">
+
+
+    <registerProfile
+        name="package_rename"
+        title="Profile for upgrade step 'Package rename'"
+        directory="profiles/upgrades/package_rename"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <upgradeStep
+        source="*"
+        destination="1002"
+        profile="collective.behavior.relatedmedia:default"
+        title="Package rename"
+        description="'collective.behavior.relatedimages' -> 'collective.behavior.relatedmedia'"
+        sortkey="1"
+        handler=".upgrades.package_rename" />
+
+    <registerProfile
+        name="local_config"
+        title="Profile for upgrade step 'Local configuration'"
+        directory="profiles/upgrades/local_config"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <upgradeStep
+        source="1002"
+        destination="1003"
+        profile="collective.behavior.relatedmedia:default"
+        title="Local gallery configuration"
+        description="expose gallery image settings to local tab"
+        sortkey="2"
+        handler=".upgrades.local_gallery_configuration" />
+
+    <upgradeDepends
+        source="2000"
+        destination="2001"
+        profile="collective.behavior.relatedmedia:default"
+        title="Upgrade registry"
+        import_steps="plone.app.registry controlpanel"
+        run_deps="True" />
+
+</configure>

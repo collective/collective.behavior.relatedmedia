@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2.dev0'
+version = '2.0.dev0'
 
 setup(name='collective.behavior.relatedmedia',
       version=version,
@@ -12,6 +12,8 @@ setup(name='collective.behavior.relatedmedia',
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone :: 5.0",
+        "Framework :: Plone :: 5.1",
         "Framework :: Plone :: 5.2",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
@@ -31,9 +33,19 @@ setup(name='collective.behavior.relatedmedia',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.api',
           'plone.behavior',
           'plone.app.dexterity',
       ],
+      extras_require={
+        'test': [
+            'plone.app.testing[robot]',
+            'plone.app.robotframework',
+            'plone.app.contenttypes',
+            'robotframework-selenium2library',
+            'robotframework-selenium2screenshots',
+        ],
+    },
       entry_points="""
       # -*- Entry points: -*-
 
