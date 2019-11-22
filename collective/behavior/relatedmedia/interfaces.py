@@ -32,7 +32,7 @@ class IRelatedMediaSettings(Interface):
 
     image_gallery_cssclass = schema.List(
         title=_(u'Gallery CSS classes'),
-        value_type=schema.TextLine(title='CSS Class'),
+        value_type=schema.TextLine(title=u'CSS Class'),
         required=False,
     )
 
