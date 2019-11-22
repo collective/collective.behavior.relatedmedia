@@ -32,7 +32,7 @@ related media inplace.
 
 Further settings (for gallery css classes handling the images) as well as additional Images and Files (located somewhere else as the base path) are below
 
-.. image:: https://raw.githubusercontent.com/kombinat/collective.behavior.relatedmedia/master/docs/collective.behavior.relatedmedia_basepath.png
+.. image:: https://raw.githubusercontent.com/kombinat/collective.behavior.relatedmedia/master/docs/collective.behavior.relatedmedia_settings.png
 
 
 
