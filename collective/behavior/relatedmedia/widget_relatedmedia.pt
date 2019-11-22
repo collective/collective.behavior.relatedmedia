@@ -40,9 +40,6 @@
            metal:define-slot="widget" />
 
     <tal:block condition="view/upload_context|nothing">
-      <a tal:attributes="href string:${view/upload_context/absolute_url}/folder_contents" target="_blank" class="buttton-field context">
-        Open Folder in new Window
-      </a>
       <div class="pat-structure"
            tal:attributes="data-pat-structure view/get_structure_options" />
     </tal:block>
