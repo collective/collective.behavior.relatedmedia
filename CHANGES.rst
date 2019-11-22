@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.1 (unreleased)
+2.0.1 (2019-11-22)
 ------------------
 
 - merged HISTORY.txt and CHANGES.rst
