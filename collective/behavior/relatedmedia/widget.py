@@ -8,7 +8,6 @@ from plone.app.content.interfaces import IStructureAction
 from plone.app.content.utils import json_dumps
 from plone.app.uuid.utils import uuidToObject
 from plone.app.widgets.utils import get_widget_form
-from plone.app.z3cform.views import RenderWidget
 from plone.app.z3cform.widget import RelatedItemsWidget
 from plone.uuid.interfaces import IUUID
 from z3c.form.interfaces import IFieldWidget
@@ -18,6 +17,12 @@ from zope.component import getUtilitiesFor
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import implementer_only
+
+try:
+    from plone.app.z3cform.views import RenderWidget
+except ImportError:
+    # Plone 5.0 compat
+    from plone.app.z3cform.templates import RenderWidget
 
 
 @implementer_only(IRelatedMediaWidget)

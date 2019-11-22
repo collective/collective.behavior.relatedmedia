@@ -25,7 +25,6 @@ before_install:
   - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
   - pip install zc.buildout
   - cp test-$PLONE_VERSION.cfg buildout.cfg
-  - pip2.7 install popt || pip2.7 install --user  popt
 install:
   - buildout -N annotate
   - buildout -N
@@ -34,9 +33,7 @@ install:
 script:
   - bin/code-analysis
   - bin/test --all $TEST_OPTIONS
-  - grep  --include=output.xml -Rl  FAIL parts/test | xargs --no-run-if-empty -n 1 popt
-  - bin/createcoverage -t '--all $TEST_OPTIONS'
-  - grep  --include=output.xml -Rl  FAIL parts/test | xargs --no-run-if-empty -n 1 popt
+#  - bin/createcoverage -t '--all $TEST_OPTIONS'
 after_success:
-  - pip install -q coveralls
-  - coveralls
+#  - pip install -q coveralls
+#  - coveralls
