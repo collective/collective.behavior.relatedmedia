@@ -13,7 +13,7 @@ Configure and activate
 ======================
 
 You have to define a Media Root Path where the uploaded Media is stored.
-The default media container is "(site_root|nav_root)/media" and can be changed in the Related Media Controlpanel.
+The default media container is ``(site_root|nav_root)/media`` and can be changed in the Related Media Controlpanel.
 
 The behavior is automatically enabled for "Documents".
 Edit the data in the new tab "Related Media"
@@ -22,7 +22,7 @@ Edit the data in the new tab "Related Media"
 Media Base Path Strategy
 ========================
 
-When a Document is created we generate a `Related Media Base Path` in the background to store all the uploaded Media.
+When a Document is created we generate a ``Related Media Base Path`` in the background to store all the uploaded Media.
 This base path is located in the configured Media Root Path above.
 
 The Edit form renders a structure pattern from the base path where you can upload/rearrange/sort/rename and delete the

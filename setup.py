@@ -1,13 +1,19 @@
+# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-import os
 
 version = '2.0.1.dev0'
+
+
+def read_file(fname):
+    with open(fname) as f:
+        return f.read()
+
 
 setup(name='collective.behavior.relatedmedia',
       version=version,
       description="Adds Various configuration fields and viewlets to manage "
                   "and show content related images and attachments",
-      long_description=open("README.rst").read() + "\n" + open(os.path.join("docs", "HISTORY.txt")).read(),  # noqa
+      long_description=read_file("README.rst") + "\n" + read_file("CHANGES.rst"),  # noqa
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
