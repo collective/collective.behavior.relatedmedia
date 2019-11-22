@@ -48,3 +48,10 @@ Attachments are displayed in a viewlet below the content body.
 
 This package does not include any CSS or JS resource to enable some nice
 gallery experience. You can define this in your themen package.
+
+
+
+Author
+======
+
+- Peter Mathis [petschki]
