@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-2.0 (unreleased)
-----------------
+2.0.0 (2019-11-22)
+------------------
 
 - Python 3 / Plone 5.2 compatibility
   [petschki]
