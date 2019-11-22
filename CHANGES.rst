@@ -10,3 +10,6 @@ Changelog
 
 - Media Base Path feature
   [petschki]
+
+- test setup and CI
+  [petschki]
