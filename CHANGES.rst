@@ -5,7 +5,8 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bug in workflow sync event when pasting objects
+  [petschki]
 
 
 2.0.1 (2019-11-22)
