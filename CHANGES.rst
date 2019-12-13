@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.2 (unreleased)
+2.0.2 (2019-12-13)
 ------------------
 
 - Fix bug in workflow sync event when pasting objects
