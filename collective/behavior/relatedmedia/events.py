@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia.utils import get_media_root
+from logging import getLogger
 from plone import api
 from plone.dexterity.utils import createContentInContainer
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
+
+logger = getLogger(__name__)
 
 
 def create_media_base_path(obj, event):
@@ -53,6 +56,8 @@ def sync_workflow_state(obj, event):
             obj=obj.related_media_base_path,
             transition=event.status['action'],
         )
-    except api.exc.InvalidParameterError:
+    except Exception as msg:
         # possibly unsynced state ...
-        pass
+        logger.info(
+            "Could not sync workflow state of %s: %s (%s)",
+            obj.absolute_url(1), event.status, msg)
