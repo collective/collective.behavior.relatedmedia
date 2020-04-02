@@ -88,7 +88,7 @@ class RelatedImagesViewlet(ViewletBase):
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(
                         url=large_scale_url,
-                        tag=scale.tag(),
+                        tag=scale.tag(css_class='image-inline'),
                         caption=tcap and img_obj.Title() or u'',
                         title=img_obj.Title(),
                     ))
