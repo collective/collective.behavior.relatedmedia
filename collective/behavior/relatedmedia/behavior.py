@@ -106,7 +106,7 @@ class IRelatedMedia(model.Schema):
     )
 
     related_images = RelationList(
-        title=_(u'label_images', default=u'Additinal Related Images'),
+        title=_(u'label_images', default=u'Additional Related Images'),
         value_type=RelationChoice(
             title=_(u"Pictures"),
             vocabulary='plone.app.vocabularies.Catalog',
@@ -125,7 +125,7 @@ class IRelatedMedia(model.Schema):
     )
 
     related_attachments = RelationList(
-        title=_(u"label_attachments", default=u"Additinal Related Attachments"),
+        title=_(u"label_attachments", default=u"Additional Related Attachments"),  # noqa
         value_type=RelationChoice(
             title=_(u"Files"),
             vocabulary='plone.app.vocabularies.Catalog',

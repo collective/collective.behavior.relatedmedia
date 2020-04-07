@@ -5,7 +5,10 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add migration helper for RichDocument/SimpleAttachment.
+  This script moves all SimpleAttachments to the document related_media folder
+  and migrates RichDocument types to standard Documents with related_media_path.
+  [petschki]
 
 
 2.0.2 (2019-12-13)
