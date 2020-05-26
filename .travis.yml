@@ -1,25 +1,29 @@
+os: linux
+dist: xenial
 language: python
-sudo: false
-matrix:
+addons:
+  chrome: stable
+jobs:
   include:
     - python: "2.7"
-      env: PLONE_VERSION=5.0.x
+      env: PLONE_VERSION=5.0
     - python: "2.7"
-      env: PLONE_VERSION=5.1.x
+      env: PLONE_VERSION=5.1
     - python: "2.7"
-      env: PLONE_VERSION=5.2.x
+      env: PLONE_VERSION=5.2
     - python: "3.7"
-      env: PLONE_VERSION=5.2.x
-      dist: xenial
-      sudo: true
+      env: PLONE_VERSION=5.2
+  fast_finish: true
   allow_failures:
     - python: "2.7"
-      env: PLONE_VERSION=5.0.x
+      env: PLONE_VERSION=5.0
 cache:
   pip: true
   directories:
   - eggs
   - downloads
+  - buildout-cache
+  - $HOME/buildout-cache
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - mkdir $HOME/.buildout
@@ -27,7 +31,7 @@ before_install:
   - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
   - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
   - pip install zc.buildout
-  - cp test-$PLONE_VERSION.cfg buildout.cfg
+  - cp test-$PLONE_VERSION.x.cfg buildout.cfg
 install:
   - buildout -N annotate
   - buildout -N
