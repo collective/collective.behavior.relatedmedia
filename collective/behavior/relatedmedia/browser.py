@@ -33,7 +33,7 @@ class RelatedImagesViewlet(ViewletBase):
         imgs = []
         if rm_behavior.related_media_base_path:
             rm_base = rm_behavior.related_media_base_path.to_object
-            imgs = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type='Image')]  # noqa
+            imgs = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type='Image')]  # noqa: E501
         imgs += [i.to_object for i in rm_behavior.related_images]
         tcap = rm_behavior.show_titles_as_caption
         first_img_scales = None
@@ -55,8 +55,7 @@ class RelatedImagesViewlet(ViewletBase):
         if first_img_scales:
             scale = first_img_scales.scale(
                 'image', scale=rm_behavior.first_image_scale,
-                direction=rm_behavior.first_image_scale_direction and
-                'down' or 'thumbnail')
+                direction=rm_behavior.first_image_scale_direction and 'down' or 'thumbnail')  # noqa: E501
             if scale:
                 large_scale_url = first_img_scales.scale(
                     'image', scale='large').url
@@ -75,8 +74,7 @@ class RelatedImagesViewlet(ViewletBase):
                 scales = img.restrictedTraverse('@@images')
                 scale = scales.scale(
                     'image', scale=rm_behavior.preview_scale,
-                    direction=rm_behavior.preview_scale_direction and
-                    'down' or 'thumbnail')
+                    direction=rm_behavior.preview_scale_direction and 'down' or 'thumbnail')  # noqa: E501
                 if scale:
                     large_scale_url = scales.scale('image', scale='large').url
                     gallery.append(dict(
@@ -102,7 +100,7 @@ class RelatedAttachmentsViewlet(ViewletBase):
         att = []
         if behav.related_media_base_path:
             rm_base = behav.related_media_base_path.to_object
-            att = [f.getObject() for f in rm_base.restrictedTraverse('@@contentlisting')(portal_type='File')]  # noqa
+            att = [f.getObject() for f in rm_base.restrictedTraverse('@@contentlisting')(portal_type='File')]  # noqa: E501
         att += [f.to_object for f in behav.related_attachments]
         return att
 
