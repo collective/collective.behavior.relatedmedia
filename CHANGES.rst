@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.3 (unreleased)
+2.0.3 (2020-05-26)
 ------------------
 
 - fix attachment viewlet to be hidden when no files are related
