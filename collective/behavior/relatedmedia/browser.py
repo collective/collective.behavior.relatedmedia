@@ -9,6 +9,7 @@ from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.event.interfaces import IOccurrence
+from plone.memoize.instance import memoize
 
 
 class RelatedImagesViewlet(ViewletBase):
@@ -22,6 +23,7 @@ class RelatedImagesViewlet(ViewletBase):
             'collective.behavior.relatedmedia.image_gallery_default_class')
         return dflt_css_class
 
+    @memoize
     def images(self):
         context = aq_inner(self.context)
         if IOccurrence.providedBy(context):
@@ -104,20 +106,23 @@ class RelatedAttachmentsViewlet(ViewletBase):
         att += [f.to_object for f in behav.related_attachments]
         return att
 
+    @memoize
     def get_attachments(self):
         _target_blank = api.portal.get_registry_record(
             'collective.behavior.relatedmedia.open_attachment_in_new_window')
         link_target = _target_blank and 'blank' or 'top'
+        atts = []
         for att in self.attachments:
             if att:
-                yield dict(
+                atts.append(dict(
                     url=att.absolute_url(),
                     title=att.Title(),
                     size="{:.1f} MB".format(
                         att.file.getSize() / 1024.0 / 1024.0),
                     icon=att.getIcon(),
                     target=link_target,
-                )
+                ))
+        return atts
 
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
