@@ -4,10 +4,14 @@ from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from logging import getLogger
 from plone import api
-from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.dexterity.utils import createContentInContainer
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
+
+try:
+    from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
+except ImportError:
+    from plone.app.contenttypes.behaviors.leadimage import ILeadImage as ILeadImageBehavior  # noqa: E501
 
 logger = getLogger(__name__)
 
