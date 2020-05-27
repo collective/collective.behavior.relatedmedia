@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1.1 (unreleased)
+2.1.1 (2020-05-27)
 ------------------
 
 - Fix imports to support ``plone.app.contenttypes`` < 2.0
