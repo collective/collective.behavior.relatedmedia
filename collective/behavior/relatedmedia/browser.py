@@ -4,11 +4,11 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
+from collective.behavior.relatedmedia.utils import get_related_media
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
-from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 
 
@@ -26,15 +26,8 @@ class RelatedImagesViewlet(ViewletBase):
     @memoize
     def images(self):
         context = aq_inner(self.context)
-        if IOccurrence.providedBy(context):
-            # support for related images on event occurrences
-            context = context.aq_parent
+        imgs = get_related_media(context, portal_type='Image')
         rm_behavior = IRelatedMedia(context)
-        imgs = []
-        if rm_behavior.related_media_base_path:
-            rm_base = rm_behavior.related_media_base_path.to_object
-            imgs = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type='Image')]  # noqa: E501
-        imgs += [i.to_object for i in rm_behavior.related_images]
         tcap = rm_behavior.show_titles_as_caption
         first_img_scales = None
         further_images = []
@@ -93,16 +86,7 @@ class RelatedAttachmentsViewlet(ViewletBase):
     @property
     def attachments(self):
         context = aq_inner(self.context)
-        if IOccurrence.providedBy(context):
-            # support for related images on event occurrences
-            context = context.aq_parent
-        behav = IRelatedMedia(context)
-        att = []
-        if behav.related_media_base_path:
-            rm_base = behav.related_media_base_path.to_object
-            att = [f.getObject() for f in rm_base.restrictedTraverse('@@contentlisting')(portal_type='File')]  # noqa: E501
-        att += [f.to_object for f in behav.related_attachments]
-        return att
+        return get_related_media(context, portal_type='File')
 
     @memoize
     def get_attachments(self):

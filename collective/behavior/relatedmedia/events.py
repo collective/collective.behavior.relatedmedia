@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from Products.CMFPlone.utils import safe_unicode
 from collective.behavior.relatedmedia.utils import get_media_root
+from collective.behavior.relatedmedia.utils import get_related_media
 from logging import getLogger
 from plone import api
+from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.dexterity.utils import createContentInContainer
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
@@ -61,3 +64,17 @@ def sync_workflow_state(obj, event):
         logger.info(
             "Could not sync workflow state of %s: %s (%s)",
             obj.absolute_url(1), event.status, msg)
+
+
+def update_leadimage(obj, event):
+    if not api.portal.get_registry_record('collective.behavior.relatedmedia.update_leadimage', default=False):  # noqa
+        return
+
+    imgs = get_related_media(obj, portal_type='Image')
+
+    if not imgs:
+        return
+
+    # set first related image as lead image (incl. caption)
+    ILeadImageBehavior(obj).image = imgs[0].image
+    ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())

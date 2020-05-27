@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_inner
 from plone import api
 from plone.dexterity.utils import createContentInContainer
+from plone.event.interfaces import IOccurrence
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -51,3 +53,22 @@ def get_media_root(context, as_path=False):
 
 def media_root_path(context):
     return get_media_root(context, as_path=True)
+
+
+def get_related_media(context, portal_type=None):
+    from collective.behavior.relatedmedia.behavior import IRelatedMedia
+
+    context = aq_inner(context)
+    if IOccurrence.providedBy(context):
+        # support for related media on event occurrences
+        context = context.aq_parent
+    rm_behavior = IRelatedMedia(context)
+    rel_media = []
+    if rm_behavior.related_media_base_path:
+        rm_base = rm_behavior.related_media_base_path.to_object
+        rel_media = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type=portal_type)]  # noqa: E501
+    if portal_type in ('Image', None):
+        rel_media += [i.to_object for i in rm_behavior.related_images]
+    elif portal_type in ('File', None):
+        rel_media += [i.to_object for i in rm_behavior.related_attachments]
+    return rel_media

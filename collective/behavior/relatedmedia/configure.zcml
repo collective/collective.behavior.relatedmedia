@@ -82,6 +82,12 @@
         handler=".events.sync_workflow_state"
         />
 
+    <subscriber
+        for=".behavior.IRelatedMedia
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.update_leadimage"
+        />
+
     <!-- reuse data converter from plone.app.z3cform.converters -->
     <adapter
         factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"

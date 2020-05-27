@@ -5,7 +5,11 @@ Changelog
 2.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Features:
+
+- global setting to always update first related image as leadimage.
+  This is disabled per default.
+  [petschki]
 
 
 2.0.3 (2020-05-26)

@@ -43,4 +43,12 @@
         import_steps="plone.app.registry controlpanel"
         run_deps="True" />
 
+    <upgradeDepends
+        source="2001"
+        destination="2002"
+        profile="collective.behavior.relatedmedia:default"
+        title="Upgrade registry"
+        import_steps="plone.app.registry"
+        run_deps="True" />
+
 </configure>
