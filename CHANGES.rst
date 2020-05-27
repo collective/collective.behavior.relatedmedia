@@ -5,7 +5,8 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix imports to support ``plone.app.contenttypes`` < 2.0
+  [petschki]
 
 
 2.1 (2020-05-27)
