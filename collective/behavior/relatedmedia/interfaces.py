@@ -21,8 +21,8 @@ class IRelatedMediaSettings(Interface):
     )
 
     media_container_in_assets_folder = schema.Bool(
-        title=_('uCreate Media Container in Assets Folder '
-                '(language independent)?'),
+        title=_(u'Create Media Container in Assets Folder '
+                u'(language independent)?'),
         description=_(u'If True, the Media Container path defined above is '
                       u'generated in the language independend Assets folder. '
                       u'This requires plone.app.multilingual.'),
