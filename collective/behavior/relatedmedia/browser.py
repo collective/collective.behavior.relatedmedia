@@ -96,8 +96,9 @@ class RelatedAttachmentsViewlet(ViewletBase):
         atts = []
         for att in self.attachments:
             if att:
+                download_url = u'{}/@@download/file/{}'.format(att.absolute_url(), att.file.filename)  # noqa
                 atts.append(dict(
-                    url=att.absolute_url(),
+                    url=download_url,
                     title=att.Title(),
                     size="{:.1f} MB".format(
                         att.file.getSize() / 1024.0 / 1024.0),
