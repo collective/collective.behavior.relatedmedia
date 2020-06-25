@@ -28,7 +28,7 @@ class RelatedImagesViewlet(ViewletBase):
         context = aq_inner(self.context)
         imgs = get_related_media(context, portal_type='Image')
         rm_behavior = IRelatedMedia(context)
-        tcap = rm_behavior.show_titles_as_caption
+        show_caption = rm_behavior.show_titles_as_caption
         first_img_scales = None
         further_images = []
         gallery = []
@@ -40,9 +40,8 @@ class RelatedImagesViewlet(ViewletBase):
         elif len(imgs):
             first_img = imgs[0]
             if first_img:
-                first_img_scales = first_img.restrictedTraverse(
-                    '@@images')
-                first_img_caption = tcap and first_img.Title() or u''
+                first_img_scales = first_img.restrictedTraverse('@@images')
+                first_img_caption = first_img.Title()
                 further_images = imgs[1:]
 
         if first_img_scales:
@@ -58,7 +57,8 @@ class RelatedImagesViewlet(ViewletBase):
                         title=first_img_caption,
                         alt=first_img_caption,
                     ),
-                    caption=tcap and first_img_caption or u'',
+                    caption=first_img_caption,
+                    show_caption=show_caption,
                     title=first_img_caption,
                 ))
 
@@ -73,7 +73,8 @@ class RelatedImagesViewlet(ViewletBase):
                     gallery.append(dict(
                         url=large_scale_url,
                         tag=scale.tag(),
-                        caption=tcap and img.Title() or u'',
+                        caption=img.Title(),
+                        show_caption=show_caption,
                         title=img.Title(),
                     ))
 
