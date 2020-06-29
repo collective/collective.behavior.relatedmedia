@@ -5,7 +5,8 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix issue with unauthorized media folder
+  [petschki]
 
 
 2.1.1 (2020-05-27)

@@ -4,6 +4,7 @@ from plone import api
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.protect.interfaces import IDisableCSRFProtection
+from zExceptions import Unauthorized
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
@@ -65,8 +66,11 @@ def get_related_media(context, portal_type=None):
     rm_behavior = IRelatedMedia(context)
     rel_media = []
     if rm_behavior.related_media_base_path:
-        rm_base = rm_behavior.related_media_base_path.to_object
-        rel_media = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type=portal_type)]  # noqa: E501
+        try:
+            rm_base = rm_behavior.related_media_base_path.to_object
+            rel_media = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type=portal_type)]  # noqa: E501
+        except Unauthorized:
+            rel_media = []
     if portal_type in ('Image', None):
         rel_media += [i.to_object for i in rm_behavior.related_images]
     elif portal_type in ('File', None):
