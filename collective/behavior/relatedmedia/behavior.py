@@ -7,7 +7,6 @@ from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from z3c.form import widget
 from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -31,6 +30,23 @@ class GalleryCSSClassesVocabulary(object):
     def __call__(self, context):
         return SimpleVocabulary.fromValues(api.portal.get_registry_record(
             'collective.behavior.relatedmedia.image_gallery_cssclass'))
+
+
+def default_css_class():
+    return api.portal.get_registry_record(
+        'collective.behavior.relatedmedia.image_gallery_default_class')
+
+
+def default_preview_scale_direction():
+    return api.portal.get_registry_record(
+        'collective.behavior.relatedmedia.'
+        'image_gallery_default_preview_scale_direction')
+
+
+def default_include_leadimage():
+    return api.portal.get_registry_record(
+        'collective.behavior.relatedmedia.'
+        'include_leadimage_default', default=True)
 
 
 @provider(IFormFieldProvider)
@@ -67,7 +83,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"Include Leadimage"),
         description=_(
             "Whether or not include the Leadimage in the gallery viewlet"),
-        default=True,
+        defaultFactory=default_include_leadimage,
         required=False,
     )
 
@@ -75,13 +91,13 @@ class IRelatedMedia(model.Schema):
         title=_(u"First image scale"),
         description=_("Size for the first image in the gallery"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        default='large',
+        default=u'large',
     )
 
     first_image_scale_direction = schema.Bool(
         title=_(u"Crop first image"),
         description=_("Crop the image to the selected boundaries above"),
-        default=False,
+        defaultFactory=default_preview_scale_direction,
         required=False,
     )
 
@@ -103,6 +119,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"Gallery layout"),
         description=_("Feel free to add/remove classes in your registry.xml"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
+        defaultFactory=default_css_class,
     )
 
     related_images = RelationList(
@@ -180,26 +197,6 @@ class IRelatedMedia(model.Schema):
         'related_images',
         'related_attachments',
     ])
-
-
-def default_css_class_factory(widget):
-    return api.portal.get_registry_record(
-        'collective.behavior.relatedmedia.image_gallery_default_class')
-
-
-default_css_class_value = widget.ComputedWidgetAttribute(
-    default_css_class_factory, field=IRelatedMedia['gallery_css_class'])
-
-
-def default_preview_scale_direction(widget):
-    return api.portal.get_registry_record(
-        'collective.behavior.relatedmedia.'
-        'image_gallery_default_preview_scale_direction')
-
-
-default_preview_scale_direction_value = widget.ComputedWidgetAttribute(
-    default_preview_scale_direction,
-    field=IRelatedMedia['preview_scale_direction'])
 
 
 # define languageindependent fields if p.a.multilingual is installed

@@ -8,6 +8,12 @@ Changelog
 - Fix issue with unauthorized media folder
   [petschki]
 
+- Update/enhance default settings in controlpanel
+  [petschki]
+
+- bugfix in workflow synchronization of related media base path
+  [petschki]
+
 
 2.1.1 (2020-05-27)
 ------------------

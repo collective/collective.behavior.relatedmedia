@@ -60,7 +60,7 @@ def sync_workflow_state(obj, event):
 
     try:
         api.content.transition(
-            obj=obj.related_media_base_path,
+            obj=obj.related_media_base_path.to_object,
             transition=event.status['action'],
         )
     except Exception as msg:
