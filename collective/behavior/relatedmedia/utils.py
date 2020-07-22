@@ -69,7 +69,7 @@ def get_related_media(context, portal_type=None):
         try:
             rm_base = rm_behavior.related_media_base_path.to_object
             rel_media = [i.getObject() for i in rm_base.restrictedTraverse('@@contentlisting')(portal_type=portal_type)]  # noqa: E501
-        except Unauthorized:
+        except Exception:
             rel_media = []
     if portal_type in ('Image', None):
         rel_media += [i.to_object for i in rm_behavior.related_images]

@@ -5,7 +5,8 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bigbug in util method when related base_path is missing. fixes #2
+  [petschki]
 
 
 2.1.2 (2020-07-02)
