@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1.3 (unreleased)
+2.1.3 (2020-07-22)
 ------------------
 
 - Fix bigbug in util method when related base_path is missing. fixes #2
