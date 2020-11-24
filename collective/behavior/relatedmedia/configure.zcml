@@ -62,13 +62,6 @@
         type="plone"
     />
 
-    <!-- default value adapter for gallery_css_class ... read default value from registry
-         see http://pythonhosted.org/z3c.form/widget.html#dynamically-changing-attribute-values
-    -->
-    <adapter factory=".behavior.default_css_class_value" name="default" />
-    <adapter factory=".behavior.default_preview_scale_direction_value" name="default" />
-
-
     <!-- automaticall generated related_media_base_path on creation -->
     <subscriber
         for=".behavior.IRelatedMedia
@@ -80,6 +73,12 @@
         for=".behavior.IRelatedMedia
              Products.DCWorkflow.interfaces.IAfterTransitionEvent"
         handler=".events.sync_workflow_state"
+        />
+
+    <subscriber
+        for=".behavior.IRelatedMedia
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.update_leadimage"
         />
 
     <!-- reuse data converter from plone.app.z3cform.converters -->

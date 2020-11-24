@@ -14,8 +14,9 @@
             <element>fullWidth</element>
         </value>
 
-        <value key='image_gallery_default_class'>fullWidth</value>
+        <value key="image_gallery_default_class">fullWidth</value>
 
+        <value key="include_leadimage_default">True</value>
 
     </records>
 
