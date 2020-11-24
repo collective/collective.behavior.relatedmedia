@@ -23,10 +23,11 @@ class CollectiveBehaviorRelatedMediaLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import collective.behavior.relatedmedia
+
         self.loadZCML(package=collective.behavior.relatedmedia)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'collective.behavior.relatedmedia:default')
+        applyProfile(portal, "collective.behavior.relatedmedia:default")
 
 
 COLLECTIVE_BEHAVIOR_RELATEDMEDIA_FIXTURE = CollectiveBehaviorRelatedMediaLayer()
@@ -34,7 +35,7 @@ COLLECTIVE_BEHAVIOR_RELATEDMEDIA_FIXTURE = CollectiveBehaviorRelatedMediaLayer()
 
 COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_BEHAVIOR_RELATEDMEDIA_FIXTURE,),
-    name='CollectiveBehaviorRelatedMediaLayer:IntegrationTesting',
+    name="CollectiveBehaviorRelatedMediaLayer:IntegrationTesting",
 )
 
 COLLECTIVE_BEHAVIOR_RELATEDMEDIA_ACCEPTANCE_TESTING = FunctionalTesting(
@@ -43,5 +44,5 @@ COLLECTIVE_BEHAVIOR_RELATEDMEDIA_ACCEPTANCE_TESTING = FunctionalTesting(
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='CollectiveBehaviorRelatedMediaLayer:AcceptanceTesting',
+    name="CollectiveBehaviorRelatedMediaLayer:AcceptanceTesting",
 )

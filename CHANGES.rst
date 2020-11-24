@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-2.0.2 (unreleased)
+2.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change strategy for optional media base_path container creation. This is a registry setting.
+  [petschki]
 
 
 2.0.1 (2019-11-22)

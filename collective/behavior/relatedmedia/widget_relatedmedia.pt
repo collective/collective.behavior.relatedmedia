@@ -39,7 +39,7 @@
     <input type="text" tal:replace="structure widget/render"
            metal:define-slot="widget" />
 
-    <tal:block condition="view/upload_context|nothing">
+    <tal:block condition="view/widget_context/related_media|nothing">
       <div class="pat-structure"
            tal:attributes="data-pat-structure view/get_structure_options" />
     </tal:block>

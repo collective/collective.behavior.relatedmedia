@@ -89,6 +89,12 @@
              collective.behavior.relatedmedia.widget.RelatedMediaWidget"
         />
 
+    <adapter
+        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+        for="z3c.relationfield.interfaces.IRelationList
+             collective.behavior.relatedmedia.widget.RelatedMediaWidget"
+        />
+
     <!-- render-widget override for integrated pat-structure feature -->
     <browser:page
         name="ploneform-render-widget"

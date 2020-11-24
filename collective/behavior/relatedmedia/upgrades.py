@@ -7,7 +7,7 @@ def package_rename(context):
     # remove old registry entries
     context.runAllImportStepsFromProfile(oldreg_profile_id)
     # add new registry
-    context.runImportStepFromProfile(profile_id, 'plone.app.registry')
+    context.runImportStepFromProfile(profile_id, "plone.app.registry")
 
 
 def local_gallery_configuration(context):
