@@ -53,23 +53,6 @@ def default_include_leadimage():
     )
 
 
-def default_css_class():
-    return api.portal.get_registry_record(
-        'collective.behavior.relatedmedia.image_gallery_default_class')
-
-
-def default_preview_scale_direction():
-    return api.portal.get_registry_record(
-        'collective.behavior.relatedmedia.'
-        'image_gallery_default_preview_scale_direction')
-
-
-def default_include_leadimage():
-    return api.portal.get_registry_record(
-        'collective.behavior.relatedmedia.'
-        'include_leadimage_default', default=True)
-
-
 @provider(IFormFieldProvider)
 class IRelatedMedia(model.Schema):
 
@@ -107,6 +90,7 @@ class IRelatedMedia(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
+            "orderable": True,
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Image"],
             "basePath": media_root_path,
@@ -128,6 +112,7 @@ class IRelatedMedia(model.Schema):
         "related_attachments",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
+        orderable=True,
         pattern_options={
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],
@@ -195,32 +180,32 @@ class IRelatedMedia(model.Schema):
         required=False,
     )
 
-    # AddForm shows media_base_path field ... the rest is only on EditForm
     form.omitted(
-        "related_images",
-        "related_media",
-        "show_titles_as_caption",
-        "include_leadimage",
         "first_image_scale",
         "first_image_scale_direction",
+        "gallery_css_class",
+        "include_leadimage",
         "preview_scale",
         "preview_scale_direction",
-        "gallery_css_class",
         "related_attachments",
+        "related_images",
+        "related_media",
         "related_media_base_path",
+        "show_titles_as_caption",
     )
+
     form.no_omit(
         IEditForm,
+        "first_image_scale",
+        "first_image_scale_direction",
+        "gallery_css_class",
+        "include_leadimage",
+        "preview_scale",
+        "preview_scale_direction",
+        "related_attachments",
         "related_images",
         "related_media",
         "show_titles_as_caption",
-        "include_leadimage",
-        "first_image_scale",
-        "first_image_scale_direction",
-        "preview_scale",
-        "preview_scale_direction",
-        "gallery_css_class",
-        "related_attachments",
     )
 
     model.fieldset(

@@ -91,9 +91,9 @@ class RelatedMediaRenderWidget(RenderWidget):
         upload_context = self.upload_context
         options = {
             "vocabularyUrl": "%splone.app.vocabularies.Catalog" % (base_vocabulary),
-            "attributes": {
-                "UID": self.get_selected_uids(),
-            },
+            # "attributes": {
+            #     "UID": self.get_selected_uids(),
+            #},
             "moveUrl": "%s{path}/fc-itemOrder" % base_url,
             "indexOptionsUrl": "%s/@@qsOptions" % base_url,
             "contextInfoUrl": "%s{path}/@@fc-contextInfo" % base_url,
