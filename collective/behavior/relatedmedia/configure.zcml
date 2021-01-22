@@ -104,6 +104,14 @@
         />
 
 
+    <!-- uploader -->
+    <browser:page
+        name="upload_related_media"
+        for=".behavior.IRelatedMedia"
+        class=".browser.Uploader"
+        permission="zope2.View"
+        />
+        
     <!-- controlpanel -->
     <browser:page
         name="relatedmedia-controlpanel"
@@ -111,6 +119,7 @@
         class=".browser.RelatedMediaControlPanel"
         permission="cmf.ManagePortal"
         />
+
 
     <include file="upgrades.zcml" />
 

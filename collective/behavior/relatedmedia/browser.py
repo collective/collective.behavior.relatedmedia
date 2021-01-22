@@ -1,15 +1,26 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
+from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
+from plone.dexterity.utils import createContentInContainer
 from plone.memoize.instance import memoize
+from plone.namedfile.file import NamedBlobFile
+from plone.namedfile.file import NamedBlobImage
+from z3c.relationfield import RelationValue
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+
+import json
 
 
 class RelatedImagesViewlet(ViewletBase):
@@ -120,3 +131,42 @@ class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
 
 class RelatedMediaControlPanel(controlpanel.ControlPanelFormWrapper):
     form = RelatedMediaControlPanelForm
+
+
+class Uploader(BrowserView):
+
+    def __call__(self):
+        req_file = self.request.get('file')
+        c_type = req_file.headers.get('content-type', '')
+        file_data = req_file.read()
+        file_name = safe_unicode(req_file.filename)
+        media_container = get_media_root(self.context)
+        behavior = IRelatedMedia(self.context)
+        intids = getUtility(IIntIds)
+
+        if c_type.startswith("image/"):
+            blob = NamedBlobImage(data=file_data, filename=file_name)
+            img = createContentInContainer(
+                media_container, "Image", image=blob)
+            # safe image as leadImage if none exists
+            if ILeadImage.providedBy(self.context) and \
+               ILeadImage(self.context).image is None:
+                ILeadImage(self.context).image = blob
+            else:
+                to_id = intids.getId(img)
+                imgs = behavior.related_images and \
+                    list(behavior.related_images) or []
+                imgs.append(RelationValue(to_id))
+                behavior.related_images = imgs
+        else:
+            blob = NamedBlobFile(data=file_data, filename=file_name)
+            att = createContentInContainer(media_container, "File", file=blob)
+            to_id = intids.getId(att)
+            atts = behavior.related_attachments and \
+                list(behavior.related_attachments) or []
+            atts.append(RelationValue(to_id))
+            behavior.related_attachments = atts
+
+        return json.dumps(dict(
+            status=u"done",
+        ))

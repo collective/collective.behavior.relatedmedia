@@ -57,7 +57,7 @@ def default_include_leadimage():
 class IRelatedMedia(model.Schema):
 
     related_media = RelationList(
-        title=_(u"label_images", default=u"Related Images"),
+        title=_(u"label_related_media_upload", default=u"Related Media Upload"),
         value_type=RelationChoice(
             title=_(u"Related Media"),
             vocabulary="plone.app.vocabularies.Catalog",
