@@ -2,7 +2,6 @@
 from Acquisition import aq_inner
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
@@ -23,8 +22,7 @@ from zope.intid.interfaces import IIntIds
 import json
 
 
-class RelatedImagesViewlet(ViewletBase):
-    index = ViewPageTemplateFile('viewlet_images.pt')
+class RelatedImagesView(BrowserView):
 
     def gallery_css_klass(self):
         css_class = IRelatedMedia(aq_inner(self.context)).gallery_css_class
@@ -92,8 +90,7 @@ class RelatedImagesViewlet(ViewletBase):
         return gallery
 
 
-class RelatedAttachmentsViewlet(ViewletBase):
-    index = ViewPageTemplateFile('viewlet_attachments.pt')
+class RelatedAttachmentsView(BrowserView):
 
     @property
     def attachments(self):

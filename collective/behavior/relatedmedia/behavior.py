@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
+from collective.behavior.relatedmedia.widget import RelatedImagesFieldWidget
+from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -38,6 +40,20 @@ class GalleryCSSClassesVocabulary(object):
 def default_css_class():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.image_gallery_default_class"
+    )
+
+
+def default_gallery_first_image_scale():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.image_gallery_default_gallery_first_image_scale",
+        "large",
+    )
+
+
+def default_gallery_scale():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.image_gallery_default_gallery_scale",
+        "preview",
     )
 
 
@@ -87,7 +103,7 @@ class IRelatedMedia(model.Schema):
     )
     form.widget(
         "related_images",
-        RelatedItemsFieldWidget,
+        RelatedImagesFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "orderable": True,
@@ -110,7 +126,7 @@ class IRelatedMedia(model.Schema):
     )
     form.widget(
         "related_attachments",
-        RelatedItemsFieldWidget,
+        RelatedAttachmentsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         orderable=True,
         pattern_options={
@@ -137,7 +153,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"First image scale"),
         description=_("Size for the first image in the gallery"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        default=u"large",
+        default=default_gallery_first_image_scale,
     )
 
     first_image_scale_direction = schema.Bool(
@@ -151,7 +167,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"Image scale"),
         description=_("Gallery image preview scale"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        default="preview",
+        default=default_gallery_scale,
     )
 
     preview_scale_direction = schema.Bool(

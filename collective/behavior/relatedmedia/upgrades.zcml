@@ -67,4 +67,12 @@
         import_steps="plone.app.registry"
         run_deps="True" />
 
+    <upgradeDepends
+        source="2010"
+        destination="2011"
+        profile="collective.behavior.relatedmedia:default"
+        title="Upgrade registry -> new default settings"
+        import_steps="plone.app.registry"
+        run_deps="True" />
+
 </configure>

@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
-from z3c.form.interfaces import ITextWidget
 from zope import schema
 from zope.interface import Interface
-
-
-class IRelatedMediaWidget(ITextWidget):
-    """ marker for widget """
 
 
 class IRelatedMediaSettings(Interface):
@@ -50,6 +45,20 @@ class IRelatedMediaSettings(Interface):
         required=True,
     )
 
+    image_gallery_default_gallery_first_image_scale = schema.Choice(
+        title=_(u"Gallery default scale for first image"),
+        vocabulary="plone.app.vocabularies.ImagesScales",
+        default="large",
+        required=False,
+    )
+
+    image_gallery_default_scale = schema.Choice(
+        title=_(u"Gallery default scale"),
+        vocabulary="plone.app.vocabularies.ImagesScales",
+        default="preview",
+        required=False,
+    )
+
     image_gallery_default_preview_scale_direction = schema.Bool(
         title=_(u"Default setting for cropping gallery images"),
         default=False,
@@ -65,19 +74,6 @@ class IRelatedMediaSettings(Interface):
     update_leadimage = schema.Bool(
         title=_(u"Set first related image as leadimage?"),
         description=_(u"This is applied on any change."),
-        default=False,
-        required=False,
-    )
-
-    include_leadimage_default = schema.Bool(
-        title=_(u'Include leadimage in image gallery?'),
-        default=True,
-        required=False,
-    )
-
-    update_leadimage = schema.Bool(
-        title=_(u'Set first related image as leadimage?'),
-        description=_(u'This is applied on any change.'),
         default=False,
         required=False,
     )

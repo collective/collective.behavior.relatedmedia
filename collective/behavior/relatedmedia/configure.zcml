@@ -5,6 +5,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="collective.behavior.relatedmedia">
 
     <i18n:registerTranslations directory="locales" />
@@ -40,11 +41,36 @@
         provides=".behavior.IRelatedMedia"
         />
 
+    <!-- related_images view/viewlet/widget -->
+    <browser:page
+        name="relatedImages"
+        for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
+        class=".browser.RelatedImagesView"
+        template="related_images.pt"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="collective.behavior.related_images"
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        class=".browser.RelatedImagesViewlet"
+        template="widget_images_display.pt"
+        permission="zope2.View"
+        />
+
+    <z3c:widgetTemplate
+        mode="display"
+        field="z3c.relationfield.interfaces.IRelationList"
+        widget=".widget.IRelatedImagesWidget"
+        template="widget_images_display.pt"
+        />
+
+    <!-- related_attachments view/viewlet/widget -->
+    <browser:page
+        name="relatedAttachments"
+        for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
+        class=".browser.RelatedAttachmentsView"
+        template="related_attachments.pt"
         permission="zope2.View"
         />
 
@@ -52,15 +78,22 @@
         name="collective.behavior.related_attachments"
         for="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class=".browser.RelatedAttachmentsViewlet"
+        template="widget_attachments_display.pt"
         permission="zope2.View"
+        />
+
+    <z3c:widgetTemplate
+        mode="display"
+        field="z3c.relationfield.interfaces.IRelationList"
+        widget=".widget.IRelatedAttachmentsWidget"
+        template="widget_attachments_display.pt"
         />
 
     <plone:static
         directory="resources"
         name="collective.behavior.relatedmedia.resources"
         type="plone"
-    />
+        />
 
     <!-- automaticall generated related_media_base_path on creation -->
     <subscriber
@@ -94,10 +127,34 @@
              collective.behavior.relatedmedia.widget.RelatedMediaWidget"
         />
 
+    <adapter
+        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
+        for="z3c.relationfield.interfaces.IRelationChoice
+             collective.behavior.relatedmedia.widget.RelatedImagesWidget"
+        />
+
+    <adapter
+        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+        for="z3c.relationfield.interfaces.IRelationList
+             collective.behavior.relatedmedia.widget.RelatedImagesWidget"
+        />
+
+    <adapter
+        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
+        for="z3c.relationfield.interfaces.IRelationChoice
+             collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
+        />
+
+    <adapter
+        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+        for="z3c.relationfield.interfaces.IRelationList
+             collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
+        />
+
     <!-- render-widget override for integrated pat-structure feature -->
     <browser:page
         name="ploneform-render-widget"
-        for=".interfaces.IRelatedMediaWidget"
+        for=".widget.IRelatedMediaWidget"
         layer="plone.app.z3cform.interfaces.IPloneFormLayer"
         class=".widget.RelatedMediaRenderWidget"
         permission="zope.Public"
