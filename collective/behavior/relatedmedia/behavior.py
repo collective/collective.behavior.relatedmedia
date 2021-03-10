@@ -5,7 +5,6 @@ from collective.behavior.relatedmedia.widget import RelatedImagesFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -106,7 +105,6 @@ class IRelatedMedia(model.Schema):
         RelatedImagesFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "orderable": True,
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Image"],
             "basePath": media_root_path,
@@ -114,9 +112,7 @@ class IRelatedMedia(model.Schema):
     )
 
     related_attachments = RelationList(
-        title=_(
-            u"label_attachments", default=u"Related Attachments"
-        ),  # noqa
+        title=_(u"label_attachments", default=u"Related Attachments"),  # noqa
         value_type=RelationChoice(
             title=_(u"Files"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -128,7 +124,6 @@ class IRelatedMedia(model.Schema):
         "related_attachments",
         RelatedAttachmentsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        orderable=True,
         pattern_options={
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],

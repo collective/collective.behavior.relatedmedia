@@ -34,7 +34,17 @@ require([
     });
 
     $(".pat-upload").on("uploadAllCompleted", function(response, path) {
-      // determine how to update relateditems widget
+      // reload relateditems patterns
+      $.ajax({
+        url: window.location.href + "?ajax_load=1",
+        success:function(response) {
+          $("#fieldset-relatedmedia .pat-relateditems").each(function() {
+            var $field = $(this).closest(".field"), field_id = $field.attr("id");
+            $field.replaceWith($("#" + field_id, $(response)));
+          });
+          registry.scan("#fieldset-relatedmedia .pat-relateditems");
+        }
+      });
     });
   });
 });
