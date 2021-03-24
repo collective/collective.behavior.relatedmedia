@@ -45,14 +45,14 @@ def default_css_class():
 def default_gallery_first_image_scale():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.image_gallery_default_gallery_first_image_scale",
-        "large",
+        default="large",
     )
 
 
 def default_gallery_scale():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.image_gallery_default_gallery_scale",
-        "preview",
+        default="preview",
     )
 
 
@@ -148,7 +148,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"First image scale"),
         description=_("Size for the first image in the gallery"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        default=default_gallery_first_image_scale,
+        defaultFactory=default_gallery_first_image_scale,
     )
 
     first_image_scale_direction = schema.Bool(
@@ -162,7 +162,7 @@ class IRelatedMedia(model.Schema):
         title=_(u"Image scale"),
         description=_("Gallery image preview scale"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        default=default_gallery_scale,
+        defaultFactory=default_gallery_scale,
     )
 
     preview_scale_direction = schema.Bool(

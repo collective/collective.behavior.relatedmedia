@@ -9,7 +9,6 @@ from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.dexterity.utils import createContentInContainer
 from plone.memoize.instance import memoize
