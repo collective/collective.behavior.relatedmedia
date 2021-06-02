@@ -4,7 +4,6 @@ from plone import api
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.protect.interfaces import IDisableCSRFProtection
-from zExceptions import Unauthorized
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
