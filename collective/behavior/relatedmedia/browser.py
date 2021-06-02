@@ -68,6 +68,7 @@ class RelatedImagesView(BrowserView):
                         tag=scale.tag(
                             title=first_img_caption,
                             alt=first_img_caption,
+                            css_class="img-fluid",
                         ),
                         caption=first_img_caption,
                         show_caption=show_caption,
@@ -90,7 +91,7 @@ class RelatedImagesView(BrowserView):
                     gallery.append(
                         dict(
                             url=large_scale_url,
-                            tag=scale.tag(),
+                            tag=scale.tag(css_class="img-fluid"),
                             caption=img.Title(),
                             show_caption=show_caption,
                             title=img.Title(),
