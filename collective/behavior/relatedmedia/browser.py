@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFPlone.utils import safe_unicode
-from Products.Five import BrowserView
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
+from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
@@ -14,6 +13,8 @@ from plone.dexterity.utils import createContentInContainer
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five import BrowserView
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
@@ -132,7 +133,7 @@ class RelatedAttachmentsView(BrowserView):
 
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
-    """ controlpanel """
+    """controlpanel"""
 
     schema = IRelatedMediaSettings
     label = _("Related Media Settings")
@@ -157,17 +158,11 @@ class Uploader(BrowserView):
         if c_type.startswith("image/"):
             blob = NamedBlobImage(data=file_data, filename=file_name)
             img = createContentInContainer(media_container, "Image", image=blob)
-            # safe image as leadImage if none exists
-            if (
-                ILeadImage.providedBy(self.context)
-                and ILeadImage(self.context).image is None
-            ):
-                ILeadImage(self.context).image = blob
-            else:
-                to_id = intids.getId(img)
-                imgs = behavior.related_images and list(behavior.related_images) or []
-                imgs.append(RelationValue(to_id))
-                behavior.related_images = imgs
+            to_id = intids.getId(img)
+            imgs = behavior.related_images and list(behavior.related_images) or []
+            imgs.append(RelationValue(to_id))
+            behavior.related_images = imgs
+            update_leadimage(self.context, None)
         else:
             blob = NamedBlobFile(data=file_data, filename=file_name)
             att = createContentInContainer(media_container, "File", file=blob)
