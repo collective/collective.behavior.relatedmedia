@@ -93,6 +93,7 @@ def update_leadimage(obj, event):
     if not imgs:
         return
 
-    # set first related image as lead image (incl. caption)
-    ILeadImageBehavior(obj).image = imgs[0].image
-    ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())
+    if not ILeadImageBehavior(obj).image:
+        # set first related image as lead image (incl. caption)
+        ILeadImageBehavior(obj).image = imgs[0].image
+        ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())
