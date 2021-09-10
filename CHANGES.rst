@@ -8,6 +8,9 @@ Changelog
 - Change strategy for optional media base_path container creation. This is a registry setting.
   [petschki]
 
+- Plone6 / Classic Theme updates
+  [petschki]
+
 
 2.1.3 (2020-07-22)
 ------------------
