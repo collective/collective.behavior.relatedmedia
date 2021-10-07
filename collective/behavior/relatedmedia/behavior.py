@@ -112,7 +112,7 @@ class IRelatedMedia(model.Schema):
     )
 
     related_attachments = RelationList(
-        title=_(u"label_attachments", default=u"Related Attachments"),  # noqa
+        title=_(u"label_attachments", default=u"Related Attachments"),
         value_type=RelationChoice(
             title=_(u"Files"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -177,6 +177,7 @@ class IRelatedMedia(model.Schema):
         description=_("Feel free to add/remove classes in your registry.xml"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
         defaultFactory=default_css_class,
+        required=False,
     )
 
     related_media_base_path = RelationChoice(
@@ -240,19 +241,13 @@ class IRelatedMedia(model.Schema):
 
 # define languageindependent fields if p.a.multilingual is installed
 if HAS_PAM:
-    alsoProvides(
-        IRelatedMedia["related_media_base_path"], ILanguageIndependentField
-    )  # noqa
-    alsoProvides(
-        IRelatedMedia["show_titles_as_caption"], ILanguageIndependentField
-    )  # noqa
-    alsoProvides(IRelatedMedia["include_leadimage"], ILanguageIndependentField)  # noqa
-    alsoProvides(IRelatedMedia["first_image_scale"], ILanguageIndependentField)  # noqa
+    alsoProvides(IRelatedMedia["related_media_base_path"], ILanguageIndependentField)
+    alsoProvides(IRelatedMedia["show_titles_as_caption"], ILanguageIndependentField)
+    alsoProvides(IRelatedMedia["include_leadimage"], ILanguageIndependentField)
+    alsoProvides(IRelatedMedia["first_image_scale"], ILanguageIndependentField)
     alsoProvides(
         IRelatedMedia["first_image_scale_direction"], ILanguageIndependentField
-    )  # noqa
-    alsoProvides(IRelatedMedia["preview_scale"], ILanguageIndependentField)  # noqa
-    alsoProvides(
-        IRelatedMedia["preview_scale_direction"], ILanguageIndependentField
-    )  # noqa
-    alsoProvides(IRelatedMedia["gallery_css_class"], ILanguageIndependentField)  # noqa
+    )
+    alsoProvides(IRelatedMedia["preview_scale"], ILanguageIndependentField)
+    alsoProvides(IRelatedMedia["preview_scale_direction"], ILanguageIndependentField)
+    alsoProvides(IRelatedMedia["gallery_css_class"], ILanguageIndependentField)
