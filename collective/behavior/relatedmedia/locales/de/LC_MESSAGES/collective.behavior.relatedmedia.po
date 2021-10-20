@@ -107,7 +107,7 @@ msgstr "Soll das \"Vorschaubild\" in der Galerie erscheinen? Dies wird immer als
 #. Default: "Related Attachments"
 #: ../behavior.py:119
 msgid "label_attachments"
-msgstr "zusätzliche Downloads"
+msgstr "verknüpfte Downloads"
 
 #. Default: "Base Path"
 #: ../behavior.py:32
@@ -122,7 +122,7 @@ msgstr "Alle Bilder und Dateien des Medienordners werden bei diesem Artikel ausg
 #. Default: "Related Images"
 #: ../behavior.py:100
 msgid "label_images"
-msgstr "zusätzliche Bilder"
+msgstr "verknüpfte Bilder"
 
 #. Default: "Attachments"
 #: ../viewlet_attachments.pt:3

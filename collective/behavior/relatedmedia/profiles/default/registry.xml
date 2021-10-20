@@ -6,6 +6,8 @@
 
         <value key="media_container_path">/media</value>
 
+        <value key="create_media_container_base_paths">False</value>
+
         <value key="image_gallery_cssclass" purge="false">
             <element>floatLeft</element>
             <element>floatRight</element>

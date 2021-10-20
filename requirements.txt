@@ -1,0 +1,1 @@
+-c -r https://raw.githubusercontent.com/plone/buildout.coredev/6.0/requirements.txt

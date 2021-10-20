@@ -2,10 +2,18 @@ Changelog
 =========
 
 
-2.1.4 (unreleased)
+3.0.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Breaking changes:
+
+- 3.x is Plone6/py3 only version. Use 2.x for Plone5/py2/3 compatibility
+  [petschki]
+
+- Change strategy for optional media base_path container creation. This is a registry setting.
+- upload field is now in IEditForm in related media fieldset
+- Plone6 / Classic Theme updates
+  [petschki]
 
 
 2.1.3 (2020-07-22)

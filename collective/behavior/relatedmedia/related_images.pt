@@ -11,6 +11,4 @@
              tal:condition="img/show_caption|nothing"
              tal:content="img/caption">image caption</span>
     </a>
-
-    <div class="visualClear"><!-- --></div>
 </div>
