@@ -31,12 +31,23 @@ class RelatedBaseView(BrowserView):
         if IOccurrence.providedBy(self.context):
             self.context = self.context.aq_parent
 
+    @property
+    def behavior(self):
+        return IRelatedMedia(aq_inner(self.context), None)
+
 
 class RelatedImagesView(RelatedBaseView):
     def gallery_css_klass(self):
-        css_class = IRelatedMedia(aq_inner(self.context)).gallery_css_class
+        rm_behavior = self.behavior
+
+        if not rm_behavior:
+            return
+
+        css_class = rm_behavior.gallery_css_class
+
         if css_class:
             return css_class
+
         dflt_css_class = api.portal.get_registry_record(
             "collective.behavior.relatedmedia.image_gallery_default_class"
         )
@@ -46,7 +57,11 @@ class RelatedImagesView(RelatedBaseView):
     def images(self):
         context = aq_inner(self.context)
         imgs = get_related_media(context, portal_type="Image")
-        rm_behavior = IRelatedMedia(context)
+        rm_behavior = self.behavior
+
+        if not rm_behavior:
+            return
+
         show_caption = rm_behavior.show_titles_as_caption
         first_img_scales = None
         further_images = []
@@ -162,7 +177,16 @@ class Uploader(RelatedBaseView):
         file_data = req_file.read()
         file_name = safe_unicode(req_file.filename)
         media_container = get_media_root(self.context)
-        behavior = IRelatedMedia(self.context)
+        behavior = self.behavior
+
+        if not behavior:
+            return json.dumps(
+                dict(
+                    status=u"error",
+                    message=u"IRelatedMedia behavior not activated for this context",
+                )
+            )
+
         intids = getUtility(IIntIds)
 
         if c_type.startswith("image/"):
