@@ -2,7 +2,6 @@
 from Acquisition import aq_inner
 from plone import api
 from plone.dexterity.utils import createContentInContainer
-from plone.event.interfaces import IOccurrence
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -71,9 +70,6 @@ def get_related_media(context, portal_type=None):
     from collective.behavior.relatedmedia.behavior import IRelatedMedia
 
     context = aq_inner(context)
-    if IOccurrence.providedBy(context):
-        # support for related media on event occurrences
-        context = context.aq_parent
     rm_behavior = IRelatedMedia(context)
     rel_media = []
     if rm_behavior.related_media_base_path:
