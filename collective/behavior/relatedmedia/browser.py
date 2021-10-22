@@ -10,6 +10,7 @@ from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.registry.browser import controlpanel
 from plone.dexterity.utils import createContentInContainer
+from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
@@ -22,7 +23,16 @@ from zope.intid.interfaces import IIntIds
 import json
 
 
-class RelatedImagesView(BrowserView):
+class RelatedBaseView(BrowserView):
+
+    def __init__(self, context, request):
+        super(RelatedBaseView, self).__init__(context, request)
+
+        if IOccurrence.providedBy(self.context):
+            self.context = self.context.aq_parent
+
+
+class RelatedImagesView(RelatedBaseView):
     def gallery_css_klass(self):
         css_class = IRelatedMedia(aq_inner(self.context)).gallery_css_class
         if css_class:
@@ -102,7 +112,7 @@ class RelatedImagesView(BrowserView):
         return gallery
 
 
-class RelatedAttachmentsView(BrowserView):
+class RelatedAttachmentsView(RelatedBaseView):
     @property
     def attachments(self):
         context = aq_inner(self.context)
@@ -145,7 +155,7 @@ class RelatedMediaControlPanel(controlpanel.ControlPanelFormWrapper):
     form = RelatedMediaControlPanelForm
 
 
-class Uploader(BrowserView):
+class Uploader(RelatedBaseView):
     def __call__(self):
         req_file = self.request.get("file")
         c_type = req_file.headers.get("content-type", "")
