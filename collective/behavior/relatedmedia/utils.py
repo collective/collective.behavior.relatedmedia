@@ -70,7 +70,11 @@ def get_related_media(context, portal_type=None):
     from collective.behavior.relatedmedia.behavior import IRelatedMedia
 
     context = aq_inner(context)
-    rm_behavior = IRelatedMedia(context)
+    rm_behavior = IRelatedMedia(context, None)
+
+    if not rm_behavior:
+        return []
+
     rel_media = []
     if rm_behavior.related_media_base_path:
         try:
