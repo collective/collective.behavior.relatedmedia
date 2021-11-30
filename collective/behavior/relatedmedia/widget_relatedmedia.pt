@@ -13,7 +13,7 @@
         tal:condition="python: not hidden and widget.label">
         <span i18n:translate="" tal:replace="widget/label">label</span>
     </label>
-    
-    <div class="pat-upload" tal:attributes='data-pat-upload string:{"url": "${view/widget_context/absolute_url}/upload_related_media"}' />
+
+    <div class="pat-upload" tal:attributes='data-pat-upload string:{"url": "${view/widget_context/absolute_url}/upload_related_media", "showTitle": false}' />
 
  </div>

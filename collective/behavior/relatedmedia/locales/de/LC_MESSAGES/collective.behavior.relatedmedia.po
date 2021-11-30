@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-11-18 15:43+0000\n"
-"PO-Revision-Date: 2019-11-22 10:07+0100\n"
+"POT-Creation-Date: 2021-11-30 08:50+0000\n"
+"PO-Revision-Date: 2021-11-30 09:50+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,117 +14,169 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 "Language: de\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0\n"
 
-#: ../widget.py:72
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:21
+msgid "Create Media Container in Assets Folder (language independent)?"
+msgstr "Medienordner in sprachneutralem Container erstellen?"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:32
+msgid "Create containers for each linked object?"
+msgstr "Unterordner für verknüpfte Medien erstellen?"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/widget.py:81
 msgid "Created on"
-msgstr ""
+msgstr "erstellt am"
 
-#: ../behavior.py:73
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:163
 msgid "Crop first image"
 msgstr "Erstes Bild zuschneiden"
 
-#: ../behavior.py:87
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:176
 msgid "Crop image"
 msgstr "Bild zuschneiden"
 
-#: ../behavior.py:74
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:177
 msgid "Crop the image to the selected boundaries above"
 msgstr "Bilder auf die ausgewählte Größe zuschneiden/skalieren"
 
-#: ../behavior.py:95
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:44
+msgid "Default gallery class for new articles"
+msgstr "Standard CSS Klasse für Bildgalerie"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:63
+msgid "Default setting for cropping gallery images"
+msgstr "Bildzuschnitt für Bildgalerie"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:184
 msgid "Feel free to add/remove classes in your registry.xml"
 msgstr "die css Klassen können über das registry.xml angepasst werden"
 
-#: ../behavior.py:121
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:126
 msgid "Files"
 msgstr "Dateien"
 
-#: ../behavior.py:66
-msgid "First image scale"
-msgstr "Hauptbild"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:38
+msgid "Gallery CSS classes"
+msgstr "Bildgalerie CSS Klassen"
 
-#: ../behavior.py:81
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:56
+msgid "Gallery default scale"
+msgstr "Bildgröße für Galerie"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:157
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:49
+msgid "Gallery default scale for first image"
+msgstr "Bildgröße für das erste Bild in der Bildgalerie"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:170
 msgid "Gallery image preview scale"
 msgstr "Größe der Galeriebilder"
 
-#: ../behavior.py:94
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:183
 msgid "Gallery layout"
 msgstr "Galerie Layout CSS Klasse"
 
-#: ../behavior.py:80
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:22
+msgid "If True, the Media Container path defined above is generated in the language independend Assets folder. This requires plone.app.multilingual."
+msgstr "Wenn aktiviert dann wird der zentrale Medienordner im sprachneutralen „Assets“ Ordner erstellt. Benötigt plone.app.multilingual support."
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:169
 msgid "Image scale"
 msgstr "Größe der weiteren Bilder"
 
-#: ../behavior.py:58
-msgid "Include Leadimage"
-msgstr "\"Leadimage\" berücksichtigen"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:151
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:69
+msgid "Include leadimage in image gallery?"
+msgstr "Teaserbild als erstes Bild in der Galerie verwenden?"
 
-#: ../configure.zcml:21
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/configure.zcml:20
 msgid "Manage content-related images and attachments"
 msgstr "Verwaltung von verknüpften Bildern und Dateien"
 
-#: ../behavior.py:102
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:11
+msgid "Media Container"
+msgstr "Medienordner"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_attachments.pt:17
+msgid "No attachments uploaded yet"
+msgstr "keine Attachments vorhanden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_images.pt:16
+msgid "No images uploaded yet"
+msgstr "Keine Bilder vorhanden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:82
+msgid "Open Attachment links in new window"
+msgstr "Link zu verknüpften Dateien in einem neuen Fenster öffnen"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:105
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../configure.zcml:123
-msgid "Profile for upgrade step 'Local configuration'"
-msgstr ""
-
-#: ../configure.zcml:106
-msgid "Profile for upgrade step 'Package rename'"
-msgstr ""
-
-#: ../behavior.py:162 ../configure.zcml:43
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:85
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/configure.zcml:42
 msgid "Related Media"
 msgstr "Verknüpfte Medien"
 
-#: ../configure.zcml:21
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/browser.py:170
+msgid "Related Media Settings"
+msgstr "Einstellungen für verknüpfte Medien"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/configure.zcml:20
 msgid "Related media behavior"
 msgstr "Verknüpfte Medien"
 
-#: ../behavior.py:52
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:75
+msgid "Set first related image as leadimage?"
+msgstr "Erstes verknüpftes Bild als Teaserbild setzen?"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:145
 msgid "Show image titles as caption"
 msgstr "Zeige Bildtitel als Unterschrift"
 
-#: ../behavior.py:67
-msgid "Size for the first image in the gallery"
-msgstr "Größe des ersten Bildes"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:76
+msgid "This is applied on any change."
+msgstr "dies wird bei jeder Änderung gesetzt"
 
-#: ../widget.py:73
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/widget.py:82
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
-#: ../configure.zcml:29
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py:12
+msgid "Traversable path to media container. We respect IPloneSiteRoot, INavigationRoot and IChildSite (lineage) as \"/\""
+msgstr "Ein Pfad auf einen vorhandenen Ordner entweder auf der Haupebene (IPloneSiteRoot, INavigationRoot) oder einer Subsite (IChildSite, collective.lineage)"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/configure.zcml:28
 msgid "Uninstallation profile"
-msgstr ""
+msgstr "Deinstallationsprofil"
 
-#: ../behavior.py:59
-msgid "Whether or not include the Leadimage in the gallery viewlet"
-msgstr "Soll das \"Vorschaubild\" in der Galerie erscheinen? Dies wird immer als erstes Bild verwendet werden."
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:83
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/viewlet_uploader.pt:4
+msgid "Upload related media"
+msgstr "Verknüpfte Medien hochladen"
 
 #. Default: "Related Attachments"
-#: ../behavior.py:119
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:124
 msgid "label_attachments"
 msgstr "verknüpfte Downloads"
 
 #. Default: "Base Path"
-#: ../behavior.py:32
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:191
 msgid "label_base_path"
 msgstr "Medienordner"
 
 #. Default: "Base path for uploaded content. If not given the base path is automatically generated as [configured media root path]/[this id]."
-#: ../behavior.py:33
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:192
 msgid "label_base_path_desc"
 msgstr "Alle Bilder und Dateien des Medienordners werden bei diesem Artikel ausgegeben. Beim Erstellen wird dieser Ordner automatisch erstellt."
 
 #. Default: "Related Images"
-#: ../behavior.py:100
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py:103
 msgid "label_images"
 msgstr "verknüpfte Bilder"
 
 #. Default: "Attachments"
-#: ../viewlet_attachments.pt:3
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_attachments.pt:5
 msgid "title_attachments"
 msgstr "Downloads"

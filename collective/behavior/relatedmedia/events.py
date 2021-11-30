@@ -82,6 +82,11 @@ def sync_workflow_state(obj, event):
         )
 
 
+def modified(obj, event):
+    update_leadimage(obj, event)
+    update_titles(obj, event)
+
+
 def update_leadimage(obj, event):
     if not api.portal.get_registry_record(
         "collective.behavior.relatedmedia.update_leadimage", default=False
@@ -97,3 +102,24 @@ def update_leadimage(obj, event):
         # set first related image as lead image (incl. caption)
         ILeadImageBehavior(obj).image = imgs[0].image
         ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())
+
+
+def update_titles(obj, event):
+    nav_root = api.portal.get_navigation_root(obj)
+    req_form = obj.REQUEST.form
+
+    for k in req_form:
+        if not k.startswith("relatedmedia-title-"):
+            continue
+
+        item_path = k[19:].replace("--", "/")
+
+        try:
+            rel_obj = api.content.get(path=item_path)
+        except Exception:
+            logger.warn("Could not find related item {}".format(item_path))
+            return
+
+        if rel_obj.title != req_form[k]:
+            rel_obj.title = req_form[k]
+            rel_obj.reindexObject()

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
+from collective.behavior.relatedmedia.widget import \
+    RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedImagesFieldWidget
-from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
 from plone.autoform import directives as form
@@ -18,12 +19,19 @@ from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 
+import os
+
 try:
     from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 
     HAS_PAM = True
 except ImportError:
     HAS_PAM = False
+
+
+def read_js_template(path):
+    with open(os.path.join(os.path.dirname(__file__), path)) as tpl:
+        return tpl.read().replace('"', '\"').replace("\n", "")
 
 
 @implementer(IVocabularyFactory)
@@ -72,7 +80,7 @@ def default_include_leadimage():
 class IRelatedMedia(model.Schema):
 
     related_media = RelationList(
-        title=_(u"label_related_media_upload", default=u"Related Media Upload"),
+        title=_(u"Upload related media"),
         value_type=RelationChoice(
             title=_(u"Related Media"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -108,6 +116,7 @@ class IRelatedMedia(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Image"],
             "basePath": media_root_path,
+            "selectionTemplate": read_js_template("resources/relateditems_selection.xml"),
         },
     )
 
@@ -128,6 +137,7 @@ class IRelatedMedia(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],
             "basePath": media_root_path,
+            "selectionTemplate": read_js_template("resources/relateditems_selection.xml"),
         },
     )
 
@@ -138,22 +148,19 @@ class IRelatedMedia(model.Schema):
     )
 
     include_leadimage = schema.Bool(
-        title=_(u"Include Leadimage"),
-        description=_("Whether or not include the Leadimage in the gallery viewlet"),
+        title=_(u"Include leadimage in image gallery?"),
         defaultFactory=default_include_leadimage,
         required=False,
     )
 
     first_image_scale = schema.Choice(
-        title=_(u"First image scale"),
-        description=_("Size for the first image in the gallery"),
+        title=_(u"Gallery default scale for first image"),
         vocabulary="plone.app.vocabularies.ImagesScales",
         defaultFactory=default_gallery_first_image_scale,
     )
 
     first_image_scale_direction = schema.Bool(
         title=_(u"Crop first image"),
-        description=_("Crop the image to the selected boundaries above"),
         defaultFactory=default_preview_scale_direction,
         required=False,
     )

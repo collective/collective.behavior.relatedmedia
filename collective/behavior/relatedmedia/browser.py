@@ -8,6 +8,8 @@ from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.layout.globals.interfaces import IViewView
+from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
@@ -34,6 +36,10 @@ class RelatedBaseView(BrowserView):
     @property
     def behavior(self):
         return IRelatedMedia(aq_inner(self.context), None)
+
+    def can_upload(self):
+        breakpoint()
+        return api.user.has_permission("Modify portal content", obj=self.context)
 
 
 class RelatedImagesView(RelatedBaseView):
@@ -149,7 +155,7 @@ class RelatedAttachmentsView(RelatedBaseView):
                     dict(
                         url=download_url,
                         title=att.Title(),
-                        size="{:.1f} MB".format(att.file.getSize() / 1024.0 / 1024.0),
+                        size="{:.1f} kB".format(att.file.getSize() / 1024.0),
                         icon=att.getIcon(),
                         target=link_target,
                     )
@@ -214,3 +220,10 @@ class Uploader(RelatedBaseView):
                 status=u"done",
             )
         )
+
+
+class UploadViewlet(ViewletBase):
+    def render(self):
+        if not IViewView.providedBy(self.view):
+            return u""
+        return super(UploadViewlet, self).render()

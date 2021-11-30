@@ -11,7 +11,7 @@ Breaking changes:
   [petschki]
 
 - Change strategy for optional media base_path container creation. This is a registry setting.
-- upload field is now in IEditForm in related media fieldset
+- inline title editing for related items
 - Plone6 / Classic Theme updates
   [petschki]
 

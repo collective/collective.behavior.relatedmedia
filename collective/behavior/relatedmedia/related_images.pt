@@ -1,6 +1,7 @@
 <div id="related-images" tal:attributes="class view/gallery_css_klass|nothing"
      tal:define="images view/images|nothing"
-     tal:condition="images">
+     tal:condition="python:images or view.can_upload"
+     i18n:domain="collective.behavior.relatedmedia">
 
     <a tal:repeat="img images" class="image-item" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
        tal:attributes="href img/url;
@@ -11,4 +12,8 @@
              tal:condition="img/show_caption|nothing"
              tal:content="img/caption">image caption</span>
     </a>
+
+    <div tal:condition="not:images" class="discreet" i18n:translate="">
+        No images uploaded yet
+    </div>
 </div>

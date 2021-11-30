@@ -4,7 +4,7 @@ require([
 ], function($, registry){
 
   $(document).ready(function(){
-    
+
     $('body').on('context-info-loaded', function (e, data) {
       // unbind toolbar reload on structure changes
       $("body").off('structure-url-changed');
@@ -35,16 +35,38 @@ require([
 
     $(".pat-upload").on("uploadAllCompleted", function(response, path) {
       // reload relateditems patterns
+      var $relitems_pattern = $("#fieldset-relatedmedia .pat-relateditems");
+      if($relitems_pattern.length) {
       $.ajax({
         url: window.location.href + "?ajax_load=1",
         success:function(response) {
-          $("#fieldset-relatedmedia .pat-relateditems").each(function() {
-            var $field = $(this).closest(".field"), field_id = $field.attr("id");
-            $field.replaceWith($("#" + field_id, $(response)));
-          });
-          registry.scan("#fieldset-relatedmedia .pat-relateditems");
-        }
-      });
+            $relitems_pattern.each(function() {
+              var $field = $(this).closest(".field"), field_id = $field.attr("id");
+              $field.replaceWith($("#" + field_id, $(response)));
+            });
+            registry.scan("#fieldset-relatedmedia .pat-relateditems");
+          }
+        });
+      }
+      var base_url = $(this).data("relmedia-baseurl");
+      var $relimages = $("#related-images");
+      if($relimages.length) {
+        $.ajax({
+          url: base_url + "/@@relatedImages",
+          success:function(response) {
+            $relimages.replaceWith($(response).siblings("#related-images"));
+          }
+        });
+      }
+      var $relatts = $("#related-attachments");
+      if($relatts.length) {
+        $.ajax({
+          url: base_url + "/@@relatedAttachments",
+          success:function(response) {
+            $relatts.replaceWith($(response).find("#related-attachments"));
+          }
+        });
+      }
     });
   });
 });

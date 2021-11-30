@@ -1,8 +1,8 @@
 <div tal:define="attachments view/get_attachments"
-     tal:condition="attachments" class="visualNoPrint"
+     tal:condition="python:attachments or view.can_upload"
      i18n:domain="collective.behavior.relatedmedia">
     <h2 i18n:translate="title_attachments">Attachments</h2>
-    <ul id="related-attachments" class="visualNoMarker">
+    <ul id="related-attachments">
 
         <li tal:repeat="att attachments" class="attachment-item">
             <a tal:attributes="href att/url;
@@ -11,6 +11,10 @@
                      tal:attributes="src string:${view/site_url}/${att/icon}"
                 /> <span tal:content="att/title" /> (<span tal:content="att/size" />)
             </a>
+        </li>
+
+        <li tal:condition="not:attachments" i18n:translate="" class="discreet">
+            No attachments uploaded yet
         </li>
     </ul>
 </div>

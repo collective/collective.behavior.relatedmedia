@@ -4,4 +4,8 @@
     <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
              prefix="collective.behavior.relatedmedia" remove="True" />
 
+    <records
+          prefix="plone.resources/relatedmedia"
+          interface='Products.CMFPlone.interfaces.IResourceRegistry' remove="True" />
+
 </registry>
