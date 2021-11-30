@@ -105,7 +105,6 @@ def update_leadimage(obj, event):
 
 
 def update_titles(obj, event):
-    nav_root = api.portal.get_navigation_root(obj)
     req_form = obj.REQUEST.form
 
     for k in req_form:
