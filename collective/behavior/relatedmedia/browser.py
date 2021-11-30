@@ -37,8 +37,8 @@ class RelatedBaseView(BrowserView):
     def behavior(self):
         return IRelatedMedia(aq_inner(self.context), None)
 
+    @property
     def can_upload(self):
-        breakpoint()
         return api.user.has_permission("Modify portal content", obj=self.context)
 
 
@@ -70,19 +70,20 @@ class RelatedImagesView(RelatedBaseView):
 
         show_caption = rm_behavior.show_titles_as_caption
         first_img_scales = None
+        first_img_caption = ""
         further_images = []
         gallery = []
 
-        if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
-            first_img_scales = context.restrictedTraverse("@@images")
-            first_img_caption = ILeadImage(context).image_caption
-            further_images = imgs
-        elif len(imgs):
+        if len(imgs):
             first_img = imgs[0]
             if first_img:
                 first_img_scales = first_img.restrictedTraverse("@@images")
                 first_img_caption = first_img.Title()
                 further_images = imgs[1:]
+        elif rm_behavior.include_leadimage and ILeadImage.providedBy(context):
+            # include leadimage if no related images are defined
+            first_img_scales = context.restrictedTraverse("@@images")
+            first_img_caption = ILeadImage(context).image_caption
 
         if first_img_scales:
             scale = first_img_scales.scale(
@@ -91,7 +92,7 @@ class RelatedImagesView(RelatedBaseView):
                 direction=rm_behavior.first_image_scale_direction
                 and "down"
                 or "thumbnail",
-            )  # noqa: E501
+            )
             if scale:
                 large_scale_url = first_img_scales.scale("image", scale="large").url
                 gallery.append(
@@ -117,7 +118,7 @@ class RelatedImagesView(RelatedBaseView):
                     direction=rm_behavior.preview_scale_direction
                     and "down"
                     or "thumbnail",
-                )  # noqa: E501
+                )
                 if scale:
                     large_scale_url = scales.scale("image", scale="large").url
                     gallery.append(
@@ -150,12 +151,17 @@ class RelatedAttachmentsView(RelatedBaseView):
             if att:
                 download_url = u"{}/@@download/file/{}".format(
                     att.absolute_url(), att.file.filename
-                )  # noqa
+                )
+                file_size = (att.file.getSize() or 0.0) / 1024.0
+                unit = "kB"
+                if file_size > 1000:
+                    file_size = file_size / 1024.0
+                    unit = "MB"
                 atts.append(
                     dict(
                         url=download_url,
                         title=att.Title(),
-                        size="{:.1f} kB".format(att.file.getSize() / 1024.0),
+                        size="{:.1f} {}".format(file_size, unit),
                         icon=att.getIcon(),
                         target=link_target,
                     )
