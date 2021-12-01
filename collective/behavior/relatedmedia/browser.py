@@ -39,7 +39,10 @@ class RelatedBaseView(BrowserView):
 
     @property
     def can_upload(self):
-        return api.user.has_permission("Modify portal content", obj=self.context)
+        return (
+            IRelatedMedia.providedBy(self.context)
+            and api.user.has_permission("Modify portal content", obj=self.context)
+        )
 
 
 class RelatedImagesView(RelatedBaseView):
@@ -61,13 +64,13 @@ class RelatedImagesView(RelatedBaseView):
 
     @memoize
     def images(self):
-        context = aq_inner(self.context)
-        imgs = get_related_media(context, portal_type="Image")
         rm_behavior = self.behavior
 
         if not rm_behavior:
             return
 
+        context = aq_inner(self.context)
+        imgs = get_related_media(context, portal_type="Image")
         show_caption = rm_behavior.show_titles_as_caption
         first_img_scales = None
         first_img_caption = ""
