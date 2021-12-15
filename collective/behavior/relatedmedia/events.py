@@ -112,11 +112,15 @@ def update_titles(obj, event):
             continue
 
         item_path = k[19:].replace("--", "/")
+        rel_obj = None
 
         try:
             rel_obj = api.content.get(path=item_path)
         except Exception:
             logger.warn("Could not find related item {}".format(item_path))
+            pass
+
+        if rel_obj is None:
             return
 
         if rel_obj.title != req_form[k]:
