@@ -4,6 +4,6 @@
      i18n:domain="collective.behavior.relatedmedia">
     <h4 i18n:translate="">Upload related media</h4>
     <div class="pat-upload"
-         tal:attributes='data-pat-upload string:{"url": "${view/context/absolute_url}/upload_related_media", "showTitle": false};
-                         data-relmedia-baseurl context/absolute_url' />
+         tal:attributes='data-pat-upload string:{"url": "${view/context/absolute_url}/@@upload_related_media", "showTitle": false};
+                         data-relmedia-baseurl view/context/absolute_url' />
 </div>
