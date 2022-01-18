@@ -5,7 +5,7 @@ from zope.interface import Interface
 
 
 class IRelatedMediaSettings(Interface):
-    """ various settings """
+    """various settings"""
 
     media_container_path = schema.TextLine(
         title=_(u"Media Container"),

@@ -26,7 +26,6 @@ import json
 
 
 class RelatedBaseView(BrowserView):
-
     def __init__(self, context, request):
         super(RelatedBaseView, self).__init__(context, request)
 
@@ -39,9 +38,8 @@ class RelatedBaseView(BrowserView):
 
     @property
     def can_upload(self):
-        return (
-            IRelatedMedia.providedBy(self.context)
-            and api.user.has_permission("Modify portal content", obj=self.context)
+        return IRelatedMedia.providedBy(self.context) and api.user.has_permission(
+            "Modify portal content", obj=self.context
         )
 
 

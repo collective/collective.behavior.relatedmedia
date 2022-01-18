@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
-from collective.behavior.relatedmedia.widget import \
-    RelatedAttachmentsFieldWidget
+from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedImagesFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
@@ -31,7 +30,7 @@ except ImportError:
 
 def read_js_template(path):
     with open(os.path.join(os.path.dirname(__file__), path)) as tpl:
-        return tpl.read().replace('"', '\"').replace("\n", "")
+        return tpl.read().replace('"', '"').replace("\n", "")
 
 
 @implementer(IVocabularyFactory)
@@ -96,7 +95,9 @@ class IRelatedMedia(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Image"],
             "basePath": media_root_path,
-            "selectionTemplate": read_js_template("resources/relateditems_selection.xml"),
+            "selectionTemplate": read_js_template(
+                "resources/relateditems_selection.xml"
+            ),
         },
     )
 
@@ -118,7 +119,9 @@ class IRelatedMedia(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],
             "basePath": media_root_path,
-            "selectionTemplate": read_js_template("resources/relateditems_selection.xml"),
+            "selectionTemplate": read_js_template(
+                "resources/relateditems_selection.xml"
+            ),
         },
     )
 

@@ -26,12 +26,12 @@ except ImportError:
 
 
 class IRelatedMediaWidget(ITextWidget):
-    """ marker for widget """
+    """marker for widget"""
 
 
 @implementer_only(IRelatedMediaWidget)
 class RelatedMediaWidget(RelatedItemsWidget):
-    """ overrides widget template """
+    """overrides widget template"""
 
 
 @implementer(IFieldWidget)
@@ -131,12 +131,12 @@ class RelatedMediaRenderWidget(RenderWidget):
 
 
 class IRelatedImagesWidget(ITextWidget):
-    """ marker for widget """
+    """marker for widget"""
 
 
 @implementer_only(IRelatedImagesWidget)
 class RelatedImagesWidget(RelatedItemsWidget):
-    """ overrides widget template """
+    """overrides widget template"""
 
 
 @implementer(IFieldWidget)
@@ -147,12 +147,12 @@ def RelatedImagesFieldWidget(field, request, extra=None):
 
 
 class IRelatedAttachmentsWidget(ITextWidget):
-    """ marker for widget """
+    """marker for widget"""
 
 
 @implementer_only(IRelatedAttachmentsWidget)
 class RelatedAttachmentsWidget(RelatedItemsWidget):
-    """ overrides widget template """
+    """overrides widget template"""
 
 
 @implementer(IFieldWidget)

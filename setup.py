@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
+from pathlib import Path
 
 version = "3.0.1.dev0"
 
-
-def read_file(fname):
-    with open(fname) as f:
-        return f.read()
+this_directory = Path(__file__).parent
+long_description = (
+    (this_directory / "README.md").read_text()
+    + "\n\n"
+    + (this_directory / "CHANGES.md").read_text()
+)
 
 
 setup(
@@ -14,7 +17,8 @@ setup(
     version=version,
     description="Adds Various configuration fields and viewlets to manage "
     "and show content related images and attachments",
-    long_description=read_file("README.md") + "\n\n\n" + read_file("CHANGES.md"),  # noqa
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
