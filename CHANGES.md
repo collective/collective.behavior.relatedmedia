@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.0 (unreleased)
+3.0.0 (2022-01-18)
 ------------------
 
 Breaking changes:
