@@ -79,26 +79,6 @@ def default_include_leadimage():
 @provider(IFormFieldProvider)
 class IRelatedMedia(model.Schema):
 
-    related_media = RelationList(
-        title=_(u"Upload related media"),
-        value_type=RelationChoice(
-            title=_(u"Related Media"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        default=[],
-    )
-    form.widget(
-        "related_media",
-        RelatedMediaFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
-            "selectableTypes": ["Image", "File"],
-            "basePath": media_root_path,
-        },
-    )
-
     related_images = RelationList(
         title=_(u"label_images", default=u"Related Images"),
         value_type=RelationChoice(
@@ -129,6 +109,7 @@ class IRelatedMedia(model.Schema):
         required=False,
         default=[],
     )
+
     form.widget(
         "related_attachments",
         RelatedAttachmentsFieldWidget,
@@ -138,6 +119,26 @@ class IRelatedMedia(model.Schema):
             "selectableTypes": ["File"],
             "basePath": media_root_path,
             "selectionTemplate": read_js_template("resources/relateditems_selection.xml"),
+        },
+    )
+
+    related_media = RelationList(
+        title=_(u"Upload related media"),
+        value_type=RelationChoice(
+            title=_(u"Related Media"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+        default=[],
+    )
+    form.widget(
+        "related_media",
+        RelatedMediaFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
+            "selectableTypes": ["Image", "File"],
+            "basePath": media_root_path,
         },
     )
 
@@ -231,9 +232,9 @@ class IRelatedMedia(model.Schema):
         "relatedmedia",
         label=_("Related Media"),
         fields=[
-            "related_media",
             "related_images",
             "related_attachments",
+            "related_media",
             "show_titles_as_caption",
             "include_leadimage",
             "first_image_scale",

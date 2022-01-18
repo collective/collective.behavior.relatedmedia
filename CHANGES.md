@@ -19,7 +19,7 @@ Breaking changes:
 2.1.3 (2020-07-22)
 ------------------
 
-- Fix bigbug in util method when related base_path is missing. fixes #2
+- Fix bug in util method when related base_path is missing. fixes #2
   [petschki]
 
 

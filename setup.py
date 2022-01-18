@@ -14,24 +14,26 @@ setup(
     version=version,
     description="Adds Various configuration fields and viewlets to manage "
     "and show content related images and attachments",
-    long_description=read_file("README.rst") + "\n" + read_file("CHANGES.rst"),  # noqa
+    long_description=read_file("README.md") + "\n\n\n" + read_file("CHANGES.md"),  # noqa
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
-        "Framework :: Plone",
+        "Development Status :: 5 - Production/Stable",
         "Framework :: Plone :: 6.0",
         "Framework :: Plone :: Addon",
-        "Programming Language :: Python",
+        "Framework :: Plone",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords="",
-    author="",
-    author_email="",
+    keywords="plone richmedia relatedmedia",
+    author="petschki",
+    author_email="peter.mathis@kombinat.at",
     url="https://github.com/kombinat/collective.behavior.relatedmedia",
-    license="GPL",
+    license="gpl",
     packages=find_packages(exclude=["ez_setup"]),
     namespace_packages=["collective", "collective.behavior"],
     include_package_data=True,
