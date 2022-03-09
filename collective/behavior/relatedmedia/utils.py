@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
+import logging
 from Acquisition import aq_inner
 from plone import api
+from plone.memoize.instance import memoize
 from plone.dexterity.utils import createContentInContainer
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
+logger = logging.getLogger(__name__)
 
+
+@memoize
 def get_media_root(context, as_path=False):
-    portal = api.portal.get()
-    nav_root = api.portal.get_navigation_root(context)
-    media_container_path = api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.media_container_path", default="/media"
-    )  # noqa
+    container_base = api.portal.get_navigation_root(context)
+    media_path = api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.media_container_path",
+        default="/media"
+    )
     media_container_in_assets_folder = api.portal.get_registry_record(
         "collective.behavior.relatedmedia.media_container_in_assets_folder",
         default=False,
-    )  # noqa
-    assets_folder_id = ""
+    )
 
     if media_container_in_assets_folder:
         # Assets folder
@@ -26,35 +30,31 @@ def get_media_root(context, as_path=False):
             portal_type="LIF", Language=api.portal.get_current_language(context)
         )
         if results:
-            assets_folder_id = "/" + results[0].id
+            container_base = results[0].getObject()
+        else:
+            logger.warn("Could not find Assets folder! Fallback to Navigation Root")
 
-    media_container = portal.restrictedTraverse(
-        "{}{}{}".format(
-            "/".join(nav_root.getPhysicalPath()), assets_folder_id, media_container_path
-        ),
-        None,
-    )  # noqa
+    media_container = container_base
 
-    if media_container is None and media_container_path:
-        # try to create media container path
-        # XXX: this is a write on read when accessing the behavior
-        #      the first time
-        alsoProvides(getRequest(), IDisableCSRFProtection)
-        media_container = nav_root
-        for f_id in media_container_path.split("/"):
-            if not f_id:
-                continue
-            if not hasattr(media_container, f_id):
-                media_container = createContentInContainer(
-                    media_container,
-                    "Folder",
-                    id=f_id,
-                    title=f_id,
-                    exclude_from_nav=True,
-                    checkConstraints=False,
-                )
-            else:
-                media_container = media_container[f_id]
+    for f_id in media_path.split("/"):
+        if not f_id:
+            continue
+
+        if not hasattr(media_container.aq_base, f_id):
+            # try to create media container path
+            # XXX: this is a write on read when accessing the behavior the first time
+            alsoProvides(getRequest(), IDisableCSRFProtection)
+            media_container = createContentInContainer(
+                media_container,
+                "Folder",
+                id=f_id,
+                title=f_id,
+                exclude_from_nav=True,
+                checkConstraints=False,
+            )
+            continue
+
+        media_container = getattr(media_container.aq_base, f_id, None)
 
     if as_path:
         return "/".join(media_container.getPhysicalPath())
@@ -84,7 +84,7 @@ def get_related_media(context, portal_type=None):
                 for i in rm_base.restrictedTraverse("@@contentlisting")(
                     portal_type=portal_type
                 )
-            ]  # noqa: E501
+            ]
         except Exception:
             rel_media = []
     if portal_type in ("Image", None):
