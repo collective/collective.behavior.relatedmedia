@@ -5,7 +5,9 @@ Changelog
 3.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix adding leadimage to the gallery
+- Fix media container determination when in language independent Assets
+  [petschki]
 
 
 3.0.0 (2022-01-18)
