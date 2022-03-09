@@ -75,16 +75,18 @@ class RelatedImagesView(RelatedBaseView):
         further_images = []
         gallery = []
 
-        if len(imgs):
+        if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
+            # include leadimage if no related images are defined
+            first_img_scales = context.restrictedTraverse("@@images")
+            first_img_caption = ILeadImage(context).image_caption
+            further_images = imgs
+
+        if not first_img_scales and len(imgs):
             first_img = imgs[0]
             if first_img:
                 first_img_scales = first_img.restrictedTraverse("@@images")
                 first_img_caption = first_img.Title()
                 further_images = imgs[1:]
-        elif rm_behavior.include_leadimage and ILeadImage.providedBy(context):
-            # include leadimage if no related images are defined
-            first_img_scales = context.restrictedTraverse("@@images")
-            first_img_caption = ILeadImage(context).image_caption
 
         if first_img_scales:
             scale = first_img_scales.scale(
