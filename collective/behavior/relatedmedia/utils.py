@@ -2,7 +2,6 @@
 import logging
 from Acquisition import aq_inner
 from plone import api
-from plone.memoize.instance import memoize
 from plone.dexterity.utils import createContentInContainer
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
@@ -11,7 +10,6 @@ from zope.interface import alsoProvides
 logger = logging.getLogger(__name__)
 
 
-@memoize
 def get_media_root(context, as_path=False):
     container_base = api.portal.get_navigation_root(context)
     media_path = api.portal.get_registry_record(

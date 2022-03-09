@@ -5,7 +5,8 @@ Changelog
 3.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bug in memoized utility
+  [petschki]
 
 
 3.0.1 (2022-03-09)
