@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.1 (unreleased)
+3.0.1 (2022-03-09)
 ------------------
 
 - Fix adding leadimage to the gallery
