@@ -5,7 +5,8 @@ Changelog
 3.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix related media container utility permissions
+  [petschki]
 
 
 3.0.2 (2022-03-09)

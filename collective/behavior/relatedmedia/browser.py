@@ -203,6 +203,7 @@ class Uploader(RelatedBaseView):
             )
 
         intids = getUtility(IIntIds)
+        __traceback_info__ = media_container
 
         if c_type.startswith("image/"):
             blob = NamedBlobImage(data=file_data, filename=file_name)

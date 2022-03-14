@@ -52,7 +52,7 @@ def get_media_root(context, as_path=False):
             )
             continue
 
-        media_container = getattr(media_container.aq_base, f_id, None)
+        media_container = media_container.get(f_id)
 
     if as_path:
         return "/".join(media_container.getPhysicalPath())
