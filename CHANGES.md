@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.3 (unreleased)
+3.0.3 (2022-03-14)
 ------------------
 
 - Fix related media container utility permissions
