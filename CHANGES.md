@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.4 (unreleased)
+3.0.4 (2022-03-16)
 ------------------
 
 - Add browserlayer for viewlets. (fixes #7)
