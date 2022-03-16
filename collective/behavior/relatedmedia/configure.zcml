@@ -62,6 +62,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         template="widget_images_display.pt"
         permission="zope2.View"
+        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />
 
     <z3c:widgetTemplate
@@ -86,6 +87,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
         template="widget_attachments_display.pt"
         permission="zope2.View"
+        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />
 
     <z3c:widgetTemplate
@@ -168,6 +170,7 @@
         template="viewlet_uploader.pt"
         for=".behavior.IRelatedMedia"
         permission="cmf.ModifyPortalContent"
+        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />
 
     <!-- uploader -->
@@ -176,7 +179,9 @@
         for=".behavior.IRelatedMedia"
         class=".browser.Uploader"
         permission="zope2.View"
+        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />
+
     <!-- controlpanel -->
     <browser:page
         name="relatedmedia-controlpanel"
