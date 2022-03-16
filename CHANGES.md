@@ -5,7 +5,8 @@ Changelog
 3.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add browserlayer for viewlets. (fixes #7)
+  [petschki]
 
 
 3.0.3 (2022-03-14)
