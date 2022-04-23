@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
-version = "3.1.0"
+version = "3.1.1.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
