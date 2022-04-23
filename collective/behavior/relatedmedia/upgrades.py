@@ -13,3 +13,8 @@ def package_rename(context):
 def local_gallery_configuration(context):
     update_profile_id = "profile-{0}:local_config".format(PACKAGE_NAME)
     context.runAllImportStepsFromProfile(update_profile_id)
+
+
+def registry_cleanup(context):
+    update_profile_id = "profile-{0}:registry_cleanup".format(PACKAGE_NAME)
+    context.runAllImportStepsFromProfile(update_profile_id)

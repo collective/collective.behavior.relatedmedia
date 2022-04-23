@@ -20,10 +20,12 @@
 
     </records>
 
-    <records
-          prefix="plone.resources/relatedmedia"
-          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-        <value key="js">++plone++collective.behavior.relatedmedia.resources/relatedmedia.js</value>
+    <records prefix="plone.bundles/relatedmedia" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="enabled">True</value>
+        <value key="expression">python: member is not None</value>
+        <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/relatedmedia.js</value>
+        <value key="csscompilation"></value>
+        <value key="load_async">False</value>
+        <value key="load_defer">False</value>
     </records>
-
 </registry>
