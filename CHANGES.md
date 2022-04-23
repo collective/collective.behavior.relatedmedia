@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.0 (unreleased)
+3.1.0 (2022-04-23)
 ------------------
 
 - remove requireJS from JS resource (Plone 6 compatibility)
