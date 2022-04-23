@@ -102,6 +102,7 @@ def update_leadimage(obj, event):
         # set first related image as lead image (incl. caption)
         ILeadImageBehavior(obj).image = imgs[0].image
         ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())
+        obj.reindexObject()
 
 
 def update_titles(obj, event):
