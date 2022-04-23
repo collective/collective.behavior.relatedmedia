@@ -75,4 +75,26 @@
         import_steps="plone.app.registry"
         run_deps="True" />
 
+    <registerProfile
+        name="registry_cleanup"
+        title="Remove resources from registry"
+        directory="profiles/upgrades/registry_cleanup"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <upgradeSteps
+        source="2011"
+        destination="2100"
+        profile="collective.behavior.relatedmedia:default">
+        <upgradeStep
+            title="Resourceregistry cleanup"
+            handler=".upgrades.registry_cleanup" />
+        <upgradeDepends
+            title="Upgrade registry -> new resource bundle"
+            import_steps="plone.app.registry"
+            run_deps="True" />
+    </upgradeSteps>
+
+
 </configure>
