@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.1 (unreleased)
+3.1.1 (2022-07-04)
 ------------------
 
 - Fix moved utility. import now from `plone.base`
