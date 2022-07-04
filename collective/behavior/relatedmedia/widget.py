@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone import PloneMessageFactory as _
-from Products.CMFPlone.resources import add_resource_on_request
 from collective.behavior.relatedmedia.utils import get_media_root
-from plone.app.content.browser.contents import get_top_site_from_url
 from plone.app.content.browser.file import TUS_ENABLED
 from plone.app.content.interfaces import IStructureAction
 from plone.app.content.utils import json_dumps
 from plone.app.widgets.utils import get_widget_form
 from plone.app.z3cform.widget import RelatedItemsWidget
+from plone.base.utils import get_top_site_from_url
 from plone.uuid.interfaces import IUUID
+from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.resources import add_resource_on_request
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import ITextWidget
 from z3c.form.widget import FieldWidget

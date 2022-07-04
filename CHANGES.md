@@ -5,7 +5,8 @@ Changelog
 3.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix moved utility. import now from `plone.base`
+  [petschki]
 
 
 3.1.0 (2022-04-23)
