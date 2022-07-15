@@ -20,6 +20,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import os
 
+
 try:
     from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 
@@ -79,9 +80,9 @@ def default_include_leadimage():
 class IRelatedMedia(model.Schema):
 
     related_images = RelationList(
-        title=_(u"label_images", default=u"Related Images"),
+        title=_("label_images", default="Related Images"),
         value_type=RelationChoice(
-            title=_(u"Pictures"),
+            title=_("Pictures"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -102,9 +103,9 @@ class IRelatedMedia(model.Schema):
     )
 
     related_attachments = RelationList(
-        title=_(u"label_attachments", default=u"Related Attachments"),
+        title=_("label_attachments", default="Related Attachments"),
         value_type=RelationChoice(
-            title=_(u"Files"),
+            title=_("Files"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -126,9 +127,9 @@ class IRelatedMedia(model.Schema):
     )
 
     related_media = RelationList(
-        title=_(u"Upload related media"),
+        title=_("Upload related media"),
         value_type=RelationChoice(
-            title=_(u"Related Media"),
+            title=_("Related Media"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -146,45 +147,45 @@ class IRelatedMedia(model.Schema):
     )
 
     show_titles_as_caption = schema.Bool(
-        title=_(u"Show image titles as caption"),
+        title=_("Show image titles as caption"),
         default=False,
         required=False,
     )
 
     include_leadimage = schema.Bool(
-        title=_(u"Include leadimage in image gallery?"),
+        title=_("Include leadimage in image gallery?"),
         defaultFactory=default_include_leadimage,
         required=False,
     )
 
     first_image_scale = schema.Choice(
-        title=_(u"Gallery default scale for first image"),
+        title=_("Gallery default scale for first image"),
         vocabulary="plone.app.vocabularies.ImagesScales",
         defaultFactory=default_gallery_first_image_scale,
     )
 
     first_image_scale_direction = schema.Bool(
-        title=_(u"Crop first image"),
+        title=_("Crop first image"),
         defaultFactory=default_preview_scale_direction,
         required=False,
     )
 
     preview_scale = schema.Choice(
-        title=_(u"Image scale"),
+        title=_("Image scale"),
         description=_("Gallery image preview scale"),
         vocabulary="plone.app.vocabularies.ImagesScales",
         defaultFactory=default_gallery_scale,
     )
 
     preview_scale_direction = schema.Bool(
-        title=_(u"Crop image"),
+        title=_("Crop image"),
         description=_("Crop the image to the selected boundaries above"),
         default=False,
         required=False,
     )
 
     gallery_css_class = schema.Choice(
-        title=_(u"Gallery layout"),
+        title=_("Gallery layout"),
         description=_("Feel free to add/remove classes in your registry.xml"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
         defaultFactory=default_css_class,
@@ -192,7 +193,7 @@ class IRelatedMedia(model.Schema):
     )
 
     related_media_base_path = RelationChoice(
-        title=_(u"label_base_path", default=u"Base Path"),
+        title=_("label_base_path", default="Base Path"),
         description=_(
             "label_base_path_desc",
             default="Base path for uploaded content. If not given "

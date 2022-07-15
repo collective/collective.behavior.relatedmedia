@@ -5,8 +5,11 @@ Changelog
 3.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed customized `selection.xml` template for `pat-relateditems`.
+  [petschki]
 
+- CI Test setup with `mxdev`.
+  [petschki]
 
 3.1.1 (2022-07-04)
 ------------------

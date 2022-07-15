@@ -152,7 +152,7 @@ class RelatedAttachmentsView(RelatedBaseView):
         atts = []
         for att in self.attachments:
             if att:
-                download_url = u"{}/@@download/file/{}".format(
+                download_url = "{}/@@download/file/{}".format(
                     att.absolute_url(), att.file.filename
                 )
                 file_size = (att.file.getSize() or 0.0) / 1024.0
@@ -197,8 +197,8 @@ class Uploader(RelatedBaseView):
         if not behavior:
             return json.dumps(
                 dict(
-                    status=u"error",
-                    message=u"IRelatedMedia behavior not activated for this context",
+                    status="error",
+                    message="IRelatedMedia behavior not activated for this context",
                 )
             )
 
@@ -227,7 +227,7 @@ class Uploader(RelatedBaseView):
 
         return json.dumps(
             dict(
-                status=u"done",
+                status="done",
             )
         )
 
@@ -235,5 +235,5 @@ class Uploader(RelatedBaseView):
 class UploadViewlet(ViewletBase):
     def render(self):
         if not IViewView.providedBy(self.view):
-            return u""
+            return ""
         return super(UploadViewlet, self).render()
