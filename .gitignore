@@ -54,3 +54,8 @@ docs/_build/
 target/
 
 .DS_Store
+
+# mxdev
+.make-sentinels/
+sources/
+/*-mxdev.txt
