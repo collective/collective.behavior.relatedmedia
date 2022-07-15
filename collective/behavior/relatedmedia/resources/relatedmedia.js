@@ -1,4 +1,4 @@
-(function() {
+(function($) {
   $(function(){
     $(".pat-upload").on("uploadAllCompleted", function(response, path) {
       // reload viewlets on upload
@@ -23,4 +23,4 @@
       }
     });
   });
-})();
+})(jQuery);
