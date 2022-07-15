@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.utils import safe_unicode
 from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from logging import getLogger
 from plone import api
 from plone.dexterity.utils import createContentInContainer
+from Products.CMFPlone.utils import safe_unicode
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
+
 
 try:
     from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior

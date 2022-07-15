@@ -18,6 +18,7 @@ from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import implementer_only
 
+
 try:
     from plone.app.z3cform.views import RenderWidget
 except ImportError:

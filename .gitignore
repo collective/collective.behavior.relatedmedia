@@ -59,3 +59,4 @@ target/
 .make-sentinels/
 sources/
 /*-mxdev.txt
+.installed.txt

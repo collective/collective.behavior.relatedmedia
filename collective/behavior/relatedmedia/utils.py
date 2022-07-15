@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from Acquisition import aq_inner
 from plone import api
 from plone.dexterity.utils import createContentInContainer
@@ -7,14 +6,16 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
+import logging
+
+
 logger = logging.getLogger(__name__)
 
 
 def get_media_root(context, as_path=False):
     container_base = api.portal.get_navigation_root(context)
     media_path = api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.media_container_path",
-        default="/media"
+        "collective.behavior.relatedmedia.media_container_path", default="/media"
     )
     media_container_in_assets_folder = api.portal.get_registry_record(
         "collective.behavior.relatedmedia.media_container_in_assets_folder",

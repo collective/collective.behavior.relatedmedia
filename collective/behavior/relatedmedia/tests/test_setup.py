@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from Products.CMFCore.utils import getToolByName
-
-from collective.behavior.relatedmedia.testing import (
+from collective.behavior.relatedmedia.testing import (  # noqa
     COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING,
-)  # noqa
+)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from Products.CMFCore.utils import getToolByName
 
 import unittest
+
 
 no_get_installer = False
 

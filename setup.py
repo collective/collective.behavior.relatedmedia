@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
+from setuptools import find_packages
+from setuptools import setup
 
-from setuptools import find_packages, setup
 
 version = "3.1.2.dev0"
 
