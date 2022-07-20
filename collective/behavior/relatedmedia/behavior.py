@@ -3,7 +3,6 @@ from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
 from collective.behavior.relatedmedia.widget import RelatedImagesFieldWidget
-from collective.behavior.relatedmedia.widget import RelatedMediaFieldWidget
 from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -99,6 +98,7 @@ class IRelatedMedia(model.Schema):
             "selectionTemplate": read_js_template(
                 "resources/relateditems_selection.xml"
             ),
+            "upload": True,
         },
     )
 
@@ -123,26 +123,7 @@ class IRelatedMedia(model.Schema):
             "selectionTemplate": read_js_template(
                 "resources/relateditems_selection.xml"
             ),
-        },
-    )
-
-    related_media = RelationList(
-        title=_("Upload related media"),
-        value_type=RelationChoice(
-            title=_("Related Media"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        default=[],
-    )
-    form.widget(
-        "related_media",
-        RelatedMediaFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
-            "selectableTypes": ["Image", "File"],
-            "basePath": media_root_path,
+            "upload": True,
         },
     )
 
@@ -213,7 +194,6 @@ class IRelatedMedia(model.Schema):
         "preview_scale_direction",
         "related_attachments",
         "related_images",
-        "related_media",
         "related_media_base_path",
         "show_titles_as_caption",
     )
@@ -228,7 +208,6 @@ class IRelatedMedia(model.Schema):
         "preview_scale_direction",
         "related_attachments",
         "related_images",
-        "related_media",
         "show_titles_as_caption",
     )
 
@@ -238,7 +217,6 @@ class IRelatedMedia(model.Schema):
         fields=[
             "related_images",
             "related_attachments",
-            "related_media",
             "show_titles_as_caption",
             "include_leadimage",
             "first_image_scale",

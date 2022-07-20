@@ -120,18 +120,6 @@
     <adapter
         factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
         for="z3c.relationfield.interfaces.IRelationChoice
-             collective.behavior.relatedmedia.widget.RelatedMediaWidget"
-        />
-
-    <adapter
-        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
-        for="z3c.relationfield.interfaces.IRelationList
-             collective.behavior.relatedmedia.widget.RelatedMediaWidget"
-        />
-
-    <adapter
-        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
-        for="z3c.relationfield.interfaces.IRelationChoice
              collective.behavior.relatedmedia.widget.RelatedImagesWidget"
         />
 
@@ -151,15 +139,6 @@
         factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
         for="z3c.relationfield.interfaces.IRelationList
              collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
-        />
-
-    <!-- render-widget override for integrated pat-structure feature -->
-    <browser:page
-        name="ploneform-render-widget"
-        for=".widget.IRelatedMediaWidget"
-        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
-        class=".widget.RelatedMediaRenderWidget"
-        permission="zope.Public"
         />
 
     <!-- convenience: upload viewlet for view mode -->

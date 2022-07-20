@@ -11,6 +11,10 @@ Changelog
 - CI Test setup with `mxdev`.
   [petschki]
 
+- Remove `related-media` widget and enable "upload" for related widget.
+  [petschki]
+
+
 3.1.1 (2022-07-04)
 ------------------
 
