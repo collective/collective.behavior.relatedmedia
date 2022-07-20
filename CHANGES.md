@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.2 (unreleased)
+3.2.0 (2022-07-20)
 ------------------
 
 - Fixed customized `selection.xml` template for `pat-relateditems`.
