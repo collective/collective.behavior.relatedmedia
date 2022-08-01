@@ -185,32 +185,6 @@ class IRelatedMedia(model.Schema):
         required=False,
     )
 
-    form.omitted(
-        "first_image_scale",
-        "first_image_scale_direction",
-        "gallery_css_class",
-        "include_leadimage",
-        "preview_scale",
-        "preview_scale_direction",
-        "related_attachments",
-        "related_images",
-        "related_media_base_path",
-        "show_titles_as_caption",
-    )
-
-    form.no_omit(
-        IEditForm,
-        "first_image_scale",
-        "first_image_scale_direction",
-        "gallery_css_class",
-        "include_leadimage",
-        "preview_scale",
-        "preview_scale_direction",
-        "related_attachments",
-        "related_images",
-        "show_titles_as_caption",
-    )
-
     model.fieldset(
         "relatedmedia",
         label=_("Related Media"),
