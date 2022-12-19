@@ -134,7 +134,7 @@ class RelatedImagesView(RelatedBaseView):
                             caption=img.Title(),
                             show_caption=show_caption,
                             title=img.Title(),
-                            description=img.Descrition(),
+                            description=img.Description(),
                         )
                     )
 
