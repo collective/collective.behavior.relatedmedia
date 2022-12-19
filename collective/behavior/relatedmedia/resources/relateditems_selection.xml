@@ -3,7 +3,8 @@
     <span
       class="pat-relateditems-item-title <%- portal_type ? 'contenttype-' + portal_type.toLowerCase() : '' %> <%- review_state ? 'state-' + review_state : '' %>"
       title="<%- portal_type %>">
-      <input type="text" value="<%- Title %>" name="relatedmedia-title-<%- path.replace(/\//g, '--') %>" />
+      <input type="text" value="<%- Title %>" name="relatedmedia-title-<%- path.replace(/\//g, '--') %>" class="form-control" />
+      <textarea name="relatedmedia-description-<%- path.replace(/\//g, '--') %>" class="form-control"><%- Description %></textarea>
     </span>
     <span class="pat-relateditems-item-path"><%- path %></span>
   </div>

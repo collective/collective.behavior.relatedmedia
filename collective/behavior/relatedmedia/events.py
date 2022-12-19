@@ -106,25 +106,29 @@ def update_leadimage(obj, event):
         obj.reindexObject()
 
 
+def get_obj_from_relateditem_path(value, prefix=19):
+    item_path = value[prefix:].replace("--", "/")
+    rel_obj = None
+
+    try:
+        rel_obj = api.content.get(path=item_path)
+    except Exception:
+        logger.warn("Could not find related item {}".format(item_path))
+
+    return rel_obj
+
+
 def update_titles(obj, event):
     req_form = obj.REQUEST.form
 
     for k in req_form:
-        if not k.startswith("relatedmedia-title-"):
-            continue
-
-        item_path = k[19:].replace("--", "/")
-        rel_obj = None
-
-        try:
-            rel_obj = api.content.get(path=item_path)
-        except Exception:
-            logger.warn("Could not find related item {}".format(item_path))
-            pass
-
-        if rel_obj is None:
-            return
-
-        if rel_obj.title != req_form[k]:
-            rel_obj.title = req_form[k]
-            rel_obj.reindexObject()
+        if k.startswith("relatedmedia-title-"):
+            rel_obj = get_obj_from_relateditem_path(k)
+            if rel_obj and rel_obj.title != req_form[k]:
+                rel_obj.title = req_form[k]
+                rel_obj.reindexObject()
+        if k.startswith("relatedmedia-description-"):
+            rel_obj = get_obj_from_relateditem_path(k, 25)
+            if rel_obj and rel_obj.description != req_form[k]:
+                rel_obj.description = req_form[k]
+                rel_obj.reindexObject()

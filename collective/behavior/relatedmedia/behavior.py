@@ -98,6 +98,18 @@ class IRelatedMedia(model.Schema):
             "selectionTemplate": read_js_template(
                 "resources/relateditems_selection.xml"
             ),
+            # add Description to the returned attributes
+            "attributes": [
+                "UID",
+                "Title",
+                "Description",
+                "portal_type",
+                "path",
+                "getURL",
+                "getIcon",
+                "is_folderish",
+                "review_state",
+            ],
             "upload": True,
         },
     )
@@ -123,6 +135,17 @@ class IRelatedMedia(model.Schema):
             "selectionTemplate": read_js_template(
                 "resources/relateditems_selection.xml"
             ),
+            "attributes": [
+                "UID",
+                "Title",
+                "Description",
+                "portal_type",
+                "path",
+                "getURL",
+                "getIcon",
+                "is_folderish",
+                "review_state",
+            ],
             "upload": True,
         },
     )
