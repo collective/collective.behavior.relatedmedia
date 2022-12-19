@@ -156,13 +156,14 @@ class RelatedAttachmentsView(RelatedBaseView):
         atts = []
         for att in self.attachments:
             if att:
-                download_url = "{}/@@download/file/{}".format(
-                    att.absolute_url(), att.file.filename
-                ) if att.file else "#"
-                file_size = (
-                    (att.file.getSize() or 0.0) / 1024.0
-                    if att.file else 0.0
+                download_url = (
+                    "{}/@@download/file/{}".format(
+                        att.absolute_url(), att.file.filename
+                    )
+                    if att.file
+                    else "#"
                 )
+                file_size = (att.file.getSize() or 0.0) / 1024.0 if att.file else 0.0
                 unit = "kB"
                 if file_size > 1000:
                     file_size = file_size / 1024.0
@@ -171,7 +172,9 @@ class RelatedAttachmentsView(RelatedBaseView):
                     dict(
                         url=download_url,
                         title=att.Title(),
-                        size="{:.1f} {}".format(file_size, unit) if att.file else "missing",
+                        size="{:.1f} {}".format(file_size, unit)
+                        if att.file
+                        else "missing",
                         icon=att.getIcon(),
                         target=link_target,
                     )
