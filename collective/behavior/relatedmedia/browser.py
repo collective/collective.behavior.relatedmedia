@@ -70,22 +70,24 @@ class RelatedImagesView(RelatedBaseView):
         context = aq_inner(self.context)
         imgs = get_related_media(context, portal_type="Image")
         show_caption = rm_behavior.show_titles_as_caption
+        first_img_title = ""
         first_img_scales = None
-        first_img_caption = ""
+        first_img_description = ""
         further_images = []
         gallery = []
 
         if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
             # include leadimage if no related images are defined
             first_img_scales = context.restrictedTraverse("@@images")
-            first_img_caption = ILeadImage(context).image_caption
+            first_img_title = ILeadImage(context).image_caption
             further_images = imgs
 
         if not first_img_scales and len(imgs):
             first_img = imgs[0]
             if first_img:
                 first_img_scales = first_img.restrictedTraverse("@@images")
-                first_img_caption = first_img.Title()
+                first_img_title = first_img.Title()
+                first_img_description = first_img.Description()
                 further_images = imgs[1:]
 
         if first_img_scales:
@@ -102,13 +104,14 @@ class RelatedImagesView(RelatedBaseView):
                     dict(
                         url=large_scale_url,
                         tag=scale.tag(
-                            title=first_img_caption,
-                            alt=first_img_caption,
+                            title=first_img_title,
+                            alt=first_img_title,
                             css_class="img-fluid",
                         ),
-                        caption=first_img_caption,
+                        caption=first_img_title,
                         show_caption=show_caption,
-                        title=first_img_caption,
+                        title=first_img_title,
+                        description=first_img_description,
                     )
                 )
 
@@ -131,6 +134,7 @@ class RelatedImagesView(RelatedBaseView):
                             caption=img.Title(),
                             show_caption=show_caption,
                             title=img.Title(),
+                            description=img.Descrition(),
                         )
                     )
 

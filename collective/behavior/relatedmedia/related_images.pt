@@ -9,8 +9,10 @@
                        class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
        <img tal:replace="structure img/tag" />
        <span class="caption"
-             tal:condition="img/show_caption|nothing"
-             tal:content="img/caption">image caption</span>
+             tal:condition="img/show_caption|nothing">
+          <span class="caption-title">${img/title}</span>
+          <span class="caption-description">${img/description}</span>
+        </span>
     </a>
 
     <div tal:condition="not:images" class="discreet" i18n:translate="">
