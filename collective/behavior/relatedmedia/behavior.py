@@ -69,6 +69,12 @@ def default_preview_scale_direction():
     )
 
 
+def default_titles_as_caption():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.show_titles_as_caption_default", default=False
+    )
+
+
 def default_include_leadimage():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.include_leadimage_default", default=True
@@ -152,7 +158,7 @@ class IRelatedMedia(model.Schema):
 
     show_titles_as_caption = schema.Bool(
         title=_("Show image titles as caption"),
-        default=False,
+        defaultFactory=default_titles_as_caption,
         required=False,
     )
 

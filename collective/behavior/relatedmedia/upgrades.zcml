@@ -96,5 +96,12 @@
             run_deps="True" />
     </upgradeSteps>
 
+    <upgradeDepends
+        source="2100"
+        destination="2101"
+        profile="collective.behavior.relatedmedia:default"
+        title="Upgrade registry -> new default settings"
+        import_steps="plone.app.registry"
+        run_deps="True" />
 
 </configure>

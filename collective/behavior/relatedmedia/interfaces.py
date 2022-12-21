@@ -69,6 +69,12 @@ class IRelatedMediaSettings(Interface):
         required=False,
     )
 
+    show_titles_as_caption_default = schema.Bool(
+        title=_("Show image titles as caption"),
+        default=False,
+        required=False,
+    )
+
     include_leadimage_default = schema.Bool(
         title=_("Include leadimage in image gallery?"),
         default=True,
