@@ -27,6 +27,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <include package="Products.CMFCore"/>
     <include package="plone.behavior" file="meta.zcml"/>
 
     <utility
@@ -64,6 +65,8 @@
         permission="zope2.View"
         layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />
+
+    <include package="z3c.form" file="meta.zcml"/>
 
     <z3c:widgetTemplate
         mode="display"

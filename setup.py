@@ -52,6 +52,8 @@ setup(
         "plone.api",
         "plone.behavior",
         "plone.app.dexterity",
+        "Products.CMFCore",
+        "z3c.form",
     ],
     extras_require={
         "test": [
