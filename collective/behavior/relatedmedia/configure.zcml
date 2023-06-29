@@ -37,6 +37,7 @@
         />
 
     <plone:behavior
+        name="collective.relatedmedia"
         title="Related Media"
         description="Manage content-related images and attachments"
         provides=".behavior.IRelatedMedia"

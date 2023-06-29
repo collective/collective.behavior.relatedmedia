@@ -5,7 +5,8 @@ Changelog
 3.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Convenience short name for behavior.
+  [petschki]
 
 
 3.2.0 (2022-07-20)
