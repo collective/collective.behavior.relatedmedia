@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
@@ -8,9 +7,9 @@ version = "3.3.0.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
-    (this_directory / "README.md").read_text()
+    (this_directory / "README.rst").read_text()
     + "\n\n"
-    + (this_directory / "CHANGES.md").read_text()
+    + (this_directory / "CHANGES.rst").read_text()
 )
 
 
