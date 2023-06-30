@@ -2,12 +2,15 @@ Changelog
 =========
 
 
-3.2.1 (unreleased)
+3.3.0 (unreleased)
 ------------------
 
 - Convenience short name for behavior.
   [petschki]
 
+- Use `plone.base.utils.human_readable_size` for attachment size and implement
+  mimetype icons for attachment list.
+  [petschki]
 
 3.2.0 (2022-07-20)
 ------------------
