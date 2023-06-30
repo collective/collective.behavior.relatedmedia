@@ -2,4 +2,5 @@ recursive-include collective *
 recursive-include docs *
 include *
 exclude *-mxdev.txt
+exclude .installed.txt
 global-exclude *.pyc

@@ -169,7 +169,7 @@ Features:
 1.0 (2018-05-23)
 ----------------
 
-- Fix issue with disapearing images when 'include_leadimage' was deactivated
+- Fix issue with disappearing images when 'include_leadimage' was deactivated
   [petschki]
 
 - support for Event Occurrences.

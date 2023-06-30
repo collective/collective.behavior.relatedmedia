@@ -24,7 +24,7 @@ class IRelatedMediaSettings(Interface):
         title=_("Create Media Container in Assets Folder " "(language independent)?"),
         description=_(
             "If True, the Media Container path defined above is "
-            "generated in the language independend Assets folder. "
+            "generated in the language independent Assets folder. "
             "This requires plone.app.multilingual."
         ),
         default=False,
