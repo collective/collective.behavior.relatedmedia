@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
@@ -34,7 +33,7 @@ def read_js_template(path):
 
 
 @implementer(IVocabularyFactory)
-class GalleryCSSClassesVocabulary(object):
+class GalleryCSSClassesVocabulary:
     def __call__(self, context):
         return SimpleVocabulary.fromValues(
             api.portal.get_registry_record(
@@ -83,7 +82,6 @@ def default_include_leadimage():
 
 @provider(IFormFieldProvider)
 class IRelatedMedia(model.Schema):
-
     related_images = RelationList(
         title=_("label_images", default="Related Images"),
         value_type=RelationChoice(

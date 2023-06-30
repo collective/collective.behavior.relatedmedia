@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.z3cform.widget import RelatedItemsWidget
 from Products.CMFPlone import PloneMessageFactory as _
 from z3c.form.interfaces import IFieldWidget

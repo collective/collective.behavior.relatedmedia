@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-    <layer name="collective.behavior.relatedmedia.layer"
-           interface="collective.behavior.relatedmedia.interfaces.ICollectiveBehaviorRelatedmediaLayer" />
+  <layer interface="collective.behavior.relatedmedia.interfaces.ICollectiveBehaviorRelatedmediaLayer"
+         name="collective.behavior.relatedmedia.layer"
+  />
 </layers>

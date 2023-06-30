@@ -1,28 +1,33 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
-             prefix="collective.behavior.relatedmedia">
+  <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
+           prefix="collective.behavior.relatedmedia"
+  >
 
-        <value key="media_container_path">/media</value>
-        <value key="create_media_container_base_paths">False</value>
-        <value key="image_gallery_cssclass" purge="false">
-            <element>floatLeft</element>
-            <element>floatRight</element>
-            <element>fullWidth</element>
-        </value>
-        <value key="image_gallery_default_class">fullWidth</value>
-        <value key="show_titles_as_caption_default">False</value>
-        <value key="include_leadimage_default">True</value>
+    <value key="media_container_path">/media</value>
+    <value key="create_media_container_base_paths">False</value>
+    <value key="image_gallery_cssclass"
+           purge="false"
+    >
+      <element>floatLeft</element>
+      <element>floatRight</element>
+      <element>fullWidth</element>
+    </value>
+    <value key="image_gallery_default_class">fullWidth</value>
+    <value key="show_titles_as_caption_default">False</value>
+    <value key="include_leadimage_default">True</value>
 
-    </records>
+  </records>
 
-    <records prefix="plone.bundles/relatedmedia" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-        <value key="enabled">True</value>
-        <value key="expression">python: member is not None</value>
-        <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/relatedmedia.js</value>
-        <value key="csscompilation"></value>
-        <value key="load_async">False</value>
-        <value key="load_defer">False</value>
-    </records>
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+           prefix="plone.bundles/relatedmedia"
+  >
+    <value key="enabled">True</value>
+    <value key="expression">python: member is not None</value>
+    <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/relatedmedia.js</value>
+    <value key="csscompilation" />
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
 </registry>

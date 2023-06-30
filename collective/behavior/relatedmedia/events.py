@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
 from logging import getLogger
@@ -113,7 +112,7 @@ def get_obj_from_relateditem_path(value, prefix=19):
     try:
         rel_obj = api.content.get(path=item_path)
     except Exception:
-        logger.warn("Could not find related item {}".format(item_path))
+        logger.warn(f"Could not find related item {item_path}")
 
     return rel_obj
 

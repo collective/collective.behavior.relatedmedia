@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from zope import schema
 from zope.interface import Interface
