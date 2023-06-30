@@ -1,14 +1,13 @@
-<div tal:define="attachments view/get_attachments"
+<div tal:define="attachments view/get_attachments; icons nocall:context/@@iconresolver"
      tal:condition="python:attachments or view.can_upload"
      i18n:domain="collective.behavior.relatedmedia">
     <h2 i18n:translate="title_attachments">Attachments</h2>
-    <ul id="related-attachments">
+    <ul id="related-attachments" class="list-unstyled">
 
         <li tal:repeat="att attachments" class="attachment-item">
             <a tal:attributes="href att/url;
                                target att/target">
-                <img tal:condition="att/icon|nothing" border="0"
-                     tal:attributes="src string:${view/site_url}/${att/icon}"
+                <img tal:replace="structure python:icons.tag('mimetype-' + att['mimetype'])"
                 /> <span tal:content="att/title" /> (<span tal:content="att/size" />)
             </a>
         </li>

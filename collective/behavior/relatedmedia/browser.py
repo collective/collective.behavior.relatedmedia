@@ -11,6 +11,7 @@ from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
+from plone.base.utils import human_readable_size
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
@@ -154,6 +155,7 @@ class RelatedAttachmentsView(RelatedBaseView):
         )
         link_target = _target_blank and "blank" or "top"
         atts = []
+
         for att in self.attachments:
             if att:
                 download_url = (
@@ -163,19 +165,14 @@ class RelatedAttachmentsView(RelatedBaseView):
                     if att.file
                     else "#"
                 )
-                file_size = (att.file.getSize() or 0.0) / 1024.0 if att.file else 0.0
-                unit = "kB"
-                if file_size > 1000:
-                    file_size = file_size / 1024.0
-                    unit = "MB"
                 atts.append(
                     dict(
                         url=download_url,
                         title=att.Title(),
-                        size="{:.1f} {}".format(file_size, unit)
+                        size=human_readable_size(att.file.getSize())
                         if att.file
                         else "missing",
-                        icon=att.getIcon(),
+                        mimetype=att.content_type() or "application",
                         target=link_target,
                     )
                 )
