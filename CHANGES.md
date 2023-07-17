@@ -5,12 +5,18 @@ Changelog
 3.3.0 (unreleased)
 ------------------
 
+Feature:
+
+- Mark `base_path` concept as deprecated and add a migration script for it.
+  [petschki]
+
 - Convenience short name for behavior.
   [petschki]
 
 - Use `plone.base.utils.human_readable_size` for attachment size and implement
   mimetype icons for attachment list.
   [petschki]
+
 
 3.2.0 (2022-07-20)
 ------------------

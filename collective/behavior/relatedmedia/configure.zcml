@@ -40,7 +40,8 @@
         name="collective.relatedmedia"
         title="Related Media"
         description="Manage content-related images and attachments"
-        provides=".behavior.IRelatedMedia"
+        provides=".behavior.IRelatedMediaBehavior"
+        former_dotted_names="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         />
 
     <plone:static
@@ -151,7 +152,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         class=".browser.UploadViewlet"
         template="viewlet_uploader.pt"
-        for=".behavior.IRelatedMedia"
+        for=".behavior.IRelatedMediaBehavior"
         permission="cmf.ModifyPortalContent"
         layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
         />

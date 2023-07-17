@@ -6,8 +6,7 @@
         title="Profile for upgrade step 'Package rename'"
         directory="profiles/upgrades/package_rename"
         description=""
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+        provides="Products.GenericSetup.interfaces.EXTENSION" />
 
     <upgradeStep
         source="*"
@@ -23,8 +22,7 @@
         title="Profile for upgrade step 'Local configuration'"
         directory="profiles/upgrades/local_config"
         description=""
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+        provides="Products.GenericSetup.interfaces.EXTENSION" />
 
     <upgradeStep
         source="1002"
@@ -80,8 +78,7 @@
         title="Remove resources from registry"
         directory="profiles/upgrades/registry_cleanup"
         description=""
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+        provides="Products.GenericSetup.interfaces.EXTENSION" />
 
     <upgradeSteps
         source="2011"
@@ -103,5 +100,14 @@
         title="Upgrade registry -> new default settings"
         import_steps="plone.app.registry"
         run_deps="True" />
+
+    <upgradeSteps
+        source="2101"
+        destination="3000"
+        profile="collective.behavior.relatedmedia:default">
+        <upgradeStep
+            title="Remove deprecated 'related_media_base_path' folder and migrate relations"
+            handler=".upgrades.migrate_base_path_relations" />
+    </upgradeSteps>
 
 </configure>

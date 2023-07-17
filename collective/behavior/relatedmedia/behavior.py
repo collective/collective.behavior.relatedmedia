@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from zope.deferredimport import deprecated
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
@@ -7,7 +8,6 @@ from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from z3c.form.interfaces import IEditForm
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -82,7 +82,7 @@ def default_include_leadimage():
 
 
 @provider(IFormFieldProvider)
-class IRelatedMedia(model.Schema):
+class IRelatedMediaBehavior(model.Schema):
 
     related_images = RelationList(
         title=_("label_images", default="Related Images"),
@@ -234,13 +234,20 @@ class IRelatedMedia(model.Schema):
 
 # define languageindependent fields if p.a.multilingual is installed
 if HAS_PAM:
-    alsoProvides(IRelatedMedia["related_media_base_path"], ILanguageIndependentField)
-    alsoProvides(IRelatedMedia["show_titles_as_caption"], ILanguageIndependentField)
-    alsoProvides(IRelatedMedia["include_leadimage"], ILanguageIndependentField)
-    alsoProvides(IRelatedMedia["first_image_scale"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["related_media_base_path"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["show_titles_as_caption"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["include_leadimage"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["first_image_scale"], ILanguageIndependentField)
     alsoProvides(
-        IRelatedMedia["first_image_scale_direction"], ILanguageIndependentField
+        IRelatedMediaBehavior["first_image_scale_direction"], ILanguageIndependentField
     )
-    alsoProvides(IRelatedMedia["preview_scale"], ILanguageIndependentField)
-    alsoProvides(IRelatedMedia["preview_scale_direction"], ILanguageIndependentField)
-    alsoProvides(IRelatedMedia["gallery_css_class"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["preview_scale"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["preview_scale_direction"], ILanguageIndependentField)
+    alsoProvides(IRelatedMediaBehavior["gallery_css_class"], ILanguageIndependentField)
+
+
+# mark old name as depreacted
+deprecated(
+    "Renamed to 'IRelatedMediaBehavior'. Will be removed in Version 4.",
+    IRelatedMedia="collective.behavior.relatedmedia.behavior:IRelatedMediaBehavior",
+)

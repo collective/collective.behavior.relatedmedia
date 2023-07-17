@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.app.z3cform.widget import RelatedItemsWidget
-from Products.CMFPlone import PloneMessageFactory as _
+from plone.app.z3cform.widgets.relateditems import RelatedItemsWidget
+from plone.base import PloneMessageFactory as _
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import ITextWidget
 from z3c.form.widget import FieldWidget

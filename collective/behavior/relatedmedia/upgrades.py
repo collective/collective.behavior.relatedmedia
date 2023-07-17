@@ -1,3 +1,9 @@
+from plone import api
+
+import logging
+import transaction
+
+logger = logging.getLogger(__name__)
 PACKAGE_NAME = "collective.behavior.relatedmedia"
 
 
@@ -18,3 +24,47 @@ def local_gallery_configuration(context):
 def registry_cleanup(context):
     update_profile_id = "profile-{0}:registry_cleanup".format(PACKAGE_NAME)
     context.runAllImportStepsFromProfile(update_profile_id)
+
+
+def migrate_base_path_relations(context):
+    from collective.behavior.relatedmedia.behavior import IRelatedMediaBehavior
+
+    catalog = api.portal.get_tool("portal_catalog")
+    items = catalog(
+        object_provides="collective.behavior.relatedmedia.behavior.IRelatedMedia",
+    )
+    _num_items = len(items)
+
+    for idx, item in enumerate(items, 1):
+        obj = item.getObject()
+
+        try:
+            base_path = IRelatedMediaBehavior(obj).related_media_base_path
+        except TypeError:
+            logger.info(f"{idx}/{_num_items} no relatedmedia behavior registered for {item.getPath()}.")
+            continue
+
+        if not base_path:
+            logger.info(f"{idx}/{_num_items} skip migration of {item.getPath()} -> no base path defined.")
+            continue
+
+        logger.info(f"{idx}/{_num_items} migrating {item.getPath()}.")
+
+        for media in catalog(path=base_path.to_path):
+            # related images
+            if media.portal_type == "Image":
+                img_obj = media.getObject()
+                api.relation.create(source=obj, target=img_obj, relationship="related_images")
+                logger.info(f" - related_image {media.getPath()} created")
+                continue
+            # related attachments
+            if media.portal_type == "File":
+                file_obj = media.getObject()
+                api.relation.create(source=obj, target=file_obj, relationship="related_attachments")
+                logger.info(f" - related_attachment {media.getPath()} created")
+                continue
+            logger.info(f" - no relation created for unknown type {media.getPath()}...")
+
+        # remove base_path information
+        IRelatedMediaBehavior(obj).related_media_base_path = None
+        transaction.commit()
