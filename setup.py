@@ -49,18 +49,21 @@ setup(
         "setuptools",
         # -*- Extra requirements: -*-
         "plone.api",
+        "plone.app.contenttypes",
+        "plone.app.layout",
+        "plone.autoform",
+        "plone.base",
         "plone.behavior",
-        "plone.app.dexterity",
         "Products.CMFCore",
         "z3c.form",
+        "z3c.relationfield",
     ],
     extras_require={
         "test": [
+            "plone.testing",
             "plone.app.testing[robot]",
             "plone.app.robotframework",
             "plone.app.contenttypes",
-            "robotframework-selenium2library",
-            "robotframework-selenium2screenshots",
         ],
     },
     entry_points="""

@@ -175,7 +175,7 @@
   <!-- controlpanel -->
   <browser:page
       name="relatedmedia-controlpanel"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class=".browser.RelatedMediaControlPanel"
       permission="cmf.ManagePortal"
       />

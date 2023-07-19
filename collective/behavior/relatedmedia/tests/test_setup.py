@@ -1,31 +1,12 @@
 """Setup tests for this package."""
-from collective.behavior.relatedmedia.testing import (  # noqa
-    COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING,
-)
+from collective.behavior.relatedmedia.testing import \
+    COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from Products.CMFCore.utils import getToolByName
+from plone.base.utils import get_installer
 
 import unittest
-
-
-no_get_installer = False
-
-try:
-    from Products.CMFPlone.utils import get_installer
-except Exception:
-    # Quick shim for 5.1 api change
-
-    class get_installer:
-        def __init__(self, portal, request):
-            self.installer = getToolByName(portal, "portal_quickinstaller")
-
-        def is_product_installed(self, name):
-            return self.installer.isProductInstalled(name)
-
-        def uninstall_product(self, name):
-            return self.installer.uninstallProducts([name])
 
 
 class TestSetup(unittest.TestCase):

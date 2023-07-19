@@ -11,12 +11,12 @@ from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.base.utils import human_readable_size
+from plone.base.utils import safe_text
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
@@ -196,7 +196,7 @@ class Uploader(RelatedBaseView):
         req_file = self.request.get("file")
         c_type = req_file.headers.get("content-type", "")
         file_data = req_file.read()
-        file_name = safe_unicode(req_file.filename)
+        file_name = safe_text(req_file.filename)
         media_container = get_media_root(self.context)
         behavior = self.behavior
 

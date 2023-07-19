@@ -4,3 +4,11 @@
 [meta]
 template = "default"
 commit-id = "cfffba8c"
+
+[pyproject]
+dependencies_ignores = "['plone.app.multilingual']"
+
+[gitignore]
+extra_lines = """
+forest.*
+"""
