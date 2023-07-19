@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.3.1 (unreleased)
+## 3.3.1 (2023-07-19)
 ---------------------
 
 - Fix default behavior assignment for "Page".
