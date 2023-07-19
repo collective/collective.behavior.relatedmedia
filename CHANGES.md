@@ -5,7 +5,8 @@ Changelog
 ## 3.3.1 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fix default behavior assignment for "Page".
+  [petschki]
 
 
 ## 3.3.0 (2023-07-17)
