@@ -5,7 +5,8 @@ Changelog
 ## 3.3.2 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Added upgrade tep for renamed behavior.
+  [petschki]
 
 
 ## 3.3.1 (2023-07-19)
