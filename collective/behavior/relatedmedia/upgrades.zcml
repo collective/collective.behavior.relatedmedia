@@ -108,6 +108,9 @@
         <upgradeStep
             title="Remove deprecated 'related_media_base_path' folder and migrate relations"
             handler=".upgrades.migrate_base_path_relations" />
+        <upgradeStep
+            title="Update FTI behavior name"
+            handler=".upgrades.migrate_behavior_name" />
     </upgradeSteps>
 
 </configure>

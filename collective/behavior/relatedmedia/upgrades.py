@@ -1,4 +1,6 @@
 from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
+from zope.component import getAllUtilitiesRegisteredFor
 
 import logging
 import transaction
@@ -68,3 +70,20 @@ def migrate_base_path_relations(context):
         # remove base_path information
         IRelatedMediaBehavior(obj).related_media_base_path = None
         transaction.commit()
+
+
+def migrate_behavior_name(context):
+    ftis = getAllUtilitiesRegisteredFor(IDexterityFTI)
+
+    for fti in ftis:
+        updated_fti = []
+        for behavior in fti.behaviors:
+            if behavior in updated_fti:
+                continue
+            if behavior == 'collective.behavior.relatedmedia.behavior.IRelatedMedia':
+                updated_fti.append('collective.relatedmedia')
+            else:
+                updated_fti.append(behavior)
+        fti.behaviors = tuple(updated_fti)
+
+

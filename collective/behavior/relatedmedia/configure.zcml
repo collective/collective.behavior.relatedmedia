@@ -41,7 +41,6 @@
         title="Related Media"
         description="Manage content-related images and attachments"
         provides=".behavior.IRelatedMediaBehavior"
-        former_dotted_names="collective.behavior.relatedmedia.behavior.IRelatedMedia"
         />
 
     <plone:static
