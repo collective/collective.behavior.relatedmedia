@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.3.2 (unreleased)
+## 3.3.2 (2023-09-21)
 ---------------------
 
 - Added upgrade tep for renamed behavior.
