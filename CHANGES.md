@@ -5,7 +5,8 @@ Changelog
 ## 3.3.3 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fix error when invalid attachment is uploaded.
+  [petschki]
 
 
 ## 3.3.2 (2023-09-21)
