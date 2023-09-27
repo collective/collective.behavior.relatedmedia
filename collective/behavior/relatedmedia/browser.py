@@ -158,11 +158,12 @@ class RelatedAttachmentsView(RelatedBaseView):
 
         for att in self.attachments:
             if att:
+                _file = getattr(att, "file", None)
                 download_url = (
                     "{}/@@download/file/{}".format(
                         att.absolute_url(), att.file.filename
                     )
-                    if att.file
+                    if _file
                     else "#"
                 )
                 atts.append(
@@ -170,7 +171,7 @@ class RelatedAttachmentsView(RelatedBaseView):
                         url=download_url,
                         title=att.Title(),
                         size=human_readable_size(att.file.getSize())
-                        if att.file
+                        if _file
                         else "missing",
                         mimetype=att.content_type() or "application",
                         target=link_target,
