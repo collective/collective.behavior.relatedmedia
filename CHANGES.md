@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.3.3 (unreleased)
+## 3.3.3 (2023-09-27)
 ---------------------
 
 - Fix error when invalid attachment is uploaded.
