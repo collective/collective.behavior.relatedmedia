@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.3.4 (unreleased)
+## 3.3.4 (2023-10-09)
 ---------------------
 
 - Fix syncing review_state of (deprecated) related media container.
