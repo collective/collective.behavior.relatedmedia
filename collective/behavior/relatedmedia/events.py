@@ -73,7 +73,7 @@ def sync_workflow_state(obj, event):
             obj=obj.related_media_base_path.to_object,
             transition=event.status["action"],
         )
-    except api.exc.InvalidParameterError as msg:
+    except (api.exc.InvalidParameterError, api.exc.MissingParameterError) as msg:
         # possibly unsynced state ...
         logger.info(
             "Could not sync workflow state of %s: %s (%s)",

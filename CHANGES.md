@@ -5,7 +5,8 @@ Changelog
 ## 3.3.4 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fix syncing review_state of (deprecated) related media container.
+  [petschki]
 
 
 ## 3.3.3 (2023-09-27)
