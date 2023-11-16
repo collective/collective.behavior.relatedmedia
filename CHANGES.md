@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.3.5 (unreleased)
+## 3.3.5 (2023-11-16)
 ---------------------
 
 - Do not fail in update script when broken catalog brains exists.
