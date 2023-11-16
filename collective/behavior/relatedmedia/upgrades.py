@@ -38,7 +38,12 @@ def migrate_base_path_relations(context):
     _num_items = len(items)
 
     for idx, item in enumerate(items, 1):
-        obj = item.getObject()
+        try:
+            obj = item.getObject()
+        except KeyError as msg:
+            # there might be broken objects
+            logger.warning(f"Could not migrate {item.getPath()}: {msg}")
+            continue
 
         try:
             base_path = IRelatedMediaBehavior(obj).related_media_base_path

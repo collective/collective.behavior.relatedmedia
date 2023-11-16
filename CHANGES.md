@@ -5,7 +5,8 @@ Changelog
 ## 3.3.5 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Do not fail in update script when broken catalog brains exists.
+  [petschki]
 
 
 ## 3.3.4 (2023-10-09)
