@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from zope.deferredimport import deprecated
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
@@ -11,6 +10,7 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
+from zope.deferredimport import deprecated
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.interface import provider
@@ -83,7 +83,6 @@ def default_include_leadimage():
 
 @provider(IFormFieldProvider)
 class IRelatedMediaBehavior(model.Schema):
-
     related_images = RelationList(
         title=_("label_images", default="Related Images"),
         value_type=RelationChoice(
@@ -234,15 +233,21 @@ class IRelatedMediaBehavior(model.Schema):
 
 # define languageindependent fields if p.a.multilingual is installed
 if HAS_PAM:
-    alsoProvides(IRelatedMediaBehavior["related_media_base_path"], ILanguageIndependentField)
-    alsoProvides(IRelatedMediaBehavior["show_titles_as_caption"], ILanguageIndependentField)
+    alsoProvides(
+        IRelatedMediaBehavior["related_media_base_path"], ILanguageIndependentField
+    )
+    alsoProvides(
+        IRelatedMediaBehavior["show_titles_as_caption"], ILanguageIndependentField
+    )
     alsoProvides(IRelatedMediaBehavior["include_leadimage"], ILanguageIndependentField)
     alsoProvides(IRelatedMediaBehavior["first_image_scale"], ILanguageIndependentField)
     alsoProvides(
         IRelatedMediaBehavior["first_image_scale_direction"], ILanguageIndependentField
     )
     alsoProvides(IRelatedMediaBehavior["preview_scale"], ILanguageIndependentField)
-    alsoProvides(IRelatedMediaBehavior["preview_scale_direction"], ILanguageIndependentField)
+    alsoProvides(
+        IRelatedMediaBehavior["preview_scale_direction"], ILanguageIndependentField
+    )
     alsoProvides(IRelatedMediaBehavior["gallery_css_class"], ILanguageIndependentField)
 
 

@@ -47,7 +47,6 @@ class TestSetup(unittest.TestCase):
 
 
 class TestUninstall(unittest.TestCase):
-
     layer = COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING
 
     def setUp(self):
