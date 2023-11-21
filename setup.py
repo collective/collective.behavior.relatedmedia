@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
 
-version = "3.3.6.dev0"
+version = "3.4.0.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
@@ -29,10 +28,10 @@ setup(
         "Framework :: Plone :: Addon",
         "Framework :: Plone",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],

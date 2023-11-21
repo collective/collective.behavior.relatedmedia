@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
@@ -34,7 +33,7 @@ def read_js_template(path):
 
 
 @implementer(IVocabularyFactory)
-class GalleryCSSClassesVocabulary(object):
+class GalleryCSSClassesVocabulary:
     def __call__(self, context):
         return SimpleVocabulary.fromValues(
             api.portal.get_registry_record(
@@ -251,7 +250,7 @@ if HAS_PAM:
     alsoProvides(IRelatedMediaBehavior["gallery_css_class"], ILanguageIndependentField)
 
 
-# mark old name as depreacted
+# mark old name as deprecated
 deprecated(
     "Renamed to 'IRelatedMediaBehavior'. Will be removed in Version 4.",
     IRelatedMedia="collective.behavior.relatedmedia.behavior:IRelatedMediaBehavior",

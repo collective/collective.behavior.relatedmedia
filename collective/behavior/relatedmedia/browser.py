@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.behavior import IRelatedMedia
@@ -28,7 +27,7 @@ import json
 
 class RelatedBaseView(BrowserView):
     def __init__(self, context, request):
-        super(RelatedBaseView, self).__init__(context, request)
+        super().__init__(context, request)
 
         if IOccurrence.providedBy(self.context):
             self.context = self.context.aq_parent
@@ -244,4 +243,4 @@ class UploadViewlet(ViewletBase):
     def render(self):
         if not IViewView.providedBy(self.view):
             return ""
-        return super(UploadViewlet, self).render()
+        return super().render()

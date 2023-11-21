@@ -1,21 +1,37 @@
-<div id="related-images" tal:attributes="class view/gallery_css_klass|nothing"
-     tal:define="images view/images|nothing"
+<div id="related-images"
+     tal:define="
+       images view/images|nothing;
+     "
      tal:condition="python:images or view.can_upload"
-     i18n:domain="collective.behavior.relatedmedia">
+     tal:attributes="
+       class view/gallery_css_klass|nothing;
+     "
+     i18n:domain="collective.behavior.relatedmedia"
+>
 
-    <a tal:repeat="img images" class="image-item" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
-       tal:attributes="href img/url;
-                       data-caption img/title;
-                       class python:'image-item%s' % (repeat['img'].start and ' first' or '')">
-       <img tal:replace="structure img/tag" />
-       <span class="caption"
-             tal:condition="img/show_caption|nothing">
-          <span class="caption-title">${img/title}</span>
-          <span class="caption-description">${img/description}</span>
-        </span>
-    </a>
+  <a class="image-item"
+     rel="prettyPhoto[relatedImages]"
+     data-fancybox="relatedImages"
+     tal:repeat="img images"
+     tal:attributes="
+       href img/url;
+       data-caption img/title;
+       class python:'image-item%s' % (repeat['img'].start and ' first' or '');
+     "
+  >
+    <img tal:replace="structure img/tag" />
+    <span class="caption"
+          tal:condition="img/show_caption|nothing"
+    >
+      <span class="caption-title">${img/title}</span>
+      <span class="caption-description">${img/description}</span>
+    </span>
+  </a>
 
-    <div tal:condition="not:images" class="discreet" i18n:translate="">
+  <div class="discreet"
+       tal:condition="not:images"
+       i18n:translate=""
+  >
         No images uploaded yet
-    </div>
+  </div>
 </div>

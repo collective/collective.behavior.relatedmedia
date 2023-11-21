@@ -1,11 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
-             prefix="collective.behavior.relatedmedia" remove="True" />
+  <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
+           prefix="collective.behavior.relatedmedia"
+           remove="True"
+  />
 
-    <records
-          prefix="plone.resources/relatedmedia"
-          interface='Products.CMFPlone.interfaces.IResourceRegistry' remove="True" />
+  <records interface="Products.CMFPlone.interfaces.IResourceRegistry"
+           prefix="plone.resources/relatedmedia"
+           remove="True"
+  />
 
 </registry>

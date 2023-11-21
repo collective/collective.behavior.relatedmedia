@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IBundleRegistry"
+      prefix="plone.bundles/relatedmedia">
+    <value key="enabled">True</value>
+    <value key="jscompilation">++plone++collective.relatedmedia/bundles/relatedmedia-remote.min.js</value>
+  </records>
+
+</registry>

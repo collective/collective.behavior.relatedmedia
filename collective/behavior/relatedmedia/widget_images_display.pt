@@ -1,1 +1,1 @@
-<div tal:replace="structure context/@@relatedImages" />
+<div tal:replace="structure context/@@relatedImages"></div>

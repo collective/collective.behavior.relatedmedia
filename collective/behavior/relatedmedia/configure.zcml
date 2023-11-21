@@ -1,179 +1,194 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="collective.behavior.relatedmedia">
+    i18n_domain="collective.behavior.relatedmedia"
+    >
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <gs:registerProfile
-        name="default"
-        title="Related media behavior"
-        directory="profiles/default"
-        description="Manage content-related images and attachments"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        i18n:attributes="title"
-        />
+  <gs:registerProfile
+      name="default"
+      title="Related media behavior"
+      description="Manage content-related images and attachments"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      i18n:attributes="title"
+      />
 
-    <gs:registerProfile
-        name="uninstall"
-        title="Related media behavior"
-        directory="profiles/uninstall"
-        description="Uninstallation profile"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <gs:registerProfile
+      name="uninstall"
+      title="Related media behavior"
+      description="Uninstallation profile"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
 
-    <include package="Products.CMFCore"/>
-    <include package="plone.behavior" file="meta.zcml"/>
+  <include package="Products.CMFCore" />
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
-    <utility
-        provides="zope.schema.interfaces.IVocabularyFactory"
-        factory=".behavior.GalleryCSSClassesVocabulary"
-        name="collective.relatedmedia.gallerycssclasses"
-        />
+  <utility
+      factory=".behavior.GalleryCSSClassesVocabulary"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      name="collective.relatedmedia.gallerycssclasses"
+      />
 
-    <plone:behavior
-        name="collective.relatedmedia"
-        title="Related Media"
-        description="Manage content-related images and attachments"
-        provides=".behavior.IRelatedMediaBehavior"
-        />
+  <plone:behavior
+      name="collective.relatedmedia"
+      title="Related Media"
+      description="Manage content-related images and attachments"
+      provides=".behavior.IRelatedMediaBehavior"
+      />
 
-    <plone:static
-        directory="resources"
-        name="collective.behavior.relatedmedia.resources"
-        type="plone"
-        />
+  <plone:static
+      directory="resources"
+      name="collective.behavior.relatedmedia.resources"
+      type="plone"
+      />
 
-    <!-- related_images view/viewlet/widget -->
-    <browser:page
-        name="relatedImages"
-        for="*"
-        class=".browser.RelatedImagesView"
-        template="related_images.pt"
-        permission="zope2.View"
-        />
+  <!-- related_images view/viewlet/widget -->
+  <browser:page
+      name="relatedImages"
+      for="*"
+      class=".browser.RelatedImagesView"
+      template="related_images.pt"
+      permission="zope2.View"
+      />
 
-    <browser:viewlet
-        name="collective.behavior.related_images"
-        for="*"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        template="widget_images_display.pt"
-        permission="zope2.View"
-        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
-        />
+  <browser:viewlet
+      name="collective.behavior.related_images"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+      template="widget_images_display.pt"
+      permission="zope2.View"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+      />
 
-    <include package="z3c.form" file="meta.zcml"/>
+  <include
+      package="z3c.form"
+      file="meta.zcml"
+      />
 
-    <z3c:widgetTemplate
-        mode="display"
-        field="z3c.relationfield.interfaces.IRelationList"
-        widget=".widget.IRelatedImagesWidget"
-        template="widget_images_display.pt"
-        />
+  <z3c:widgetTemplate
+      field="z3c.relationfield.interfaces.IRelationList"
+      widget=".widget.IRelatedImagesWidget"
+      template="widget_images_display.pt"
+      mode="display"
+      />
 
-    <!-- related_attachments view/viewlet/widget -->
-    <browser:page
-        name="relatedAttachments"
-        for="*"
-        class=".browser.RelatedAttachmentsView"
-        template="related_attachments.pt"
-        permission="zope2.View"
-        />
+  <!-- related_attachments view/viewlet/widget -->
+  <browser:page
+      name="relatedAttachments"
+      for="*"
+      class=".browser.RelatedAttachmentsView"
+      template="related_attachments.pt"
+      permission="zope2.View"
+      />
 
-    <browser:viewlet
-        name="collective.behavior.related_attachments"
-        for="*"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        template="widget_attachments_display.pt"
-        permission="zope2.View"
-        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
-        />
+  <browser:viewlet
+      name="collective.behavior.related_attachments"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+      template="widget_attachments_display.pt"
+      permission="zope2.View"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+      />
 
-    <z3c:widgetTemplate
-        mode="display"
-        field="z3c.relationfield.interfaces.IRelationList"
-        widget=".widget.IRelatedAttachmentsWidget"
-        template="widget_attachments_display.pt"
-        />
+  <z3c:widgetTemplate
+      field="z3c.relationfield.interfaces.IRelationList"
+      widget=".widget.IRelatedAttachmentsWidget"
+      template="widget_attachments_display.pt"
+      mode="display"
+      />
 
-    <!-- auto-generated related_media_base_path on creation -->
-    <subscriber
-        for=".behavior.IRelatedMedia
-             zope.lifecycleevent.interfaces.IObjectAddedEvent"
-        handler=".events.create_media_base_path"
-        />
+  <!-- auto-generated related_media_base_path on creation -->
+  <subscriber
+      for=".behavior.IRelatedMedia
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".events.create_media_base_path"
+      />
 
-    <subscriber
-        for=".behavior.IRelatedMedia
-             Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-        handler=".events.sync_workflow_state"
-        />
+  <subscriber
+      for=".behavior.IRelatedMedia
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".events.sync_workflow_state"
+      />
 
-    <subscriber
-        for=".behavior.IRelatedMedia
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.modified"
-        />
+  <subscriber
+      for=".behavior.IRelatedMedia
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".events.modified"
+      />
 
-    <!-- reuse data converter from plone.app.z3cform.converters -->
-    <adapter
-        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
-        for="z3c.relationfield.interfaces.IRelationChoice
-             collective.behavior.relatedmedia.widget.RelatedImagesWidget"
-        />
+  <!-- reuse data converter from plone.app.z3cform.converters -->
+  <adapter
+      factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
+      for="z3c.relationfield.interfaces.IRelationChoice
+           collective.behavior.relatedmedia.widget.RelatedImagesWidget"
+      />
 
-    <adapter
-        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
-        for="z3c.relationfield.interfaces.IRelationList
-             collective.behavior.relatedmedia.widget.RelatedImagesWidget"
-        />
+  <adapter
+      factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+      for="z3c.relationfield.interfaces.IRelationList
+           collective.behavior.relatedmedia.widget.RelatedImagesWidget"
+      />
 
-    <adapter
-        factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
-        for="z3c.relationfield.interfaces.IRelationChoice
-             collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
-        />
+  <adapter
+      factory="plone.app.z3cform.converters.RelationChoiceRelatedItemsWidgetConverter"
+      for="z3c.relationfield.interfaces.IRelationChoice
+           collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
+      />
 
-    <adapter
-        factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
-        for="z3c.relationfield.interfaces.IRelationList
-             collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
-        />
+  <adapter
+      factory="plone.app.z3cform.converters.RelatedItemsDataConverter"
+      for="z3c.relationfield.interfaces.IRelationList
+           collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
+      />
 
-    <!-- convenience: upload viewlet for view mode -->
-    <browser:viewlet
-        name="collective.behavior.relatedmedia.uploader"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        class=".browser.UploadViewlet"
-        template="viewlet_uploader.pt"
-        for=".behavior.IRelatedMediaBehavior"
-        permission="cmf.ModifyPortalContent"
-        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
-        />
+  <!-- convenience: upload viewlet for view mode -->
+  <browser:viewlet
+      name="collective.behavior.relatedmedia.uploader"
+      for=".behavior.IRelatedMediaBehavior"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      class=".browser.UploadViewlet"
+      template="viewlet_uploader.pt"
+      permission="cmf.ModifyPortalContent"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+      />
 
-    <!-- uploader -->
-    <browser:page
-        name="upload_related_media"
-        for=".behavior.IRelatedMedia"
-        class=".browser.Uploader"
-        permission="zope2.View"
-        layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
-        />
+  <!-- uploader -->
+  <browser:page
+      name="upload_related_media"
+      for=".behavior.IRelatedMedia"
+      class=".browser.Uploader"
+      permission="zope2.View"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+      />
 
-    <!-- controlpanel -->
-    <browser:page
-        name="relatedmedia-controlpanel"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".browser.RelatedMediaControlPanel"
-        permission="cmf.ManagePortal"
-        />
+  <!-- controlpanel -->
+  <browser:page
+      name="relatedmedia-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".browser.RelatedMediaControlPanel"
+      permission="cmf.ManagePortal"
+      />
 
+  <!-- outputfilter -->
+  <adapter
+      factory=".transform.RelatedImagesFilter"
+      provides="plone.outputfilters.interfaces.IFilter"
+      for="*
+           *"
+      name="related_images_filter"
+      />
 
-    <include file="upgrades.zcml" />
+  <include file="upgrades.zcml" />
 
 </configure>

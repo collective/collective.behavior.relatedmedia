@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from plone import api
 from plone.dexterity.utils import createContentInContainer
@@ -51,6 +50,7 @@ def get_media_root(context, as_path=False):
                 exclude_from_nav=True,
                 checkConstraints=False,
             )
+            media_container.setLayout("tabular_view")
             continue
 
         media_container = media_container.get(f_id)

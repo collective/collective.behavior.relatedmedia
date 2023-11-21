@@ -1,0 +1,10 @@
+None
+
+  <browser:page
+      name="relatedmedia-pattern-demo"
+      for="*"
+      template="pattern-demo.pt"
+      permission="zope2.View"
+      />
+
+</configure>
