@@ -74,6 +74,12 @@ class IRelatedMediaSettings(Interface):
         required=False,
     )
 
+    show_images_viewlet_default = schema.Bool(
+        title=_("Show images in viewlet"),
+        default=True,
+        required=False,
+    )
+
     include_leadimage_default = schema.Bool(
         title=_("Include leadimage in image gallery?"),
         default=True,

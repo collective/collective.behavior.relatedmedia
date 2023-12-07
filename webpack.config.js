@@ -17,7 +17,7 @@ module.exports = () => {
         config: config,
         package_json: package_json,
     });
-    config.output.path = path.resolve(__dirname, "src/collective/relatedmedia/browser/static/bundles");
+    config.output.path = path.resolve(__dirname, "collective/behavior/relatedmedia/resources/bundles");
 
     config.plugins.push(
         mf_config({
@@ -33,7 +33,7 @@ module.exports = () => {
     );
 
     if (process.env.NODE_ENV === "development") {
-        config.devServer.port = "3001";
+        config.devServer.port = "8011";
         config.devServer.static.directory = path.resolve(__dirname, "./resources/");
     }
 

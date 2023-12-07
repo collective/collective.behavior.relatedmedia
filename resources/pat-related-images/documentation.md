@@ -13,4 +13,4 @@ A more detailed documentation on how to use it goes here.
 
 | Property       | Default Value | Values | Type              | Description                   |
 | -------------- | ------------- | ------ | ----------------- | ----------------------------- |
-| example_option | Stranger      |        | String            | Example configuration option. |
+| uuids          |               |        | String            | "," concatented list of image uuids to show as gallery |

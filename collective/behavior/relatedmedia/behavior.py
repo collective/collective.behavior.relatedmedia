@@ -74,6 +74,12 @@ def default_titles_as_caption():
     )
 
 
+def default_show_images_viewlet():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.show_images_viewlet", default=True
+    )
+
+
 def default_include_leadimage():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.include_leadimage_default", default=True
@@ -160,6 +166,12 @@ class IRelatedMediaBehavior(model.Schema):
         required=False,
     )
 
+    show_images_viewlet = schema.Bool(
+        title=_("Show related images in viewlet"),
+        defaultFactory=default_show_images_viewlet,
+        required=False,
+    )
+
     include_leadimage = schema.Bool(
         title=_("Include leadimage in image gallery?"),
         defaultFactory=default_include_leadimage,
@@ -218,6 +230,7 @@ class IRelatedMediaBehavior(model.Schema):
         fields=[
             "related_images",
             "related_attachments",
+            "show_images_viewlet",
             "show_titles_as_caption",
             "include_leadimage",
             "first_image_scale",

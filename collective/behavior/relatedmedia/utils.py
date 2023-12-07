@@ -87,7 +87,7 @@ def get_related_media(context, portal_type=None):
         except Exception:
             rel_media = []
     if portal_type in ("Image", None):
-        rel_media += [i.to_object for i in rm_behavior.related_images]
+        rel_media += [i.to_object for i in rm_behavior.related_images if i.to_object]
     elif portal_type in ("File", None):
-        rel_media += [i.to_object for i in rm_behavior.related_attachments]
+        rel_media += [i.to_object for i in rm_behavior.related_attachments if i.to_object]
     return rel_media

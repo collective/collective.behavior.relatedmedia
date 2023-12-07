@@ -2,22 +2,19 @@
      tal:define="
        images view/images|nothing;
      "
-     tal:condition="python:images or view.can_upload"
+     tal:condition="python:view.show_images_viewlet and (images or view.can_upload)"
      tal:attributes="
        class view/gallery_css_klass|nothing;
      "
      i18n:domain="collective.behavior.relatedmedia"
 >
 
-  <a class="image-item"
-     rel="prettyPhoto[relatedImages]"
+  <a rel="prettyPhoto[relatedImages]"
      data-fancybox="relatedImages"
      tal:repeat="img images"
-     tal:attributes="
-       href img/url;
-       data-caption img/title;
-       class python:'image-item%s' % (repeat['img'].start and ' first' or '');
-     "
+     data-caption="${img/title}"
+     href="${img/url}"
+     class="image-item uuid-${img/uuid} ${python:repeat['img'].start and ' first' or ''}"
   >
     <img tal:replace="structure img/tag" />
     <span class="caption"

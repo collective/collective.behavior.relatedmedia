@@ -6,15 +6,12 @@
     "node": ">=12.20.0"
   },
   "dependencies": {
-    "@patternslib/patternslib": ">=9.7.0-alpha.0",
-    "@plone/mockup": ">=5.0.0-alpha.24"
+    "@patternslib/patternslib": "^9.9.10",
+    "@plone/mockup": "^5.1.6",
+    "slick-carousel": "1.8.1"
   },
   "devDependencies": {
-    "@patternslib/dev": "<4"
-  },
-  "resolutions": {
-      "@patternslib/patternslib": "<10",
-      "jquery": "<4"
+    "@patternslib/dev": "^3.5.3"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
@@ -22,8 +19,8 @@
     "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
   },
   "keywords": [
-      "patternslib",
-      "mockup",
-      "plone"
+    "patternslib",
+    "mockup",
+    "plone"
   ]
 }

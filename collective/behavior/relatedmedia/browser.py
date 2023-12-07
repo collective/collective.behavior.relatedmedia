@@ -60,6 +60,10 @@ class RelatedImagesView(RelatedBaseView):
         )
         return dflt_css_class
 
+    @property
+    def show_images_viewlet(self):
+        return self.request.get("ajax_load") or (self.behavior and self.behavior.show_images_viewlet)
+
     @memoize
     def images(self):
         rm_behavior = self.behavior
@@ -73,6 +77,7 @@ class RelatedImagesView(RelatedBaseView):
         first_img_title = ""
         first_img_scales = None
         first_img_description = ""
+        first_img_uuid = ""
         further_images = []
         gallery = []
 
@@ -80,6 +85,7 @@ class RelatedImagesView(RelatedBaseView):
             # include leadimage if no related images are defined
             first_img_scales = context.restrictedTraverse("@@images")
             first_img_title = ILeadImage(context).image_caption
+            first_img_uuid = context.UID()
             further_images = imgs
 
         if not first_img_scales and len(imgs):
@@ -88,6 +94,7 @@ class RelatedImagesView(RelatedBaseView):
                 first_img_scales = first_img.restrictedTraverse("@@images")
                 first_img_title = first_img.Title()
                 first_img_description = first_img.Description()
+                first_img_uuid = first_img.UID()
                 further_images = imgs[1:]
 
         if first_img_scales:
@@ -112,6 +119,7 @@ class RelatedImagesView(RelatedBaseView):
                         show_caption=show_caption,
                         title=first_img_title,
                         description=first_img_description,
+                        uuid=first_img_uuid,
                     )
                 )
 
@@ -135,6 +143,7 @@ class RelatedImagesView(RelatedBaseView):
                             show_caption=show_caption,
                             title=img.Title(),
                             description=img.Description(),
+                            uuid=img.UID,
                         )
                     )
 

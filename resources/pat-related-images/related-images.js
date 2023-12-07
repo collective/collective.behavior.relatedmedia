@@ -3,7 +3,7 @@ import Parser from "@patternslib/patternslib/src/core/parser";
 import registry from "@patternslib/patternslib/src/core/registry";
 
 export const parser = new Parser("related-images");
-parser.addArgument("example-option", "Stranger");
+parser.addArgument("uuids", "");
 
 class Pattern extends BasePattern {
     static name = "related-images";
@@ -13,15 +13,39 @@ class Pattern extends BasePattern {
     async init() {
         import("./related-images.scss");
 
-        // Try to avoid jQuery, but here is how to import it.
-        // eslint-disable-next-line no-unused-vars
-        const $ = (await import("jquery")).default;
+        await this.uploader_event();
 
         // The options are automatically created, if parser is defined.
-        const example_option = this.options.exampleOption;
         this.el.innerHTML = `
-            <p>hello ${example_option}, this is pattern ${this.name} speaking.</p>
+            <pre class="text-muted">will replace ${this.options.uuids} with image gallery soon !</pre>
         `;
+    }
+
+    async uploader_event() {
+        const $ = (await import("jquery")).default;
+
+        $(".pat-upload").on("uploadAllCompleted", function (response, path) {
+            // reload viewlets on upload
+            var base_url = $(this).data("relmedia-baseurl");
+            var $relimages = $("#related-images");
+            if ($relimages.length) {
+                $.ajax({
+                    url: base_url + "/@@relatedImages",
+                    success: function (response) {
+                        $relimages.replaceWith($(response).siblings("#related-images"));
+                    }
+                });
+            }
+            var $relatts = $("#related-attachments");
+            if ($relatts.length) {
+                $.ajax({
+                    url: base_url + "/@@relatedAttachments",
+                    success: function (response) {
+                        $relatts.replaceWith($(response).find("#related-attachments"));
+                    }
+                });
+            }
+        });
     }
 }
 
