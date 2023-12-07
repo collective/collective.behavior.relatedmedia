@@ -1,6 +1,7 @@
 recursive-include collective *
 recursive-include docs *
 include *
+recursive-exclude resources *
 exclude *-mxdev.txt
 exclude .installed.txt
 exclude .*.js

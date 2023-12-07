@@ -8,13 +8,15 @@ import re
 
 @implementer(IFilter)
 class RelatedImagesFilter:
-
     def __init__(self, context=None, request=None):
         self.context = context
         self.request = request
 
     # IFilter implementation
     order = 900
+
+    def is_enabled(self):
+        return False
 
     def __call__(self, data):
         data = re.sub(r"<([^<>\s]+?)\s*/>", self._shorttag_replace, data)

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<registry>
-  <records
-      interface="Products.CMFPlone.interfaces.IBundleRegistry"
-      prefix="plone.bundles/relatedmedia"
-      remove="true"
-      />
-</registry>
