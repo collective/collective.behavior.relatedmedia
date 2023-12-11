@@ -148,10 +148,10 @@ class RelatedImagesView(RelatedBaseView):
                     )
 
         # pattern feature to filter special uuids to display with ?uuids=uuid1,uuid2,...
-        uuid_filter = self.request.get("uuids", "").split(",")
+        uuid_filter = self.request.get("uuids")
 
         if uuid_filter:
-            return [it for it in gallery if it["uuid"] in uuid_filter]
+            return [it for it in gallery if it["uuid"] in uuid_filter.split(",")]
 
         return gallery
 
