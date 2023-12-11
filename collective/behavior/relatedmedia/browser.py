@@ -143,9 +143,15 @@ class RelatedImagesView(RelatedBaseView):
                             show_caption=show_caption,
                             title=img.Title(),
                             description=img.Description(),
-                            uuid=img.UID,
+                            uuid=img.UID(),
                         )
                     )
+
+        # pattern feature to filter special uuids to display with ?uuids=uuid1,uuid2,...
+        uuid_filter = self.request.get("uuids", "").split(",")
+
+        if uuid_filter:
+            return [it for it in gallery if it["uuid"] in uuid_filter]
 
         return gallery
 

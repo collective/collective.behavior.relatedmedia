@@ -1,6 +1,8 @@
 import { BasePattern } from "@patternslib/patternslib/src/core/basepattern";
 import Parser from "@patternslib/patternslib/src/core/parser";
 import registry from "@patternslib/patternslib/src/core/registry";
+import $ from "jquery";
+import "slick-carousel";
 
 export const parser = new Parser("related-images");
 parser.addArgument("uuids", "");
@@ -14,16 +16,10 @@ class Pattern extends BasePattern {
         import("./related-images.scss");
 
         await this.uploader_event();
-
-        // The options are automatically created, if parser is defined.
-        this.el.innerHTML = `
-            <pre class="text-muted">will replace ${this.options.uuids} with image gallery soon !</pre>
-        `;
+        await this.load_gallery();
     }
 
     async uploader_event() {
-        const $ = (await import("jquery")).default;
-
         $(".pat-upload").on("uploadAllCompleted", function (response, path) {
             // reload viewlets on upload
             var base_url = $(this).data("relmedia-baseurl");
@@ -45,6 +41,29 @@ class Pattern extends BasePattern {
                     }
                 });
             }
+        });
+    }
+
+    async load_gallery() {
+        const uuids = this.options?.uuids;
+        const base_url = document.querySelector("body").dataset.baseUrl;
+        const req = new Request(`${base_url}/@@relatedImages?uuids=${uuids}&ajax_load=${new Date().getTime()}`);
+        fetch(req)
+            .then((response) => response.text())
+            .then(async (text) => {
+                this.el.innerHTML = text;
+                await this.init_slick(this.el);
+            });
+    }
+
+    async init_slick(el) {
+        $(".related-images-slider .slick-slider", $(this.el)).slick({
+            infinite: false,
+            slidesToShow: 1,
+            centerMode: false,
+            variableWidth: true,
+            prevArrow: el.querySelector(".related-images-slider .slider-prev"),
+            nextArrow: el.querySelector(".related-images-slider .slider-next"),
         });
     }
 }
