@@ -15,7 +15,7 @@ from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
-
+from z3c.form.interfaces import HIDDEN_MODE
 import os
 
 
@@ -168,6 +168,9 @@ class IRelatedMediaBehavior(model.Schema):
 
     show_images_viewlet = schema.Bool(
         title=_("Show related images in viewlet"),
+        description=_(
+            "Turn this of if you place an image gallery inside TinyMCE via "
+            "gallery template to avoid duplicated content."),
         defaultFactory=default_show_images_viewlet,
         required=False,
     )
@@ -240,6 +243,16 @@ class IRelatedMediaBehavior(model.Schema):
             "gallery_css_class",
             "related_media_base_path",
         ],
+    )
+
+
+class IGalleryEditSchema(IRelatedMediaBehavior):
+
+    form.mode(
+        related_attachments=HIDDEN_MODE,
+        show_images_viewlet=HIDDEN_MODE,
+        gallery_css_class=HIDDEN_MODE,
+        related_media_base_path=HIDDEN_MODE,
     )
 
 

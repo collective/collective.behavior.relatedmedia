@@ -1,6 +1,6 @@
 from Acquisition import aq_inner
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.behavior import IRelatedMedia
+from collective.behavior.relatedmedia.behavior import IGalleryEditSchema, IRelatedMediaBehavior
 from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from collective.behavior.relatedmedia.utils import get_media_root
@@ -11,11 +11,13 @@ from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.base.utils import human_readable_size
+from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
+from plone.z3cform import layout
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from z3c.relationfield import RelationValue
@@ -34,11 +36,11 @@ class RelatedBaseView(BrowserView):
 
     @property
     def behavior(self):
-        return IRelatedMedia(aq_inner(self.context), None)
+        return IRelatedMediaBehavior(aq_inner(self.context), None)
 
     @property
     def can_upload(self):
-        return IRelatedMedia.providedBy(self.context) and api.user.has_permission(
+        return IRelatedMediaBehavior.providedBy(self.context) and api.user.has_permission(
             "Modify portal content", obj=self.context
         )
 
@@ -63,6 +65,9 @@ class RelatedImagesView(RelatedBaseView):
     @property
     def show_images_viewlet(self):
         return self.request.get("ajax_load") or (self.behavior and self.behavior.show_images_viewlet)
+
+    def can_edit(self):
+        return api.user.has_permission("Modify portal content")
 
     @memoize
     def images(self):
@@ -156,6 +161,17 @@ class RelatedImagesView(RelatedBaseView):
         return gallery
 
 
+class GalleryEditForm(DefaultEditForm):
+    schema = IGalleryEditSchema
+
+    @property
+    def additionalSchemata(self):
+        return ()
+
+
+GalleryEditView = layout.wrap_form(GalleryEditForm)
+
+
 class RelatedAttachmentsView(RelatedBaseView):
     @property
     def attachments(self):
@@ -220,7 +236,7 @@ class Uploader(RelatedBaseView):
             return json.dumps(
                 dict(
                     status="error",
-                    message="IRelatedMedia behavior not activated for this context",
+                    message="IRelatedMediaBehavior behavior not activated for this context",
                 )
             )
 

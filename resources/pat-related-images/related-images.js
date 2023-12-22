@@ -53,6 +53,7 @@ class Pattern extends BasePattern {
             .then(async (text) => {
                 this.el.innerHTML = text;
                 await this.init_slick(this.el);
+                registry.scan(this.el);
             });
     }
 

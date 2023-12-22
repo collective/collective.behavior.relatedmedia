@@ -62,6 +62,13 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="edit-gallery"
+      for="*"
+      class=".browser.GalleryEditView"
+      permission="cmf.ModifyPortalContent"
+      />
+
   <browser:viewlet
       name="collective.behavior.related_images"
       for="*"

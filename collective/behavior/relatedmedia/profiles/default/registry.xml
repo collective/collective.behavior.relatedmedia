@@ -41,4 +41,22 @@
       <element>data-pat-related-images</element>
     </value>
   </records>
+
+  <!-- the following adds the tinymce template to the registry.
+       it is deactivated to prevent current values. Use this in your
+       integration package or addon.
+  -->
+  <records prefix="plone" interface="plone.base.interfaces.controlpanel.ITinyMCESchema">
+      <value key="templates">[
+{
+    "title": "Gallery",
+    "description": "Adds a placeholder for a gallery. You can choose which images to display.",
+    "url": "++plone++collective.behavior.relatedmedia.resources/tinymce_gallery.html"
+}
+]</value>
+
+  <value key="plugins" purge="false">
+    <element>template</element>
+  </value>
+</records>
 </registry>
