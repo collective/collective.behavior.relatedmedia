@@ -167,7 +167,7 @@ class IRelatedMediaBehavior(model.Schema):
     )
 
     show_images_viewlet = schema.Bool(
-        title=_("Show related images in viewlet"),
+        title=_("Show images in viewlet"),
         description=_(
             "Turn this of if you place an image gallery inside TinyMCE via "
             "gallery template to avoid duplicated content."),
@@ -226,6 +226,9 @@ class IRelatedMediaBehavior(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         required=False,
     )
+
+    # outdated
+    form.omitted("related_media_base_path")
 
     model.fieldset(
         "relatedmedia",
