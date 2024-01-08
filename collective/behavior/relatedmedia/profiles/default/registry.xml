@@ -25,7 +25,7 @@
            prefix="plone.bundles/relatedmedia"
   >
     <value key="enabled">True</value>
-    <value key="expression">python: member is not None</value>
+    <value key="expression"></value>
     <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/bundles/relatedmedia-remote.min.js</value>
     <value key="csscompilation" />
     <value key="load_async">False</value>
