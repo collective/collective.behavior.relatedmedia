@@ -2,10 +2,13 @@ Changelog
 =========
 
 
-## 3.3.6 (unreleased)
+## 3.4.0 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+Features:
+
+- Outputfilter and pattern for related image gallery.
+  [petschki]
 
 
 ## 3.3.5 (2023-11-16)
@@ -216,7 +219,7 @@ Features:
 1.0 (2018-05-23)
 ----------------
 
-- Fix issue with disapearing images when 'include_leadimage' was deactivated
+- Fix issue with disappearing images when 'include_leadimage' was deactivated
   [petschki]
 
 - support for Event Occurrences.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.behavior.relatedmedia import messageFactory as _
 from collective.behavior.relatedmedia.utils import media_root_path
 from collective.behavior.relatedmedia.widget import RelatedAttachmentsFieldWidget
@@ -7,6 +6,7 @@ from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from z3c.form.interfaces import HIDDEN_MODE
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -34,7 +34,7 @@ def read_js_template(path):
 
 
 @implementer(IVocabularyFactory)
-class GalleryCSSClassesVocabulary(object):
+class GalleryCSSClassesVocabulary:
     def __call__(self, context):
         return SimpleVocabulary.fromValues(
             api.portal.get_registry_record(
@@ -72,6 +72,12 @@ def default_preview_scale_direction():
 def default_titles_as_caption():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.show_titles_as_caption_default", default=False
+    )
+
+
+def default_show_images_viewlet():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.show_images_viewlet", default=True
     )
 
 
@@ -161,6 +167,16 @@ class IRelatedMediaBehavior(model.Schema):
         required=False,
     )
 
+    show_images_viewlet = schema.Bool(
+        title=_("Show images in viewlet"),
+        description=_(
+            "Turn this of if you place an image gallery inside TinyMCE via "
+            "gallery template to avoid duplicated content."
+        ),
+        defaultFactory=default_show_images_viewlet,
+        required=False,
+    )
+
     include_leadimage = schema.Bool(
         title=_("Include leadimage in image gallery?"),
         defaultFactory=default_include_leadimage,
@@ -213,12 +229,16 @@ class IRelatedMediaBehavior(model.Schema):
         required=False,
     )
 
+    # outdated
+    form.omitted("related_media_base_path")
+
     model.fieldset(
         "relatedmedia",
         label=_("Related Media"),
         fields=[
             "related_images",
             "related_attachments",
+            "show_images_viewlet",
             "show_titles_as_caption",
             "include_leadimage",
             "first_image_scale",
@@ -228,6 +248,15 @@ class IRelatedMediaBehavior(model.Schema):
             "gallery_css_class",
             "related_media_base_path",
         ],
+    )
+
+
+class IGalleryEditSchema(IRelatedMediaBehavior):
+    form.mode(
+        related_attachments=HIDDEN_MODE,
+        show_images_viewlet=HIDDEN_MODE,
+        gallery_css_class=HIDDEN_MODE,
+        related_media_base_path=HIDDEN_MODE,
     )
 
 
@@ -251,7 +280,7 @@ if HAS_PAM:
     alsoProvides(IRelatedMediaBehavior["gallery_css_class"], ILanguageIndependentField)
 
 
-# mark old name as depreacted
+# mark old name as deprecated
 deprecated(
     "Renamed to 'IRelatedMediaBehavior'. Will be removed in Version 4.",
     IRelatedMedia="collective.behavior.relatedmedia.behavior:IRelatedMediaBehavior",

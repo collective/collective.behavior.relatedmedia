@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from plone import api
 from plone.dexterity.utils import createContentInContainer
@@ -51,6 +50,7 @@ def get_media_root(context, as_path=False):
                 exclude_from_nav=True,
                 checkConstraints=False,
             )
+            media_container.setLayout("tabular_view")
             continue
 
         media_container = media_container.get(f_id)
@@ -87,7 +87,9 @@ def get_related_media(context, portal_type=None):
         except Exception:
             rel_media = []
     if portal_type in ("Image", None):
-        rel_media += [i.to_object for i in rm_behavior.related_images]
+        rel_media += [i.to_object for i in rm_behavior.related_images if i.to_object]
     elif portal_type in ("File", None):
-        rel_media += [i.to_object for i in rm_behavior.related_attachments]
+        rel_media += [
+            i.to_object for i in rm_behavior.related_attachments if i.to_object
+        ]
     return rel_media

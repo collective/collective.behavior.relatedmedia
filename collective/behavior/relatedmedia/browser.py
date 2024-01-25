@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.behavior import IRelatedMedia
+from collective.behavior.relatedmedia.behavior import IGalleryEditSchema
+from collective.behavior.relatedmedia.behavior import IRelatedMediaBehavior
 from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from collective.behavior.relatedmedia.utils import get_media_root
@@ -12,11 +12,13 @@ from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.base.utils import human_readable_size
+from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
+from plone.z3cform import layout
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from z3c.relationfield import RelationValue
@@ -28,20 +30,20 @@ import json
 
 class RelatedBaseView(BrowserView):
     def __init__(self, context, request):
-        super(RelatedBaseView, self).__init__(context, request)
+        super().__init__(context, request)
 
         if IOccurrence.providedBy(self.context):
             self.context = self.context.aq_parent
 
     @property
     def behavior(self):
-        return IRelatedMedia(aq_inner(self.context), None)
+        return IRelatedMediaBehavior(aq_inner(self.context), None)
 
     @property
     def can_upload(self):
-        return IRelatedMedia.providedBy(self.context) and api.user.has_permission(
-            "Modify portal content", obj=self.context
-        )
+        return IRelatedMediaBehavior.providedBy(
+            self.context
+        ) and api.user.has_permission("Modify portal content", obj=self.context)
 
 
 class RelatedImagesView(RelatedBaseView):
@@ -61,6 +63,15 @@ class RelatedImagesView(RelatedBaseView):
         )
         return dflt_css_class
 
+    @property
+    def show_images_viewlet(self):
+        return self.request.get("ajax_load") or (
+            self.behavior and self.behavior.show_images_viewlet
+        )
+
+    def can_edit(self):
+        return api.user.has_permission("Modify portal content")
+
     @memoize
     def images(self):
         rm_behavior = self.behavior
@@ -74,6 +85,7 @@ class RelatedImagesView(RelatedBaseView):
         first_img_title = ""
         first_img_scales = None
         first_img_description = ""
+        first_img_uuid = ""
         further_images = []
         gallery = []
 
@@ -81,6 +93,7 @@ class RelatedImagesView(RelatedBaseView):
             # include leadimage if no related images are defined
             first_img_scales = context.restrictedTraverse("@@images")
             first_img_title = ILeadImage(context).image_caption
+            first_img_uuid = context.UID()
             further_images = imgs
 
         if not first_img_scales and len(imgs):
@@ -89,6 +102,7 @@ class RelatedImagesView(RelatedBaseView):
                 first_img_scales = first_img.restrictedTraverse("@@images")
                 first_img_title = first_img.Title()
                 first_img_description = first_img.Description()
+                first_img_uuid = first_img.UID()
                 further_images = imgs[1:]
 
         if first_img_scales:
@@ -113,6 +127,7 @@ class RelatedImagesView(RelatedBaseView):
                         show_caption=show_caption,
                         title=first_img_title,
                         description=first_img_description,
+                        uuid=first_img_uuid,
                     )
                 )
 
@@ -136,10 +151,28 @@ class RelatedImagesView(RelatedBaseView):
                             show_caption=show_caption,
                             title=img.Title(),
                             description=img.Description(),
+                            uuid=img.UID(),
                         )
                     )
 
+        # pattern feature to filter special uuids to display with ?uuids=uuid1,uuid2,...
+        uuid_filter = self.request.get("uuids")
+
+        if uuid_filter:
+            return [it for it in gallery if it["uuid"] in uuid_filter.split(",")]
+
         return gallery
+
+
+class GalleryEditForm(DefaultEditForm):
+    schema = IGalleryEditSchema
+
+    @property
+    def additionalSchemata(self):
+        return ()
+
+
+GalleryEditView = layout.wrap_form(GalleryEditForm)
 
 
 class RelatedAttachmentsView(RelatedBaseView):
@@ -206,7 +239,7 @@ class Uploader(RelatedBaseView):
             return json.dumps(
                 dict(
                     status="error",
-                    message="IRelatedMedia behavior not activated for this context",
+                    message="IRelatedMediaBehavior behavior not activated for this context",
                 )
             )
 
@@ -244,4 +277,4 @@ class UploadViewlet(ViewletBase):
     def render(self):
         if not IViewView.providedBy(self.view):
             return ""
-        return super(UploadViewlet, self).render()
+        return super().render()

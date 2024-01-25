@@ -1,13 +1,13 @@
-<?xml version="1.0"?>
-<object
-    name="portal_controlpanel"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="collective.behavior.relatedmedia">
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        name="portal_controlpanel"
+        i18n:domain="collective.behavior.relatedmedia"
+>
 
-    <configlet
-        action_id="collective.behavior.relatedmedia.settings"
-        appId="collective.behavior.relatedmedia"
-        category="Products"
-        remove="true" />
+  <configlet action_id="collective.behavior.relatedmedia.settings"
+             appId="collective.behavior.relatedmedia"
+             category="Products"
+             remove="true"
+  />
 
 </object>

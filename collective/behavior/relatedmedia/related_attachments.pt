@@ -1,19 +1,33 @@
-<div tal:define="attachments view/get_attachments; icons nocall:context/@@iconresolver"
+<div tal:define="
+       attachments view/get_attachments;
+       icons nocall:context/@@iconresolver;
+     "
      tal:condition="python:attachments or view.can_upload"
-     i18n:domain="collective.behavior.relatedmedia">
-    <h2 i18n:translate="title_attachments">Attachments</h2>
-    <ul id="related-attachments" class="list-unstyled">
+     i18n:domain="collective.behavior.relatedmedia"
+>
+  <h2 i18n:translate="title_attachments">Attachments</h2>
+  <ul class="list-unstyled"
+      id="related-attachments"
+  >
 
-        <li tal:repeat="att attachments" class="attachment-item">
-            <a tal:attributes="href att/url;
-                               target att/target">
-                <img tal:replace="structure python:icons.tag('mimetype-' + att['mimetype'])"
-                /> <span tal:content="att/title" /> (<span tal:content="att/size" />)
-            </a>
-        </li>
+    <li class="attachment-item"
+        tal:repeat="att attachments"
+    >
+      <a tal:attributes="
+           href att/url;
+           target att/target;
+         ">
+        <img tal:replace="structure python:icons.tag('mimetype-' + att['mimetype'])" />
+        <span tal:content="att/title"></span>
+        (<span tal:content="att/size"></span>)
+      </a>
+    </li>
 
-        <li tal:condition="not:attachments" i18n:translate="" class="discreet">
+    <li class="discreet"
+        tal:condition="not:attachments"
+        i18n:translate=""
+    >
             No attachments uploaded yet
-        </li>
-    </ul>
+    </li>
+  </ul>
 </div>
