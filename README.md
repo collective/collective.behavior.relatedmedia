@@ -49,6 +49,16 @@ Feel free to override the placement in your package zcml for example::
             permission="zope2.View" />
     </configure>
 
+## TinyMCE Template
+
+We provide a TinyMCE template to enable gallery placement inside the richtext editor::
+
+- create a new paragraph in your text where you want to place the gallery.
+- Got to menu ``Insert -> Insert Template`` and choose ``Gallery`` from the list.
+- You see now a dashed box which indicated, that the image gallery will be placed here.
+
+NOTE: make sure you disable the checkbox "Show images in viewlet" to prevent double rendered gallery.
+
 
 ## Author
 
