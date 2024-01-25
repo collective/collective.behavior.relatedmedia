@@ -8,6 +8,7 @@ Changelog
 Features:
 
 - Outputfilter and pattern for related image gallery.
+- TinyMCE template for gallery placement inside richtext.
   [petschki]
 
 
