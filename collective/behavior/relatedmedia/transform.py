@@ -16,9 +16,10 @@ class RelatedImagesFilter:
     order = 900
 
     def is_enabled(self):
+        # disabled until developed
         return False
 
     def __call__(self, data):
         data = re.sub(r"<([^<>\s]+?)\s*/>", self._shorttag_replace, data)
         soup = BeautifulSoup(safe_text(data), "html.parser")
-        breakpoint()
+        return str(soup)

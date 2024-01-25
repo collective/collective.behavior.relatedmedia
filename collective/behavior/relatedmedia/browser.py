@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.behavior import IGalleryEditSchema, IRelatedMediaBehavior
+from collective.behavior.relatedmedia.behavior import IGalleryEditSchema
+from collective.behavior.relatedmedia.behavior import IRelatedMediaBehavior
 from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from collective.behavior.relatedmedia.utils import get_media_root
@@ -40,9 +41,9 @@ class RelatedBaseView(BrowserView):
 
     @property
     def can_upload(self):
-        return IRelatedMediaBehavior.providedBy(self.context) and api.user.has_permission(
-            "Modify portal content", obj=self.context
-        )
+        return IRelatedMediaBehavior.providedBy(
+            self.context
+        ) and api.user.has_permission("Modify portal content", obj=self.context)
 
 
 class RelatedImagesView(RelatedBaseView):
@@ -64,7 +65,9 @@ class RelatedImagesView(RelatedBaseView):
 
     @property
     def show_images_viewlet(self):
-        return self.request.get("ajax_load") or (self.behavior and self.behavior.show_images_viewlet)
+        return self.request.get("ajax_load") or (
+            self.behavior and self.behavior.show_images_viewlet
+        )
 
     def can_edit(self):
         return api.user.has_permission("Modify portal content")

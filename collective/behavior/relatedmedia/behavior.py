@@ -6,6 +6,7 @@ from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from z3c.form.interfaces import HIDDEN_MODE
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -15,7 +16,7 @@ from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
-from z3c.form.interfaces import HIDDEN_MODE
+
 import os
 
 
@@ -170,7 +171,8 @@ class IRelatedMediaBehavior(model.Schema):
         title=_("Show images in viewlet"),
         description=_(
             "Turn this of if you place an image gallery inside TinyMCE via "
-            "gallery template to avoid duplicated content."),
+            "gallery template to avoid duplicated content."
+        ),
         defaultFactory=default_show_images_viewlet,
         required=False,
     )
@@ -250,7 +252,6 @@ class IRelatedMediaBehavior(model.Schema):
 
 
 class IGalleryEditSchema(IRelatedMediaBehavior):
-
     form.mode(
         related_attachments=HIDDEN_MODE,
         show_images_viewlet=HIDDEN_MODE,

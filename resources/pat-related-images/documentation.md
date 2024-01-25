@@ -13,4 +13,4 @@ A more detailed documentation on how to use it goes here.
 
 | Property       | Default Value | Values | Type              | Description                   |
 | -------------- | ------------- | ------ | ----------------- | ----------------------------- |
-| uuids          |               |        | String            | "," concatented list of image uuids to show as gallery |
+| uuids          |               |        | String            | "," concatenated list of image uuids to show as gallery |
