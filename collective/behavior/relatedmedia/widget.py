@@ -1,12 +1,12 @@
+from plone.app.z3cform.interfaces import IRelatedItemsWidget
 from plone.app.z3cform.widgets.relateditems import RelatedItemsWidget
 from z3c.form.interfaces import IFieldWidget
-from z3c.form.interfaces import ITextWidget
 from z3c.form.widget import FieldWidget
 from zope.interface import implementer
 from zope.interface import implementer_only
 
 
-class IRelatedImagesWidget(ITextWidget):
+class IRelatedImagesWidget(IRelatedItemsWidget):
     """marker for widget"""
 
 
@@ -22,7 +22,7 @@ def RelatedImagesFieldWidget(field, request, extra=None):
     return FieldWidget(field, RelatedImagesWidget(request))
 
 
-class IRelatedAttachmentsWidget(ITextWidget):
+class IRelatedAttachmentsWidget(IRelatedItemsWidget):
     """marker for widget"""
 
 
