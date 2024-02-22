@@ -6,6 +6,7 @@ from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
 from collective.behavior.relatedmedia.utils import get_media_root
 from collective.behavior.relatedmedia.utils import get_related_media
+from operator import itemgetter
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.layout.globals.interfaces import IViewView
@@ -72,7 +73,7 @@ class RelatedImagesView(RelatedBaseView):
     def can_edit(self):
         return api.user.has_permission("Modify portal content")
 
-    @memoize
+    #@memoize
     def images(self):
         rm_behavior = self.behavior
 
@@ -87,7 +88,7 @@ class RelatedImagesView(RelatedBaseView):
         first_img_description = ""
         first_img_uuid = ""
         further_images = []
-        gallery = []
+        gallery = {}
 
         if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
             # include leadimage if no related images are defined
@@ -115,23 +116,22 @@ class RelatedImagesView(RelatedBaseView):
             )
             if scale:
                 large_scale_url = first_img_scales.scale("image", scale="large").url
-                gallery.append(
-                    dict(
-                        url=large_scale_url,
-                        tag=scale.tag(
-                            title=first_img_title,
-                            alt=first_img_title,
-                            css_class="img-fluid",
-                        ),
-                        caption=first_img_title,
-                        show_caption=show_caption,
+                gallery[first_img_uuid] = dict(
+                    url=large_scale_url,
+                    tag=scale.tag(
                         title=first_img_title,
-                        description=first_img_description,
-                        uuid=first_img_uuid,
-                    )
+                        alt=first_img_title,
+                        css_class="img-fluid",
+                    ),
+                    caption=first_img_title,
+                    show_caption=show_caption,
+                    title=first_img_title,
+                    description=first_img_description,
+                    uuid=first_img_uuid,
+                    order=0,
                 )
 
-        for img in further_images:
+        for idx, img in enumerate(further_images, 1):
             if img:
                 scales = img.restrictedTraverse("@@images")
                 scale = scales.scale(
@@ -141,27 +141,32 @@ class RelatedImagesView(RelatedBaseView):
                     and "down"
                     or "thumbnail",
                 )
+                uuid = img.UID()
                 if scale:
                     large_scale_url = scales.scale("image", scale="large").url
-                    gallery.append(
-                        dict(
-                            url=large_scale_url,
-                            tag=scale.tag(css_class="img-fluid"),
-                            caption=img.Title(),
-                            show_caption=show_caption,
-                            title=img.Title(),
-                            description=img.Description(),
-                            uuid=img.UID(),
-                        )
+                    gallery[uuid] = dict(
+                        url=large_scale_url,
+                        tag=scale.tag(css_class="img-fluid"),
+                        caption=img.Title(),
+                        show_caption=show_caption,
+                        title=img.Title(),
+                        description=img.Description(),
+                        uuid=uuid,
+                        order=idx,
                     )
 
         # pattern feature to filter special uuids to display with ?uuids=uuid1,uuid2,...
         uuid_filter = self.request.get("uuids")
 
-        if uuid_filter:
-            return [it for it in gallery if it["uuid"] in uuid_filter.split(",")]
+        if uuid_filter and self.__name__ != "gallery-editor":
+            # provide the order of given uuids
+            ret = []
+            for uuid in uuid_filter.split(","):
+                if uuid in gallery:
+                    ret.append(gallery[uuid])
+            return ret
 
-        return gallery
+        return sorted(gallery.values(), key=itemgetter("order"))
 
 
 class GalleryEditForm(DefaultEditForm):

@@ -148,4 +148,13 @@
       run_deps="True"
       />
 
+  <upgradeDepends
+      title="Gallery editor"
+      profile="collective.behavior.relatedmedia:default"
+      source="3002"
+      destination="3003"
+      import_steps="plone.app.registry"
+      run_deps="True"
+      />
+
 </configure>
