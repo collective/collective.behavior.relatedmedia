@@ -3,7 +3,7 @@
 <body>
     <div id="related-images-gallery-editor" metal:fill-slot="main"
         tal:define="images view/images|nothing; req_uuids python:request.get('uuids'); uuids python:req_uuids.split(',') if req_uuids else []">
-        <h1>Gallery editor</h1>
+        <h1 i18n:translate="">Gallery editor</h1>
         <form>
             <div id="related-images" data-pat-sortable="selector: .col;"
                 class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-6 pat-sortable">

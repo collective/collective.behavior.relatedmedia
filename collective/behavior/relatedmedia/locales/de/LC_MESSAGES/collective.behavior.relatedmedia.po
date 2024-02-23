@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-01-02 12:56+0000\n"
-"PO-Revision-Date: 2024-01-02 14:00+0100\n"
+"POT-Creation-Date: 2024-02-23 08:03+0000\n"
+"PO-Revision-Date: 2024-02-23 09:03+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -65,6 +65,10 @@ msgstr "Bildgröße für Galerie"
 msgid "Gallery default scale for first image"
 msgstr "Bildgröße für das erste Bild in der Bildgalerie"
 
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "Gallery editor"
+msgstr "Galerie Editor"
+
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py
 msgid "Gallery image preview scale"
 msgstr "Größe der Galeriebilder"
@@ -101,6 +105,10 @@ msgstr "keine Attachments vorhanden"
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_images.pt
 msgid "No images uploaded yet"
 msgstr "Keine Bilder vorhanden"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "No images uploaded yet. Please upload or select related images first."
+msgstr "Kein Bilder vorhandne. Bitte laden Sie zuerst Bilder im Reiter \"Verknüpfte Medien\" hoch."
 
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py
 msgid "Open Attachment links in new window"
@@ -158,9 +166,13 @@ msgstr "Deinstallationsprofil"
 msgid "Upload related media"
 msgstr "Verknüpfte Medien hochladen"
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_images.pt
-msgid "edit gallery"
-msgstr "Galerie bearbeiten"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "Use image in gallery"
+msgstr "Bild in der Galerie benutzen"
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "insert/update"
+msgstr "Galerie einfügen/aktualisieren"
 
 #. Default: "Related Attachments"
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py
