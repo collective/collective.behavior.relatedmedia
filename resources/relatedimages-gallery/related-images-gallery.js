@@ -1,21 +1,25 @@
 import PloneModal from "@plone/mockup/src/pat/modal/modal";
 
 
-tinymce.PluginManager.add('relatedimagesgallery', (editor, url) => {
 
-    const openGalleryEditor = (editor) => {
-        const tiny_instance = document.getElementById(editor.id)["pattern-tinymce"].instance.tiny;
+class RelatedGalleryEditor {
+
+    constructor(tiny) {
+        this.tiny = tiny;
+    }
+
+    async show() {
         // create new or reuse existing gallery wrapper
-        let curr_node = tiny_instance.selection.getNode(), gal_wrapper;
+        let curr_node = this.tiny.selection.getNode(), gal_wrapper;
         if(!curr_node.classList.contains("pat-related-images")) {
-            gal_wrapper = tiny_instance.dom.create(
+            gal_wrapper = this.tiny.dom.create(
                 "div",
                 {"class": "pat-related-images"},
             );
             if(curr_node.innerText.trim() === "") {
-                tiny_instance.dom.replace(gal_wrapper, curr_node);
+                this.tiny.dom.replace(gal_wrapper, curr_node);
             } else {
-                tiny_instance.dom.insertAfter(gal_wrapper, curr_node.previousElementSibling);
+                this.tiny.dom.insertAfter(gal_wrapper, curr_node.previousElementSibling);
             }
             curr_node = gal_wrapper;
         } else {
@@ -62,21 +66,8 @@ tinymce.PluginManager.add('relatedimagesgallery', (editor, url) => {
             gallery_modal.hide();
         };
         gallery_modal.show();
-    };
+    }
+};
 
-    // add plugin code here
-    editor.ui.registry.addButton("relatedimagesgallery", {
-        icon: "gallery",
-        tooltip: "Insert/edit related image gallery",
-        onAction: () => {
-            openGalleryEditor(editor);
-        },
-    });
-    editor.ui.registry.addMenuItem("relatedimagesgallery", {
-        icon: "gallery",
-        text: "Insert/edit related image gallery",
-        onAction: () => {
-            openGalleryEditor(editor);
-        },
-    });
-});
+
+window.__collectivebehaviorrelatedmedia_galleryeditor = RelatedGalleryEditor;

@@ -38,7 +38,8 @@
   -->
   <records prefix="plone" interface="plone.base.interfaces.controlpanel.ITinyMCESchema">
     <value key="custom_plugins" purge="false">
-      <element>relatedimagesgallery|++plone++collective.behavior.relatedmedia.resources/bundles/relatedimages-gallery.min.js</element>
+      <element>relatedimagesgallery|++plone++collective.behavior.relatedmedia.resources/relatedimages_gallery_editor.js</element>
     </value>
   </records>
+
 </registry>
