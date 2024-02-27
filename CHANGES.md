@@ -14,7 +14,7 @@ Changelog
 Features:
 
 - New gallery editor plugin for TinyMCE replacing the gallery template and adds
-  possiblity to select/reorder gallery images inside TinyMCE.
+  possibility to select/reorder gallery images inside TinyMCE.
   [petschki]
 
 
