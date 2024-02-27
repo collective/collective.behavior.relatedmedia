@@ -5,7 +5,8 @@ Changelog
 ## 3.5.1 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- packaging updates.
+  [petschki]
 
 
 ## 3.5.0 (2024-02-27)
