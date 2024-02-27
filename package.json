@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@patternslib/patternslib": "^9.9.10",
-    "@plone/mockup": "^5.1.6",
+    "@plone/mockup": "^5.1.11",
     "jquery": "3.7.1",
     "slick-carousel": "1.8.1"
   },
