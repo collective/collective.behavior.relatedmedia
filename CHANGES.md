@@ -2,10 +2,21 @@ Changelog
 =========
 
 
-## 3.4.1 (unreleased)
+## 3.5.1 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- packaging updates.
+  [petschki]
+
+
+## 3.5.0 (2024-02-27)
+---------------------
+
+Features:
+
+- New gallery editor plugin for TinyMCE replacing the gallery template and adds
+  possibility to select/reorder gallery images inside TinyMCE.
+  [petschki]
 
 
 ## 3.4.0 (2024-01-25)
