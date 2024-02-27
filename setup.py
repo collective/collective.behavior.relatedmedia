@@ -24,7 +24,6 @@ setup(
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "Framework :: Plone :: 6",
         "Framework :: Plone :: 6.0",
         "Framework :: Plone :: 6.1",
         "Framework :: Plone :: Addon",
