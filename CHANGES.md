@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.5.1 (unreleased)
+## 3.5.1 (2024-02-27)
 ---------------------
 
 - packaging updates.
