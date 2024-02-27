@@ -1,4 +1,5 @@
 """Setup tests for this package."""
+
 from collective.behavior.relatedmedia.testing import (  # noqa
     COLLECTIVE_BEHAVIOR_RELATEDMEDIA_INTEGRATION_TESTING,
 )
