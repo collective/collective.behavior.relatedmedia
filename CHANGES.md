@@ -5,7 +5,8 @@ Changelog
 ## 3.5.2 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Remove old obsolete JS resource from upload viewlet.
+  [petschki]
 
 
 ## 3.5.1 (2024-02-27)
