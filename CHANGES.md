@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.5.2 (unreleased)
+## 3.5.2 (2024-02-29)
 ---------------------
 
 - Remove old obsolete JS resource from upload viewlet.
