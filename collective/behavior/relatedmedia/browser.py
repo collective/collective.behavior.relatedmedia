@@ -73,7 +73,7 @@ class RelatedImagesView(RelatedBaseView):
     def can_edit(self):
         return api.user.has_permission("Modify portal content")
 
-    #@memoize
+    # @memoize
     def images(self):
         rm_behavior = self.behavior
 
