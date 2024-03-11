@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2024-02-23 08:03+0000\n"
-"PO-Revision-Date: 2024-02-23 09:03+0100\n"
+"PO-Revision-Date: 2024-02-23 12:36+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -108,7 +108,7 @@ msgstr "Keine Bilder vorhanden"
 
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
 msgid "No images uploaded yet. Please upload or select related images first."
-msgstr "Kein Bilder vorhandne. Bitte laden Sie zuerst Bilder im Reiter \"Verknüpfte Medien\" hoch."
+msgstr "Kein Bilder vorhanden. Bitte laden Sie zuerst Bilder im Reiter \"Verknüpfte Medien\" hoch."
 
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py
 msgid "Open Attachment links in new window"
