@@ -5,7 +5,8 @@ Changelog
 ## 3.5.3 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fixed upgrade step for migrating "base_path" relations.
+  [petschki]
 
 
 ## 3.5.2 (2024-02-29)
