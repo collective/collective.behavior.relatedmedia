@@ -68,7 +68,9 @@ def migrate_base_path_relations(context):
 
         # get existing relations and append them at the end.
         existing_rel_img = api.relation.get(source=obj, relationship="related_images")
-        existing_rel_att = api.relation.get(source=obj, relationship="related_attachments")
+        existing_rel_att = api.relation.get(
+            source=obj, relationship="related_attachments"
+        )
         obj.related_images = []
         obj.related_attachments = []
 
