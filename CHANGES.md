@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.5.3 (unreleased)
+## 3.5.3 (2024-03-22)
 ---------------------
 
 - Fixed upgrade step for migrating "base_path" relations.
