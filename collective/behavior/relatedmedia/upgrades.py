@@ -34,7 +34,10 @@ def migrate_base_path_relations(context):
 
     catalog = api.portal.get_tool("portal_catalog")
     items = catalog(
-        object_provides="collective.behavior.relatedmedia.behavior.IRelatedMedia",
+        object_provides=[
+            "collective.behavior.relatedmedia.interfaces.IRelatedMedia",  # old name
+            IRelatedMediaBehavior.__identifier__,
+        ]
     )
     _num_items = len(items)
 
@@ -62,7 +65,13 @@ def migrate_base_path_relations(context):
 
         logger.info(f"{idx}/{_num_items} migrating {item.getPath()}.")
 
-        for media in catalog(path=base_path.to_path):
+        for media in catalog(
+            path={
+                "query": base_path.to_path,
+                "depth": 1,
+            },
+            sort_on="getObjPositionInParent",
+        ):
             # related images
             if media.portal_type == "Image":
                 img_obj = media.getObject()
