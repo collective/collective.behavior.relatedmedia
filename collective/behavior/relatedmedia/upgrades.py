@@ -1,6 +1,7 @@
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import getAllUtilitiesRegisteredFor
+from zope.lifecycleevent import modified
 
 import logging
 import transaction
@@ -65,6 +66,12 @@ def migrate_base_path_relations(context):
 
         logger.info(f"{idx}/{_num_items} migrating {item.getPath()}.")
 
+        # get existing relations and append them at the end.
+        existing_rel_img = api.relation.get(source=obj, relationship="related_images")
+        existing_rel_att = api.relation.get(source=obj, relationship="related_attachments")
+        obj.related_images = []
+        obj.related_attachments = []
+
         for media in catalog(
             path={
                 "query": base_path.to_path,
@@ -90,8 +97,23 @@ def migrate_base_path_relations(context):
                 continue
             logger.info(f" - no relation created for unknown type {media.getPath()}...")
 
+        # append previously saved existing relations
+        rel_img = obj.related_images
+        for img in existing_rel_img:
+            rel_img.append(img)
+        obj.related_images = rel_img
+
+        rel_att = obj.related_attachments
+        for att in existing_rel_att:
+            rel_att.append(att)
+        obj.related_attachments = rel_att
+
         # remove base_path information
         IRelatedMediaBehavior(obj).related_media_base_path = None
+
+        # necessary event for relation machinery
+        modified(obj)
+
         transaction.commit()
 
 
