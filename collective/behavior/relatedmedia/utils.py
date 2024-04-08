@@ -73,22 +73,11 @@ def get_related_media(context, portal_type=None):
 
     context = aq_inner(context)
     rm_behavior = IRelatedMedia(context, None)
+    rel_media = []
 
     if not rm_behavior:
-        return []
+        return rel_media
 
-    rel_media = []
-    if rm_behavior.related_media_base_path:
-        try:
-            rm_base = rm_behavior.related_media_base_path.to_object
-            rel_media = [
-                i.getObject()
-                for i in rm_base.restrictedTraverse("@@contentlisting")(
-                    portal_type=portal_type
-                )
-            ]
-        except Exception:
-            rel_media = []
     if portal_type in ("Image", None):
         rel_media += [i.to_object for i in rm_behavior.related_images if i.to_object]
     elif portal_type in ("File", None):

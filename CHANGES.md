@@ -2,10 +2,41 @@ Changelog
 =========
 
 
-## 3.4.1 (unreleased)
+## 3.5.4 (unreleased)
 ---------------------
 
 - Nothing changed yet.
+
+
+## 3.5.3 (2024-03-22)
+---------------------
+
+- Fixed upgrade step for migrating "base_path" relations.
+  [petschki]
+
+
+## 3.5.2 (2024-02-29)
+---------------------
+
+- Remove old obsolete JS resource from upload viewlet.
+  [petschki]
+
+
+## 3.5.1 (2024-02-27)
+---------------------
+
+- packaging updates.
+  [petschki]
+
+
+## 3.5.0 (2024-02-27)
+---------------------
+
+Features:
+
+- New gallery editor plugin for TinyMCE replacing the gallery template and adds
+  possibility to select/reorder gallery images inside TinyMCE.
+  [petschki]
 
 
 ## 3.4.0 (2024-01-25)

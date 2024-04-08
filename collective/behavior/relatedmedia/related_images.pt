@@ -9,20 +9,14 @@
      i18n:domain="collective.behavior.relatedmedia"
 >
 
-  <a rel="prettyPhoto[relatedImages]"
-     data-fancybox="relatedImages"
-     tal:repeat="img images"
-     data-caption="${img/title}"
-     href="${img/url}"
-     class="image-item uuid-${img/uuid} ${python:repeat['img'].start and ' first' or ''}"
-  >
-    <img tal:replace="structure img/tag" />
-    <span class="caption"
-          tal:condition="img/show_caption|nothing"
-    >
-      <span class="caption-title">${img/title}</span>
-      <span class="caption-description">${img/description}</span>
-    </span>
+  <a tal:repeat="img images" class="image-item mb-3 ${python:'first' if repeat['img'].start else ''}" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
+      href="${img/url}" data-caption="${img/title}">
+      <img tal:replace="structure img/tag" />
+      <span class="caption small clearfix text-body-secondary lh-1"
+            tal:condition="img/show_caption|nothing">
+        <span class="caption-title">${img/title}</span>
+        <span class="caption-description">${img/description}</span>
+      </span>
   </a>
 
   <div class="discreet"

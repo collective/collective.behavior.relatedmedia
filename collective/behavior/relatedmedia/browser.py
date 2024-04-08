@@ -208,9 +208,11 @@ class RelatedAttachmentsView(RelatedBaseView):
                     dict(
                         url=download_url,
                         title=att.Title(),
-                        size=human_readable_size(att.file.getSize())
-                        if _file
-                        else "missing",
+                        size=(
+                            human_readable_size(att.file.getSize())
+                            if _file
+                            else "missing"
+                        ),
                         mimetype=att.content_type() or "application",
                         target=link_target,
                     )

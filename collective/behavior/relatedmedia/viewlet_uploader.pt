@@ -1,4 +1,3 @@
-<script src="++plone++collective.behavior.relatedmedia.resources/relatedmedia.js"></script>
 <hr />
 <div id="relatedmedia-uploader"
      i18n:domain="collective.behavior.relatedmedia"
