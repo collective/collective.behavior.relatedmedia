@@ -51,13 +51,18 @@ Feel free to override the placement in your package zcml for example::
 
 ## TinyMCE Template
 
-We provide a TinyMCE template to enable gallery placement inside the richtext editor::
+We provide a TinyMCE toolbar icon to enable gallery placement inside the richtext editor::
 
 - create a new paragraph in your text where you want to place the gallery.
-- Got to menu ``Insert -> Insert Template`` and choose ``Gallery`` from the list.
-- You see now a dashed box which indicated, that the image gallery will be placed here.
+- Click on the Gallery Icon in the toolbar
+- Choose the images you want inside your gallery. You can dran/drop reorder the images too.
+- Edit an existing gallery by clicking inside the preview block and click the toolbar icon again.
 
-NOTE: make sure you disable the checkbox "Show images in viewlet" to prevent double rendered gallery.
+NOTES:
+
+- make sure you disable the checkbox "Show images in viewlet" to prevent double rendered gallery.
+- When you add related images after you've inserted a gallery in TinyMCE you need to edit it again
+  and add the new images manually.
 
 
 ## Author
