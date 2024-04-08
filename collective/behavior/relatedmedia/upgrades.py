@@ -10,6 +10,7 @@ import json
 import logging
 import transaction
 
+
 logger = logging.getLogger(__name__)
 PACKAGE_NAME = "collective.behavior.relatedmedia"
 
