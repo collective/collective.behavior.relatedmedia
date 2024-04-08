@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.5.4 (unreleased)
+## 3.5.4 (2024-04-08)
 ---------------------
 
 - Fixed upgrade step for TinyMCE gallery tool.
