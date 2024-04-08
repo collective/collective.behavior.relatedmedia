@@ -55,7 +55,7 @@ We provide a TinyMCE toolbar icon to enable gallery placement inside the richtex
 
 - create a new paragraph in your text where you want to place the gallery.
 - Click on the Gallery Icon in the toolbar
-- Choose the images you want inside your gallery. You can dran/drop reorder the images too.
+- Choose the images you want inside your gallery. You can drag/drop reorder the images too.
 - Edit an existing gallery by clicking inside the preview block and click the toolbar icon again.
 
 NOTES:
