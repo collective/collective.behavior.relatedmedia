@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-  <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings"
-           prefix="collective.behavior.relatedmedia"
-  >
+  <records interface="collective.behavior.relatedmedia.interfaces.IRelatedMediaSettings" prefix="collective.behavior.relatedmedia">
 
     <value key="media_container_path">/media</value>
     <value key="create_media_container_base_paths">False</value>
-    <value key="image_gallery_cssclass"
-           purge="false"
-    >
+    <value key="image_gallery_cssclass" purge="false">
       <element>floatLeft</element>
       <element>floatRight</element>
       <element>fullWidth</element>
@@ -21,9 +17,7 @@
 
   </records>
 
-  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
-           prefix="plone.bundles/relatedmedia"
-  >
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry" prefix="plone.bundles/relatedmedia">
     <value key="enabled">True</value>
     <value key="expression"></value>
     <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/bundles/relatedmedia-remote.min.js</value>
@@ -32,31 +26,18 @@
     <value key="load_defer">False</value>
   </records>
 
-  <records interface="plone.base.interfaces.controlpanel.IFilterSchema"
-           prefix="plone"
-  >
-    <value key="custom_attributes"
-           purge="false"
-    >
+  <records interface="plone.base.interfaces.controlpanel.IFilterSchema" prefix="plone">
+    <value key="custom_attributes" purge="false">
       <element>data-pat-related-images</element>
     </value>
   </records>
 
-  <!-- the following adds the tinymce template to the registry.
-       it is deactivated to prevent current values. Use this in your
-       integration package or addon.
-  -->
   <records prefix="plone" interface="plone.base.interfaces.controlpanel.ITinyMCESchema">
-      <value key="templates">[
-{
-    "title": "Gallery",
-    "description": "Adds a placeholder for a gallery. You can choose which images to display.",
-    "url": "++plone++collective.behavior.relatedmedia.resources/tinymce_gallery.html"
-}
-]</value>
+    <value key="custom_plugins" purge="false">
+      <element>relatedimagesgallery|++plone++collective.behavior.relatedmedia.resources/relatedimages_gallery_editor.js</element>
+    </value>
+  </records>
 
-  <value key="plugins" purge="false">
-    <element>template</element>
-  </value>
-</records>
+  <!-- NOTE: the relatedmediagallery Icon for TinyMCE.toolbar is added in upgrades.py -->
+
 </registry>

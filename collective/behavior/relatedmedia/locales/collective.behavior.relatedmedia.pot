@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-01-02 12:56+0000\n"
+"POT-Creation-Date: 2024-02-23 08:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,10 @@ msgstr ""
 msgid "Gallery default scale for first image"
 msgstr ""
 
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "Gallery editor"
+msgstr ""
+
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/behavior.py
 msgid "Gallery image preview scale"
 msgstr ""
@@ -101,6 +105,10 @@ msgstr ""
 
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_images.pt
 msgid "No images uploaded yet"
+msgstr ""
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "No images uploaded yet. Please upload or select related images first."
 msgstr ""
 
 #: collective.behavior.relatedmedia/collective/behavior/relatedmedia/interfaces.py
@@ -159,8 +167,12 @@ msgstr ""
 msgid "Upload related media"
 msgstr ""
 
-#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/related_images.pt
-msgid "edit gallery"
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "Use image in gallery"
+msgstr ""
+
+#: collective.behavior.relatedmedia/collective/behavior/relatedmedia/gallery_editor.pt
+msgid "insert/update"
 msgstr ""
 
 #. Default: "Related Attachments"

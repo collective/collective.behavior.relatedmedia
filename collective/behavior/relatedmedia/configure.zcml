@@ -63,9 +63,10 @@
       />
 
   <browser:page
-      name="edit-gallery"
+      name="gallery-editor"
       for="*"
-      class=".browser.GalleryEditView"
+      class=".browser.RelatedImagesView"
+      template="gallery_editor.pt"
       permission="cmf.ModifyPortalContent"
       />
 

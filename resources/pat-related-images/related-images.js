@@ -4,6 +4,11 @@ import registry from "@patternslib/patternslib/src/core/registry";
 import $ from "jquery";
 import "slick-carousel";
 
+// import tinymce plugin code
+// the plugin is called in another script registered in "custom_plugins"
+// see profiles/default/registry.xml
+import "../relatedimages-gallery/related-images-gallery";
+
 export const parser = new Parser("related-images");
 parser.addArgument("uuids", "");
 

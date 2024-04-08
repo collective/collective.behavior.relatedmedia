@@ -12,6 +12,9 @@ logger = logging.getLogger(__name__)
 
 
 def get_media_root(context, as_path=False):
+    if context is None:
+        context = api.portal.get()
+
     container_base = api.portal.get_navigation_root(context)
     media_path = api.portal.get_registry_record(
         "collective.behavior.relatedmedia.media_container_path", default="/media"

@@ -10,6 +10,7 @@ module.exports = () => {
     let config = {
         entry: {
             "relatedmedia.min": path.resolve(__dirname, "resources/index.js"),
+            "relatedgallery-editor.min": path.resolve(__dirname, "resources/relatedimages-gallery/plugin.js"),
         },
     };
 

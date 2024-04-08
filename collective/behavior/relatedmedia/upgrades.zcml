@@ -148,4 +148,12 @@
       run_deps="True"
       />
 
+  <upgradeStep
+      title="Add Gallery Tool for TinyMCE"
+      profile="collective.behavior.relatedmedia:default"
+      source="3002"
+      destination="3003"
+      handler=".upgrades.update_tinymce_settings"
+      />
+
 </configure>

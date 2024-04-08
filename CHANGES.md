@@ -5,7 +5,9 @@ Changelog
 ## 3.5.4 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fixed upgrade step for TinyMCE gallery tool.
+  Cleanup settings for old template.
+  [petschki]
 
 
 ## 3.5.3 (2024-03-22)

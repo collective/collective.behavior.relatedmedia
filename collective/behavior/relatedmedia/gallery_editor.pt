@@ -1,0 +1,43 @@
+<html metal:use-macro="context/@@main_template/macros/master" i18n:domain="collective.behavior.relatedmedia">
+
+<body>
+    <div id="related-images-gallery-editor" metal:fill-slot="main"
+        tal:define="images view/images|nothing; req_uuids python:request.get('uuids'); uuids python:req_uuids.split(',') if req_uuids else []">
+        <h1 i18n:translate="">Gallery editor</h1>
+        <form>
+            <div id="related-images" data-pat-sortable="selector: .col;"
+                class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-6 pat-sortable">
+                <div class="col mb-3" tal:repeat="img images" style="cursor:move">
+                    <div class="card h-100 ${python:'opacity-50' if uuids and img['uuid'] not in uuids else ''}">
+                        <div class="card-img-top">
+                            <img tal:replace="structure img/tag" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${img/title}</h5>
+                            <p class="card-text">${img/description}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                    checked="${python:'checked' if not uuids or img['uuid'] in uuids else ''}"
+                                    value="${img/uuid}" id="use-${img/uuid}"
+                                    data-imgurl="${img/url}"
+                                    onclick="this.closest('.card').classList.toggle('opacity-50', !this.checked)">
+                                <label class="form-check-label" for="use-${img/uuid}" i18n:translate="">Use image in
+                                    gallery</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="discreet" tal:condition="not:images" i18n:translate="">
+                No images uploaded yet. Please upload or select related images first.
+            </div>
+            <div class="formControls">
+                <button class="btn btn-primary" type="submit" i18n:translate="">insert/update</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
