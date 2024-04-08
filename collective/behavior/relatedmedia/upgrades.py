@@ -1,10 +1,13 @@
 from plone import api
+from plone.base.interfaces.controlpanel import dump_json_to_text
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.registry.interfaces import IRegistry
 from zope.component import getAllUtilitiesRegisteredFor
+from zope.component import getUtility
 
+import json
 import logging
 import transaction
-
 
 logger = logging.getLogger(__name__)
 PACKAGE_NAME = "collective.behavior.relatedmedia"
@@ -99,3 +102,43 @@ def migrate_behavior_name(context):
             else:
                 updated_fti.append(behavior)
         fti.behaviors = tuple(updated_fti)
+
+
+def update_tinymce_settings(context):
+    # first run registry updates
+    context.runImportStepFromProfile(
+        "profile-collective.behavior.relatedmedia:default",
+        "plone.app.registry",
+    )
+
+    registry = getUtility(IRegistry)
+
+    try:
+        # cleanup old template if there
+        templates = json.loads(registry["plone.templates"])
+        clean_templates = []
+
+        for tpl in templates:
+            if tpl["title"] == "Gallery":
+                continue
+            clean_templates.append(tpl)
+
+        registry["plone.templates"] = dump_json_to_text(clean_templates)
+
+        if not len(clean_templates) and "template" in registry["plone.plugins"]:
+            # remove plugin too
+            plugins = registry["plone.plugins"]
+            plugins.pop("template")
+            registry["plone.plugins"] = plugins
+
+    except Exception:
+        logger.info("Could not read TinyMCE templates")
+        return
+
+    # add relatedimagesgallery tool
+    toolbar = registry["plone.toolbar"]
+
+    if "relatedimagesgallery" not in toolbar:
+        toolbar = toolbar.replace(" ploneimage ", " ploneimage relatedimagesgallery ")
+
+    registry["plone.toolbar"] = toolbar

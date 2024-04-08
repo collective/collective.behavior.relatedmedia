@@ -32,14 +32,12 @@
     </value>
   </records>
 
-  <!-- the following adds the tinymce plugin.
-       you have to add it to the menu or toolbar in your
-       integration package or tiny controlpanel manually!
-  -->
   <records prefix="plone" interface="plone.base.interfaces.controlpanel.ITinyMCESchema">
     <value key="custom_plugins" purge="false">
       <element>relatedimagesgallery|++plone++collective.behavior.relatedmedia.resources/relatedimages_gallery_editor.js</element>
     </value>
   </records>
+
+  <!-- NOTE: the relatedmediagallery Icon for TinyMCE.toolbar is added in upgrades.py -->
 
 </registry>
