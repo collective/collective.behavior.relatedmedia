@@ -208,9 +208,7 @@ class RelatedAttachmentsView(RelatedBaseView):
                     base_url=att.absolute_url(),
                     title=att.Title(),
                     size=(
-                        human_readable_size(att.file.getSize())
-                        if _file
-                        else "missing"
+                        human_readable_size(att.file.getSize()) if _file else "missing"
                     ),
                     mimetype=att.content_type() or "application",
                     target=link_target,

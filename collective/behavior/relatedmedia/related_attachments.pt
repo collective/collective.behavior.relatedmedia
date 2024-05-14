@@ -17,7 +17,7 @@
          target="${att/target}"
          >
         <img tal:replace="structure python:icons.tag('mimetype-' + att['mimetype'])" />
-        ${att/title} (${att/size})
+        <span>${att/title}</span> (<span>${att/size}</span>)
       </a>
     </li>
 
