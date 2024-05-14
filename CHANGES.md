@@ -3,20 +3,17 @@ Changelog
 
 
 ## 3.6.1 (unreleased)
----------------------
 
 - Nothing changed yet.
 
 
 ## 3.6.0 (2024-05-14)
----------------------
 
 - Enhanced Attachment viewlet.
   [petschki]
 
 
 ## 3.5.4 (2024-04-08)
----------------------
 
 - Fixed upgrade step for TinyMCE gallery tool.
   Cleanup settings for old template.
@@ -24,28 +21,24 @@ Changelog
 
 
 ## 3.5.3 (2024-03-22)
----------------------
 
 - Fixed upgrade step for migrating "base_path" relations.
   [petschki]
 
 
 ## 3.5.2 (2024-02-29)
----------------------
 
 - Remove old obsolete JS resource from upload viewlet.
   [petschki]
 
 
 ## 3.5.1 (2024-02-27)
----------------------
 
 - packaging updates.
   [petschki]
 
 
 ## 3.5.0 (2024-02-27)
----------------------
 
 Features:
 
@@ -55,7 +48,6 @@ Features:
 
 
 ## 3.4.0 (2024-01-25)
----------------------
 
 Features:
 
@@ -65,35 +57,30 @@ Features:
 
 
 ## 3.3.5 (2023-11-16)
----------------------
 
 - Do not fail in update script when broken catalog brains exists.
   [petschki]
 
 
 ## 3.3.4 (2023-10-09)
----------------------
 
 - Fix syncing review_state of (deprecated) related media container.
   [petschki]
 
 
 ## 3.3.3 (2023-09-27)
----------------------
 
 - Fix error when invalid attachment is uploaded.
   [petschki]
 
 
 ## 3.3.2 (2023-09-21)
----------------------
 
 - Added upgrade tep for renamed behavior.
   [petschki]
 
 
 ## 3.3.1 (2023-07-19)
----------------------
 
 - Fix default behavior assignment for "Page".
   [petschki]
