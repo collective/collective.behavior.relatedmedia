@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-## 3.5.5 (unreleased)
+## 3.6.0 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Enhanced Attachment viewlet.
+  [petschki]
 
 
 ## 3.5.4 (2024-04-08)

@@ -192,7 +192,6 @@ class RelatedAttachmentsView(RelatedBaseView):
             "collective.behavior.relatedmedia.open_attachment_in_new_window"
         )
         link_target = _target_blank and "blank" or "top"
-        atts = []
 
         for att in self.attachments:
             if att:
@@ -204,20 +203,18 @@ class RelatedAttachmentsView(RelatedBaseView):
                     if _file
                     else "#"
                 )
-                atts.append(
-                    dict(
-                        url=download_url,
-                        title=att.Title(),
-                        size=(
-                            human_readable_size(att.file.getSize())
-                            if _file
-                            else "missing"
-                        ),
-                        mimetype=att.content_type() or "application",
-                        target=link_target,
-                    )
+                yield dict(
+                    url=download_url,
+                    base_url=att.absolute_url(),
+                    title=att.Title(),
+                    size=(
+                        human_readable_size(att.file.getSize())
+                        if _file
+                        else "missing"
+                    ),
+                    mimetype=att.content_type() or "application",
+                    target=link_target,
                 )
-        return atts
 
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):

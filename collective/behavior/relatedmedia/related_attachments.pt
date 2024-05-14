@@ -13,13 +13,11 @@
     <li class="attachment-item"
         tal:repeat="att attachments"
     >
-      <a tal:attributes="
-           href att/url;
-           target att/target;
-         ">
+      <a href="${att/url}"
+         target="${att/target}"
+         >
         <img tal:replace="structure python:icons.tag('mimetype-' + att['mimetype'])" />
-        <span tal:content="att/title"></span>
-        (<span tal:content="att/size"></span>)
+        ${att/title} (${att/size})
       </a>
     </li>
 
