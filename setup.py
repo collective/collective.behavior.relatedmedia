@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "3.5.5.dev0"
+version = "3.6.0"
 
 this_directory = Path(__file__).parent
 long_description = (
