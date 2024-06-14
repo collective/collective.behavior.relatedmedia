@@ -205,6 +205,8 @@ class RelatedAttachmentsView(RelatedBaseView):
                     )
                 )
 
+        return atts
+
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
     """controlpanel"""

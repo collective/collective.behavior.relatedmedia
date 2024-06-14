@@ -5,7 +5,8 @@ Changelog
 ## 3.6.2 (unreleased)
 
 
-- Nothing changed yet.
+- Fix broken attachements.
+  [petschki]
 
 
 ## 3.6.1 (2024-06-14)
