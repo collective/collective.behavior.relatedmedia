@@ -6,7 +6,6 @@ from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from z3c.form.interfaces import HIDDEN_MODE
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -248,15 +247,6 @@ class IRelatedMediaBehavior(model.Schema):
             "gallery_css_class",
             "related_media_base_path",
         ],
-    )
-
-
-class IGalleryEditSchema(IRelatedMediaBehavior):
-    form.mode(
-        related_attachments=HIDDEN_MODE,
-        show_images_viewlet=HIDDEN_MODE,
-        gallery_css_class=HIDDEN_MODE,
-        related_media_base_path=HIDDEN_MODE,
     )
 
 

@@ -2,7 +2,7 @@
        attachments view/get_attachments;
        icons nocall:context/@@iconresolver;
      "
-     tal:condition="python:attachments or view.can_upload"
+     tal:condition="python:attachments"
      i18n:domain="collective.behavior.relatedmedia"
 >
   <h2 i18n:translate="title_attachments">Attachments</h2>
