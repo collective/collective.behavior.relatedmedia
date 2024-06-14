@@ -4,8 +4,10 @@ Changelog
 
 ## 3.6.1 (unreleased)
 
-- Nothing changed yet.
-
+- Hide image/attachment viewlet when no content available.
+  [petschki]
+- update JS resources.
+  [petschki]
 
 ## 3.6.0 (2024-05-14)
 
