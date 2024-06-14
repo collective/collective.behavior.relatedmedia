@@ -190,16 +190,20 @@ class RelatedAttachmentsView(RelatedBaseView):
                     if _file
                     else "#"
                 )
-                atts.append(dict(
-                    url=download_url,
-                    base_url=att.absolute_url(),
-                    title=att.Title(),
-                    size=(
-                        human_readable_size(att.file.getSize()) if _file else "missing"
-                    ),
-                    mimetype=att.content_type() or "application",
-                    target=link_target,
-                ))
+                atts.append(
+                    dict(
+                        url=download_url,
+                        base_url=att.absolute_url(),
+                        title=att.Title(),
+                        size=(
+                            human_readable_size(att.file.getSize())
+                            if _file
+                            else "missing"
+                        ),
+                        mimetype=att.content_type() or "application",
+                        target=link_target,
+                    )
+                )
 
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):
