@@ -11,7 +11,7 @@ Changelog
 ## 3.6.2 (2024-06-14)
 
 
-- Fix broken attachements.
+- Fix broken attachments.
   [petschki]
 
 
