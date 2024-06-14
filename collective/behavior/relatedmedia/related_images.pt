@@ -2,7 +2,7 @@
      tal:define="
        images view/images|nothing;
      "
-     tal:condition="python:view.show_images_viewlet and (images or view.can_upload)"
+     tal:condition="python:view.show_images_viewlet and images"
      tal:attributes="
        class view/gallery_css_klass|nothing;
      "

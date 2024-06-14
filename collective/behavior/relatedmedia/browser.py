@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
 from collective.behavior.relatedmedia import messageFactory as _
-from collective.behavior.relatedmedia.behavior import IGalleryEditSchema
 from collective.behavior.relatedmedia.behavior import IRelatedMediaBehavior
 from collective.behavior.relatedmedia.events import update_leadimage
 from collective.behavior.relatedmedia.interfaces import IRelatedMediaSettings
@@ -13,13 +12,11 @@ from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.base.utils import human_readable_size
-from plone.dexterity.browser.edit import DefaultEditForm
 from plone.dexterity.utils import createContentInContainer
 from plone.event.interfaces import IOccurrence
 from plone.memoize.instance import memoize
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
-from plone.z3cform import layout
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from z3c.relationfield import RelationValue
@@ -169,17 +166,6 @@ class RelatedImagesView(RelatedBaseView):
         return sorted(gallery.values(), key=itemgetter("order"))
 
 
-class GalleryEditForm(DefaultEditForm):
-    schema = IGalleryEditSchema
-
-    @property
-    def additionalSchemata(self):
-        return ()
-
-
-GalleryEditView = layout.wrap_form(GalleryEditForm)
-
-
 class RelatedAttachmentsView(RelatedBaseView):
     @property
     def attachments(self):
@@ -192,6 +178,7 @@ class RelatedAttachmentsView(RelatedBaseView):
             "collective.behavior.relatedmedia.open_attachment_in_new_window"
         )
         link_target = _target_blank and "blank" or "top"
+        atts = []
 
         for att in self.attachments:
             if att:
@@ -203,7 +190,7 @@ class RelatedAttachmentsView(RelatedBaseView):
                     if _file
                     else "#"
                 )
-                yield dict(
+                atts.append(dict(
                     url=download_url,
                     base_url=att.absolute_url(),
                     title=att.Title(),
@@ -212,7 +199,7 @@ class RelatedAttachmentsView(RelatedBaseView):
                     ),
                     mimetype=att.content_type() or "application",
                     target=link_target,
-                )
+                ))
 
 
 class RelatedMediaControlPanelForm(controlpanel.RegistryEditForm):

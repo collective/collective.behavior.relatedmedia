@@ -251,15 +251,6 @@ class IRelatedMediaBehavior(model.Schema):
     )
 
 
-class IGalleryEditSchema(IRelatedMediaBehavior):
-    form.mode(
-        related_attachments=HIDDEN_MODE,
-        show_images_viewlet=HIDDEN_MODE,
-        gallery_css_class=HIDDEN_MODE,
-        related_media_base_path=HIDDEN_MODE,
-    )
-
-
 # define languageindependent fields if p.a.multilingual is installed
 if HAS_PAM:
     alsoProvides(
