@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.6.1 (unreleased)
+## 3.6.1 (2024-06-14)
 
 - Hide image/attachment viewlet when no content available.
   [petschki]
