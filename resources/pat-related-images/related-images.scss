@@ -1,0 +1,5 @@
+$slick-loader-path: "../../node_modules/slick-carousel/slick/";
+$slick-font-path: $slick-loader-path + "fonts/";
+@import "slick-carousel/slick/slick";
+@import "slick-carousel/slick/slick-theme";
+@import "@fancyapps/ui/dist/fancybox/fancybox";

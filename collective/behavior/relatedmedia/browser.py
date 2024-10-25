@@ -46,20 +46,22 @@ class RelatedBaseView(BrowserView):
 
 class RelatedImagesView(RelatedBaseView):
     def gallery_css_klass(self):
+        css_class = []
+
+        if self.request.get("showGallery"):
+            css_class.append("related-images-slider")
+
         rm_behavior = self.behavior
 
-        if not rm_behavior:
-            return
+        if rm_behavior:
+            css_class.append(rm_behavior.gallery_css_class)
+        else:
+            dflt_css_class = api.portal.get_registry_record(
+                "collective.behavior.relatedmedia.image_gallery_default_class"
+            )
+            css_class.append(dflt_css_class)
 
-        css_class = rm_behavior.gallery_css_class
-
-        if css_class:
-            return css_class
-
-        dflt_css_class = api.portal.get_registry_record(
-            "collective.behavior.relatedmedia.image_gallery_default_class"
-        )
-        return dflt_css_class
+        return " ".join(css_class)
 
     @property
     def show_images_viewlet(self):

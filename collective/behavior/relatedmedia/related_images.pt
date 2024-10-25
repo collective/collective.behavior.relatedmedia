@@ -1,6 +1,7 @@
 <div id="related-images"
      tal:define="
        images view/images|nothing;
+       icons python:context.restrictedTraverse('@@iconresolver');
      "
      tal:condition="python:view.show_images_viewlet and images"
      tal:attributes="
@@ -8,16 +9,30 @@
      "
      i18n:domain="collective.behavior.relatedmedia"
 >
+  <div class="slick-slider" tal:omit-tag="not:request/showGallery|nothing">
+    <a tal:repeat="img images" class="image-item mb-3 ${python:'first' if repeat['img'].start else ''}" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
+        href="${img/url}" data-caption="${img/title}">
+        <img tal:replace="structure img/tag" />
+        <span class="caption small clearfix text-body-secondary lh-1"
+              tal:condition="img/show_caption|nothing">
+          <span class="caption-title">${img/title}</span><br />
+          <span class="caption-description">${img/description}</span>
+        </span>
+    </a>
+  </div>
 
-  <a tal:repeat="img images" class="image-item mb-3 ${python:'first' if repeat['img'].start else ''}" rel="prettyPhoto[relatedImages]" data-fancybox="relatedImages"
-      href="${img/url}" data-caption="${img/title}">
-      <img tal:replace="structure img/tag" />
-      <span class="caption small clearfix text-body-secondary lh-1"
-            tal:condition="img/show_caption|nothing">
-        <span class="caption-title">${img/title}</span>
-        <span class="caption-description">${img/description}</span>
-      </span>
-  </a>
+  <tal:block condition="python:request.get('showGallery') and images and len(images) > 1">
+    <a class="arrow-link norotate slider-prev btn btn-secondary"
+       href="javascript:void(0)"
+    >
+      <img tal:replace="structure python:icons.tag('arrow-left-short')" />
+    </a>
+    <a class="arrow-link norotate slider-next btn btn-secondary"
+       href="javascript:void(0)"
+    >
+      <img tal:replace="structure python:icons.tag('arrow-right-short')" />
+    </a>
+  </tal:block>
 
   <div class="discreet"
        tal:condition="not:images"
