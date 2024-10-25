@@ -22,6 +22,9 @@ class Pattern extends BasePattern {
 
         await this.uploader_event();
         await this.load_gallery();
+
+        // trigger fancybox
+        Fancybox.bind("[data-fancybox]");
     }
 
     async uploader_event() {
@@ -52,13 +55,15 @@ class Pattern extends BasePattern {
     async load_gallery() {
         const uuids = this.options?.uuids;
         const base_url = document.querySelector("body").dataset.baseUrl;
-        const req = new Request(`${base_url}/@@relatedImages?uuids=${uuids}&ajax_load=${new Date().getTime()}`);
+        const req = new Request(`${base_url}/@@relatedImages?uuids=${uuids}&showGallery=1&ajax_load=${new Date().getTime()}`);
         fetch(req)
             .then((response) => response.text())
             .then(async (text) => {
                 this.el.innerHTML = text;
                 await this.init_slick(this.el);
                 registry.scan(this.el);
+                // trigger fancybox
+                Fancybox.bind("[data-fancybox]");
             });
     }
 

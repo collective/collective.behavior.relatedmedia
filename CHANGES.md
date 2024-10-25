@@ -5,7 +5,8 @@ Changelog
 ## 3.6.3 (unreleased)
 
 
-- Nothing changed yet.
+- Initialize "slick-slider" automatically inside TinyMCE image gallery.
+  [petschki]
 
 
 ## 3.6.2 (2024-06-14)
