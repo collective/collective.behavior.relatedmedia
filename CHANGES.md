@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.6.3 (unreleased)
+## 3.6.3 (2024-10-25)
 
 
 - Initialize "slick-slider" automatically inside TinyMCE image gallery.
