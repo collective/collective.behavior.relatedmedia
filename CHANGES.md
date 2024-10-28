@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.6.5 (unreleased)
+## 3.6.5 (2024-10-28)
 
 
 - Inject slickSliderOptions via data-attributes.
