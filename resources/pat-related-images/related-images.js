@@ -12,6 +12,7 @@ import "../relatedimages-gallery/related-images-gallery";
 
 export const parser = new Parser("related-images");
 parser.addArgument("uuids", "");
+parser.addArgument("slickSliderOptions");
 
 class Pattern extends BasePattern {
     static name = "related-images";
@@ -75,14 +76,16 @@ class Pattern extends BasePattern {
     }
 
     async init_slick(el) {
-        $(".related-images-slider .slick-slider", $(this.el)).slick({
+        let slickOptions = {
             infinite: false,
             slidesToShow: 1,
             centerMode: false,
             variableWidth: true,
             prevArrow: el.querySelector(".related-images-slider .slider-prev"),
             nextArrow: el.querySelector(".related-images-slider .slider-next"),
-        });
+            ...(this.options.slickSliderOptions || {})
+        }
+        $(".related-images-slider .slick-slider", $(this.el)).slick(slickOptions);
     }
 }
 
