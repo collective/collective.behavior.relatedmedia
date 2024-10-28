@@ -1,6 +1,7 @@
 import { BasePattern } from "@patternslib/patternslib/src/core/basepattern";
 import Parser from "@patternslib/patternslib/src/core/parser";
 import registry from "@patternslib/patternslib/src/core/registry";
+import { Fancybox } from "@fancyapps/ui";
 import $ from "jquery";
 import "slick-carousel";
 
@@ -22,11 +23,17 @@ class Pattern extends BasePattern {
 
         await this.uploader_event();
         await this.load_gallery();
-
-        // trigger fancybox
-        Fancybox.bind("[data-fancybox]");
+        await this.init_fancybox();
     }
 
+    async init_fancybox() {
+        Fancybox.bind("[data-fancybox]", {
+            // prevent window reload on close
+            Hash: false,
+        });
+    }
+
+    async
     async uploader_event() {
         $(".pat-upload").on("uploadAllCompleted", function (response, path) {
             // reload viewlets on upload
@@ -63,7 +70,7 @@ class Pattern extends BasePattern {
                 await this.init_slick(this.el);
                 registry.scan(this.el);
                 // trigger fancybox
-                Fancybox.bind("[data-fancybox]");
+                await this.init_fancybox();
             });
     }
 
