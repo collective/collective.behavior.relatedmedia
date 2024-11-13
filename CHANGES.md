@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.6.6 (unreleased)
+## 3.6.6 (2024-11-13)
 
 
 - Configurable large overlay images scale
