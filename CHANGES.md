@@ -5,7 +5,8 @@ Changelog
 ## 3.6.6 (unreleased)
 
 
-- Nothing changed yet.
+- Configurable large overlay images scale
+  [petschki]
 
 
 ## 3.6.5 (2024-10-28)
