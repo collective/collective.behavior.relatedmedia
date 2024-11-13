@@ -70,7 +70,8 @@ def default_preview_scale_direction():
 
 def default_gallery_large_image_scale():
     return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_large_scale", default="large"
+        "collective.behavior.relatedmedia.image_gallery_default_large_scale",
+        default="large",
     )
 
 
