@@ -62,6 +62,13 @@ class IRelatedMediaSettings(Interface):
         required=False,
     )
 
+    image_gallery_default_large_scale = schema.Choice(
+        title=_("Gallery default large scale for overlay images"),
+        vocabulary="plone.app.vocabularies.ImagesScales",
+        default="large",
+        required=False,
+    )
+
     image_gallery_default_preview_scale_direction = schema.Bool(
         title=_("Default setting for cropping gallery images"),
         default=False,

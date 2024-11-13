@@ -68,6 +68,12 @@ def default_preview_scale_direction():
     )
 
 
+def default_gallery_large_image_scale():
+    return api.portal.get_registry_record(
+        "collective.behavior.relatedmedia.image_gallery_default_large_scale", default="large"
+    )
+
+
 def default_titles_as_caption():
     return api.portal.get_registry_record(
         "collective.behavior.relatedmedia.show_titles_as_caption_default", default=False
@@ -208,6 +214,12 @@ class IRelatedMediaBehavior(model.Schema):
         required=False,
     )
 
+    large_image_scale = schema.Choice(
+        title=_("Gallery default scale for large overlay image"),
+        vocabulary="plone.app.vocabularies.ImagesScales",
+        defaultFactory=default_gallery_large_image_scale,
+    )
+
     gallery_css_class = schema.Choice(
         title=_("Gallery layout"),
         description=_("Feel free to add/remove classes in your registry.xml"),
@@ -244,6 +256,7 @@ class IRelatedMediaBehavior(model.Schema):
             "first_image_scale_direction",
             "preview_scale",
             "preview_scale_direction",
+            "large_image_scale",
             "gallery_css_class",
             "related_media_base_path",
         ],

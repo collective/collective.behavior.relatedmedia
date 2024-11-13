@@ -38,6 +38,6 @@
     </value>
   </records>
 
-  <!-- NOTE: the relatedmediagallery Icon for TinyMCE.toolbar is added in upgrades.py -->
+  <!-- NOTE: the relatedimagesgallery Icon for TinyMCE.toolbar is added in upgrades.py -->
 
 </registry>

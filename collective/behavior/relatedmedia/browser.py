@@ -86,6 +86,7 @@ class RelatedImagesView(RelatedBaseView):
         first_img_scales = None
         first_img_description = ""
         first_img_uuid = ""
+        large_scale = getattr(rm_behavior, "large_image_scale", "large")
         further_images = []
         gallery = {}
 
@@ -114,7 +115,7 @@ class RelatedImagesView(RelatedBaseView):
                 or "thumbnail",
             )
             if scale:
-                large_scale_url = first_img_scales.scale("image", scale="large").url
+                large_scale_url = first_img_scales.scale("image", scale=large_scale).url
                 gallery[first_img_uuid] = dict(
                     url=large_scale_url,
                     tag=scale.tag(
@@ -142,7 +143,7 @@ class RelatedImagesView(RelatedBaseView):
                 )
                 uuid = img.UID()
                 if scale:
-                    large_scale_url = scales.scale("image", scale="large").url
+                    large_scale_url = scales.scale("image", scale=large_scale).url
                     gallery[uuid] = dict(
                         url=large_scale_url,
                         tag=scale.tag(css_class="img-fluid"),

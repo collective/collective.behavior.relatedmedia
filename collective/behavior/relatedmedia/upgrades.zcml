@@ -156,4 +156,13 @@
       handler=".upgrades.update_tinymce_settings"
       />
 
+  <upgradeDepends
+      title="Configurable large image overlay scale"
+      profile="collective.behavior.relatedmedia:default"
+      source="3003"
+      destination="3004"
+      import_steps="plone.app.registry"
+      run_deps="True"
+      />
+
 </configure>
