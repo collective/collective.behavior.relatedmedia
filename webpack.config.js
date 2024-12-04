@@ -33,6 +33,32 @@ module.exports = () => {
         })
     );
 
+    config.module.rules.push({
+        test: /\.svelte$/,
+        // exclude: /node_modules/,
+        use: {
+            loader: "svelte-loader",
+            options: {
+                compilerOptions: {
+                    dev: process.env.NODE_ENV === "development",
+                },
+                emitCss: process.env.NODE_ENV !== "development",
+                hotReload: process.env.NODE_ENV === "development",
+            },
+        },
+    });
+
+    config.module.rules.push({
+        test: /node_modules\/svelte\/.*\.mjs$/,
+        resolve: {
+            fullySpecified: false,
+        },
+    });
+
+    config.resolve.alias.svelte = path.resolve('node_modules', 'svelte/src/runtime')
+    config.resolve.extensions = [".js", ".json", ".wasm", ".svelte"];
+    config.resolve.mainFields = ["browser", "module", "main", "svelte"];
+
     if (process.env.NODE_ENV === "development") {
         config.devServer.port = "8011";
         config.devServer.static.directory = path.resolve(__dirname, "./resources/");
