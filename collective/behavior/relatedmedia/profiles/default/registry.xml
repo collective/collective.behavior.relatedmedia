@@ -22,6 +22,7 @@
     <value key="expression"></value>
     <value key="jscompilation">++plone++collective.behavior.relatedmedia.resources/bundles/relatedmedia-remote.min.js</value>
     <value key="csscompilation" />
+    <value key="depends">plone</value>
     <value key="load_async">False</value>
     <value key="load_defer">False</value>
   </records>

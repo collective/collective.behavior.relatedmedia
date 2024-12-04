@@ -165,4 +165,21 @@
       run_deps="True"
       />
 
+  <registerProfile
+      name="contentbrowser"
+      title="Profile for upgrade step 'Package rename'"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/upgrades/contentbrowser"
+      />
+
+  <upgradeDepends
+      title="pat-contentbrowser implementation"
+      profile="collective.behavior.relatedmedia:default"
+      source="3004"
+      destination="3700"
+      import_profile="collective.behavior.relatedmedia:contentbrowser"
+      run_deps="True"
+      />
+
 </configure>
