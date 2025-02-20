@@ -17,13 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Plone ${{ matrix.plone }} with Python ${{ matrix.python }}
-        id: setup
-        uses: plone/setup-plone@v3.0.0
-        with:
-          python-version: ${{ matrix.python }}
-          plone-version: ${{ matrix.plone }}
-
       - name: Install package
         run: |
           make install
