@@ -13,6 +13,12 @@ zpretty_extra_lines = """
         args: ['--extend-exclude', 'relatedimages_selection.xml']
 """
 
+[gitignore]
+extra_lines = """
+robot_*
+test_*
+"""
+
 [github]
 jobs = [
     "qa",

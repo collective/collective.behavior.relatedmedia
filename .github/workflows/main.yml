@@ -12,7 +12,6 @@ jobs:
         python:
           - "3.12"
         plone:
-          - "6.0-dev"
           - "6.1-dev"
 
     steps:
