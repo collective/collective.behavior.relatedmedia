@@ -8,13 +8,13 @@
   "dependencies": {
     "@fancyapps/ui": "5.0.36",
     "@patternslib/patternslib": "^9.9.16",
-    "@plone/mockup": "^5.2.0-beta.1",
+    "@plone/mockup": "^5.3.1",
     "@plone/registry": "^2.0.0",
     "jquery": "3.7.1",
     "slick-carousel": "1.8.1"
   },
   "devDependencies": {
-    "@patternslib/dev": "^3.6.1",
+    "@patternslib/dev": "^3.7.2",
     "svelte": "^4.2.19",
     "svelte-loader": "^3.2.3"
   },
