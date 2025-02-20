@@ -26,7 +26,10 @@ def test_suite():
         robottestsuite.level = ROBOT_TEST_LEVEL
         suite.addTests(
             [
-                layered(robottestsuite, layer=COLLECTIVE_BEHAVIOR_RELATEDMEDIA_ACCEPTANCE_TESTING),
+                layered(
+                    robottestsuite,
+                    layer=COLLECTIVE_BEHAVIOR_RELATEDMEDIA_ACCEPTANCE_TESTING,
+                ),
             ]
         )
     return suite
