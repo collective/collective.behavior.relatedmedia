@@ -2,6 +2,22 @@ Changelog
 =========
 
 
+## 3.7.1 (unreleased)
+
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 ## 3.7.0 (2025-02-20)
 
 
