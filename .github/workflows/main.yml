@@ -10,8 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         python:
-          - "3.13"
+          - "3.12"
         plone:
+          - "6.0-dev"
           - "6.1-dev"
 
     steps:
