@@ -112,9 +112,9 @@ class IRelatedMediaBehavior(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Image"],
             "basePath": media_root_path,
-            "selectionTemplate": read_js_template(
-                "resources/relateditems_selection.xml"
-            ),
+            "componentRegistryKeys": {
+                "selectedItem": "pat-contentbrowser.relatedimages.SelectedItem",
+            },
             # add Description to the returned attributes
             "attributes": [
                 "UID",
@@ -149,9 +149,9 @@ class IRelatedMediaBehavior(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],
             "basePath": media_root_path,
-            "selectionTemplate": read_js_template(
-                "resources/relateditems_selection.xml"
-            ),
+            "componentRegistryKeys": {
+                "selectedItem": "pat-contentbrowser.relatedattachments.SelectedItem",
+            },
             "attributes": [
                 "UID",
                 "Title",

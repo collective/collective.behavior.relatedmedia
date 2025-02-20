@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "3.6.7.dev0"
+version = "3.7.0.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
@@ -25,6 +25,7 @@ setup(
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Framework :: Plone :: 6.0",
+        "Framework :: Plone :: 6.1",
         "Framework :: Plone :: Addon",
         "Framework :: Plone",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
@@ -59,8 +60,6 @@ setup(
             "plone.app.testing[robot]",
             "plone.app.robotframework",
             "plone.app.contenttypes",
-            "robotframework-selenium2library",
-            "robotframework-selenium2screenshots",
         ],
     },
     entry_points="""

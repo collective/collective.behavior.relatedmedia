@@ -1,19 +1,22 @@
 {
   "name": "relatedmedia",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "engines": {
     "node": ">=12.20.0"
   },
   "dependencies": {
-    "@patternslib/patternslib": "^9.9.16",
-    "@plone/mockup": "^5.1.14",
     "@fancyapps/ui": "5.0.36",
+    "@patternslib/patternslib": "^9.9.16",
+    "@plone/mockup": "^5.3.1",
+    "@plone/registry": "^2.0.0",
     "jquery": "3.7.1",
     "slick-carousel": "1.8.1"
   },
   "devDependencies": {
-    "@patternslib/dev": "^3.6.1"
+    "@patternslib/dev": "^3.7.2",
+    "svelte": "^4.2.19",
+    "svelte-loader": "^3.2.3"
   },
   "resolutions": {
     "sass": "1.77.8"

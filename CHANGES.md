@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-## 3.6.7 (unreleased)
+## 3.7.0 (unreleased)
 
 
-- Nothing changed yet.
+- Use `ContentBrowserWidget` if Plone 6.1.
+  [petschki]
 
 
 ## 3.6.6 (2024-11-13)
