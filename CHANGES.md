@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.7.0 (unreleased)
+## 3.7.0 (2025-02-20)
 
 
 - Use `ContentBrowserWidget` if Plone 6.1.
