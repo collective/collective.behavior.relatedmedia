@@ -26,3 +26,6 @@ jobs = [
     "coverage",
     "release_ready",
     ]
+
+[tox]
+constraints_file = "https://raw.githubusercontent.com/plone/buildout.coredev/refs/heads/6.1/constraints.txt"
