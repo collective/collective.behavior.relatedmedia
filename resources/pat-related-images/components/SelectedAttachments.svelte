@@ -28,10 +28,6 @@
             <span class="small">{item.path}</span>
         </div>
     </div>
-    {#if item.getURL && (item.getIcon || item.portal_type === "Image")}<img
-            src="{item.getURL}/@@images/image/mini"
-            alt={item.Title}
-        />{/if}
 </div>
 
 <style>
@@ -54,10 +50,5 @@
         display: flex;
         align-items: start;
         flex-grow: 1;
-    }
-    .selected-item > img {
-        object-fit: cover;
-        width: 95px;
-        height: 95px;
     }
 </style>

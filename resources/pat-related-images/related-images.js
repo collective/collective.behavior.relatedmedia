@@ -20,7 +20,11 @@ async function register_selecteditem_component() {
         name: "pat-contentbrowser.relatedimages.SelectedItem",
         component: SelectedImages,
     });
-    console.log(`Registered custom "SelectedImages" component for key "pat-contentbrowser.relatedimages.SelectedItem`);
+    const SelectedAttachments = (await import("./components/SelectedAttachments.svelte")).default;
+    plone_registry.registerComponent({
+        name: "pat-contentbrowser.relatedattachments.SelectedItem",
+        component: SelectedAttachments,
+    });
 }
 register_selecteditem_component();
 

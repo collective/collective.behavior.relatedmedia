@@ -149,6 +149,9 @@ class IRelatedMediaBehavior(model.Schema):
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["File"],
             "basePath": media_root_path,
+            "componentRegistryKeys": {
+                "selectedItem": "pat-contentbrowser.relatedattachments.SelectedItem",
+            },
             "attributes": [
                 "UID",
                 "Title",
