@@ -3,14 +3,21 @@ from z3c.form.widget import FieldWidget
 from zope.interface import implementer
 from zope.interface import implementer_only
 
+
 try:
     # Plone 6.1
-    from plone.app.z3cform.interfaces import IContentBrowserWidget as IRelatedMediaWidget
-    from plone.app.z3cform.widgets.contentbrowser import ContentBrowserWidget as RelatedMediaWidget
+    from plone.app.z3cform.interfaces import (
+        IContentBrowserWidget as IRelatedMediaWidget,
+    )
+    from plone.app.z3cform.widgets.contentbrowser import (
+        ContentBrowserWidget as RelatedMediaWidget,
+    )
 except ImportError:
     # Plone 6.0
     from plone.app.z3cform.interfaces import IRelatedItemsWidget as IRelatedMediaWidget
-    from plone.app.z3cform.widgets.relateditems import RelatedItemsWidget as RelatedMediaWidget
+    from plone.app.z3cform.widgets.relateditems import (
+        RelatedItemsWidget as RelatedMediaWidget,
+    )
 
 
 class IRelatedImagesWidget(IRelatedMediaWidget):
