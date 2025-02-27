@@ -1,0 +1,18 @@
+.mce-content-body,
+.tox-tinymce {
+    .pat-related-images {
+        border: dashed 2px #999;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        position: relative;
+
+        &:before {
+            content: "Relatedimages gallery";
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.75rem;
+            color: #999;
+        }
+    }
+}
