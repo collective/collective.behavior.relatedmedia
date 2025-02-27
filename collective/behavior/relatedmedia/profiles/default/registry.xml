@@ -37,6 +37,9 @@
     <value key="custom_plugins" purge="false">
       <element>relatedimagesgallery|++plone++collective.behavior.relatedmedia.resources/relatedimages_gallery_editor.js</element>
     </value>
+    <value key="content_css" purge="false">
+      <element>++plone++collective.behavior.relatedmedia.resources/tinymce.css</element>
+    </value>
   </records>
 
   <!-- NOTE: the relatedimagesgallery Icon for TinyMCE.toolbar is added in upgrades.py -->

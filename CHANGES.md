@@ -5,17 +5,11 @@ Changelog
 ## 3.7.1 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Cleanup obsolete pattern templates and upload viewlet. Upload is done now only in Contentbrowser.
+- Add CSS for TinyMCE to make inline galleries better editable.
+  [petschki]
 
 
 ## 3.7.0 (2025-02-20)

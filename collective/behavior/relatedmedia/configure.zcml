@@ -160,17 +160,6 @@
            collective.behavior.relatedmedia.widget.RelatedAttachmentsWidget"
       />
 
-  <!-- convenience: upload viewlet for view mode -->
-  <browser:viewlet
-      name="collective.behavior.relatedmedia.uploader"
-      for=".behavior.IRelatedMediaBehavior"
-      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-      class=".browser.UploadViewlet"
-      template="viewlet_uploader.pt"
-      permission="cmf.ModifyPortalContent"
-      layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
-      />
-
   <!-- uploader -->
   <browser:page
       name="upload_related_media"

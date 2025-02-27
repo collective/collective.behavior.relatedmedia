@@ -269,10 +269,3 @@ class Uploader(RelatedBaseView):
                 status="done",
             )
         )
-
-
-class UploadViewlet(ViewletBase):
-    def render(self):
-        if not IViewView.providedBy(self.view):
-            return ""
-        return super().render()
