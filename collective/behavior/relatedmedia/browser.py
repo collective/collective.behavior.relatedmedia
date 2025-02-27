@@ -8,8 +8,6 @@ from collective.behavior.relatedmedia.utils import get_related_media
 from operator import itemgetter
 from plone import api
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from plone.app.layout.globals.interfaces import IViewView
-from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.registry.browser import controlpanel
 from plone.base.utils import human_readable_size
 from plone.dexterity.utils import createContentInContainer
