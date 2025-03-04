@@ -11,7 +11,7 @@ async function register_global_libraries() {
 }
 register_global_libraries();
 
-// register custon `pat-contentbrowser` components
+// register custom `pat-contentbrowser` components
 async function register_selecteditem_component() {
     // we register our component to a custom keyname, which is used
     // in the "RelatedImagesWidget" pattern_options.
