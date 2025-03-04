@@ -2,16 +2,11 @@
     import { getContext } from "svelte";
     import { resolveIcon } from "@plone/mockup/src/pat/contentbrowser/src/utils";
 
-    // current item index of parent iteration
-    export let idx;
     // item data
     export let item;
+    export let unselectItem;
 
     const item_path = item.path.replace(/\//g, '--');
-
-    // parent method to remove selected item from list
-    const unselectItem = getContext("unselectItem");
-
 </script>
 
 <div class="selected-item border border-secondary-subtle rounded p-2 mb-1 bg-body-tertiary" data-uuid={item.UID}>
@@ -19,7 +14,7 @@
         <!-- svelte-ignore a11y-missing-attribute -->
         <button
             class="btn btn-link btn-sm link-secondary"
-            on:click={() => unselectItem(idx)}
+            on:click={() => unselectItem(item.UID)}
             ><svg use:resolveIcon={{ iconName: "x-circle" }} /></button
         >
         <div class="flex-grow-1">
