@@ -2,7 +2,6 @@ import { BasePattern } from "@patternslib/patternslib/src/core/basepattern";
 import Parser from "@patternslib/patternslib/src/core/parser";
 import registry from "@patternslib/patternslib/src/core/registry";
 import { Fancybox } from "@fancyapps/ui";
-import plone_registry from "@plone/registry";
 import $ from "jquery";
 import "slick-carousel";
 
@@ -10,23 +9,6 @@ import "slick-carousel";
 // the plugin is called in another script registered in "custom_plugins"
 // see profiles/default/registry.xml
 import "../relatedimages-gallery/related-images-gallery";
-
-async function register_selecteditem_component() {
-    // we register our component to a custom keyname, which is used
-    // in the "RelatedImagesWidget" pattern_options.
-    // see collective/behavior/relatedmedia/behavior.py
-    const SelectedImages = (await import("./components/SelectedImages.svelte")).default;
-    plone_registry.registerComponent({
-        name: "pat-contentbrowser.relatedimages.SelectedItem",
-        component: SelectedImages,
-    });
-    const SelectedAttachments = (await import("./components/SelectedAttachments.svelte")).default;
-    plone_registry.registerComponent({
-        name: "pat-contentbrowser.relatedattachments.SelectedItem",
-        component: SelectedAttachments,
-    });
-}
-register_selecteditem_component();
 
 export const parser = new Parser("related-images");
 parser.addArgument("uuids", "");
