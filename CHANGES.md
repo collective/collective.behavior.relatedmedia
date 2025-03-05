@@ -4,18 +4,10 @@ Changelog
 
 ## 3.7.2 (unreleased)
 
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Fix SelectedItem component "unselect"
+  [petschki]
 
 
 ## 3.7.1 (2025-02-28)
