@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.7.2 (unreleased)
+## 3.7.2 (2025-03-05)
 
 Bug fixes:
 
