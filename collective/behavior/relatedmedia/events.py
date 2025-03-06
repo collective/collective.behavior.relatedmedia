@@ -6,14 +6,14 @@ from plone.dexterity.utils import createContentInContainer
 from Products.CMFPlone.utils import safe_unicode
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
+from zope.globalrequest import getRequest
 
 
 try:
     from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 except ImportError:
-    from plone.app.contenttypes.behaviors.leadimage import (
-        ILeadImage as ILeadImageBehavior,
-    )
+    from plone.app.contenttypes.behaviors.leadimage import \
+        ILeadImage as ILeadImageBehavior
 
 logger = getLogger(__name__)
 
@@ -118,7 +118,7 @@ def get_obj_from_relateditem_path(value, prefix=19):
 
 
 def update_titles(obj, event):
-    req_form = obj.REQUEST.form
+    req_form = getRequest().form
 
     for k in req_form:
         if k.startswith("relatedmedia-title-"):

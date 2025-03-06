@@ -12,6 +12,7 @@
     </value>
     <value key="image_gallery_default_class">fullWidth</value>
     <value key="show_titles_as_caption_default">False</value>
+    <value key="update_leadimage">False</value>
     <value key="show_images_viewlet_default">True</value>
     <value key="include_leadimage_default">True</value>
 

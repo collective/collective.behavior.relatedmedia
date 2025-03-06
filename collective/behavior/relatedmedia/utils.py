@@ -6,6 +6,7 @@ from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
 import logging
+import transaction
 
 
 logger = logging.getLogger(__name__)
@@ -33,7 +34,7 @@ def get_media_root(context, as_path=False):
         if results:
             container_base = results[0].getObject()
         else:
-            logger.warn("Could not find Assets folder! Fallback to Navigation Root")
+            logger.warn("Could not find Assets base folder! Fallback to Navigation Root")
 
     media_container = container_base
 
@@ -54,6 +55,7 @@ def get_media_root(context, as_path=False):
                 checkConstraints=False,
             )
             media_container.setLayout("tabular_view")
+            transaction.commit()
             continue
 
         media_container = media_container.get(f_id)
