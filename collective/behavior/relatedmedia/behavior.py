@@ -6,6 +6,7 @@ from plone import api
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from z3c.form.interfaces import NO_VALUE
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
@@ -42,55 +43,24 @@ class GalleryCSSClassesVocabulary:
         )
 
 
-def default_css_class():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_class"
-    )
+class DefaultSettingsValue:
+    # get default values from registry
+    # Note: this was an adapter, but the registration
+    # is too broad, so other default values got overridden.
+    # with defaultFactory its explicit, where the value should be set.
 
+    def __init__(self, setting_name, default=NO_VALUE):
+        self.setting_name = setting_name
+        self.default = default
 
-def default_gallery_first_image_scale():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_gallery_first_image_scale",
-        default="large",
-    )
-
-
-def default_gallery_scale():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_gallery_scale",
-        default="preview",
-    )
-
-
-def default_preview_scale_direction():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_preview_scale_direction"
-    )
-
-
-def default_gallery_large_image_scale():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.image_gallery_default_large_scale",
-        default="large",
-    )
-
-
-def default_titles_as_caption():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.show_titles_as_caption_default", default=False
-    )
-
-
-def default_show_images_viewlet():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.show_images_viewlet", default=True
-    )
-
-
-def default_include_leadimage():
-    return api.portal.get_registry_record(
-        "collective.behavior.relatedmedia.include_leadimage_default", default=True
-    )
+    def __call__(self):
+        return (
+            api.portal.get_registry_record(
+                f"collective.behavior.relatedmedia.{self.setting_name}",
+                default=self.default,
+            )
+            or self.default
+        )
 
 
 @provider(IFormFieldProvider)
@@ -169,7 +139,7 @@ class IRelatedMediaBehavior(model.Schema):
 
     show_titles_as_caption = schema.Bool(
         title=_("Show image titles as caption"),
-        defaultFactory=default_titles_as_caption,
+        defaultFactory=DefaultSettingsValue("show_titles_as_caption_default", False),
         required=False,
     )
 
@@ -179,53 +149,61 @@ class IRelatedMediaBehavior(model.Schema):
             "Turn this of if you place an image gallery inside TinyMCE via "
             "gallery template to avoid duplicated content."
         ),
-        defaultFactory=default_show_images_viewlet,
+        defaultFactory=DefaultSettingsValue("show_images_viewlet_default", True),
         required=False,
     )
 
     include_leadimage = schema.Bool(
         title=_("Include leadimage in image gallery?"),
-        defaultFactory=default_include_leadimage,
+        defaultFactory=DefaultSettingsValue("include_leadimage_default", False),
         required=False,
     )
 
     first_image_scale = schema.Choice(
         title=_("Gallery default scale for first image"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        defaultFactory=default_gallery_first_image_scale,
+        defaultFactory=DefaultSettingsValue(
+            "image_gallery_default_gallery_first_image_scale", "large"
+        ),
     )
 
     first_image_scale_direction = schema.Bool(
         title=_("Crop first image"),
-        defaultFactory=default_preview_scale_direction,
         required=False,
+        defaultFactory=DefaultSettingsValue(
+            "image_gallery_default_preview_scale_direction", False
+        ),
     )
 
     preview_scale = schema.Choice(
         title=_("Image scale"),
         description=_("Gallery image preview scale"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        defaultFactory=default_gallery_scale,
+        defaultFactory=DefaultSettingsValue("image_gallery_default_scale", "preview"),
     )
 
     preview_scale_direction = schema.Bool(
         title=_("Crop image"),
         description=_("Crop the image to the selected boundaries above"),
-        default=False,
+        defaultFactory=DefaultSettingsValue(
+            "image_gallery_default_preview_scale_direction", False
+        ),
         required=False,
     )
 
     large_image_scale = schema.Choice(
         title=_("Gallery default scale for large overlay image"),
         vocabulary="plone.app.vocabularies.ImagesScales",
-        defaultFactory=default_gallery_large_image_scale,
+        defaultFactory=DefaultSettingsValue(
+            "image_gallery_default_large_scale", "large"
+        ),
     )
 
     gallery_css_class = schema.Choice(
         title=_("Gallery layout"),
         description=_("Feel free to add/remove classes in your registry.xml"),
         vocabulary="collective.relatedmedia.gallerycssclasses",
-        defaultFactory=default_css_class,
+        defaultFactory=DefaultSettingsValue("image_gallery_default_class"),
         required=False,
     )
 

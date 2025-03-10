@@ -118,19 +118,19 @@
 
   <!-- auto-generated related_media_base_path on creation -->
   <subscriber
-      for=".behavior.IRelatedMedia
+      for=".behavior.IRelatedMediaBehavior
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".events.create_media_base_path"
       />
 
   <subscriber
-      for=".behavior.IRelatedMedia
+      for=".behavior.IRelatedMediaBehavior
            Products.DCWorkflow.interfaces.IAfterTransitionEvent"
       handler=".events.sync_workflow_state"
       />
 
   <subscriber
-      for=".behavior.IRelatedMedia
+      for=".behavior.IRelatedMediaBehavior
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".events.modified"
       />
@@ -174,7 +174,7 @@
   <!-- uploader -->
   <browser:page
       name="upload_related_media"
-      for=".behavior.IRelatedMedia"
+      for=".behavior.IRelatedMediaBehavior"
       class=".browser.Uploader"
       permission="zope2.View"
       layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
