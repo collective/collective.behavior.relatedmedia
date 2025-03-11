@@ -69,10 +69,10 @@ def media_root_path(context):
 
 
 def get_related_media(context, portal_type=None):
-    from collective.behavior.relatedmedia.behavior import IRelatedMedia
+    from collective.behavior.relatedmedia.behavior import IRelatedMediaBehavior
 
     context = aq_inner(context)
-    rm_behavior = IRelatedMedia(context, None)
+    rm_behavior = IRelatedMediaBehavior(context, None)
     rel_media = []
 
     if not rm_behavior:
