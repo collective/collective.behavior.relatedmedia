@@ -5,7 +5,8 @@ Changelog
 ## 3.6.7 (unreleased)
 
 
-- Nothing changed yet.
+- Refactor default settings value lookup.
+  [petschki]
 
 
 ## 3.6.6 (2024-11-13)
