@@ -6,6 +6,7 @@ from plone.dexterity.utils import createContentInContainer
 from Products.CMFPlone.utils import safe_unicode
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
+from zope.globalrequest import getRequest
 
 
 try:
@@ -29,7 +30,7 @@ def create_media_base_path(obj, event):
     if (
         not create
         or obj.related_media_base_path
-        or getattr(obj.REQUEST, "translation_info", {})
+        or getattr(getRequest(), "translation_info", {})
     ):
         # do not create or we already have a value or we create a translation just return
         return
@@ -118,7 +119,7 @@ def get_obj_from_relateditem_path(value, prefix=19):
 
 
 def update_titles(obj, event):
-    req_form = obj.REQUEST.form
+    req_form = getRequest().form
 
     for k in req_form:
         if k.startswith("relatedmedia-title-"):
