@@ -5,8 +5,8 @@ Changelog
 ## 3.7.3 (unreleased)
 
 
-- Refactor default settings value lookup.
-  [petschki]
+- Refactor default settings value lookup.  @petschki
+- Fix REQUEST during object removal.  @petschki
 
 
 ## 3.7.2 (2025-03-05)
