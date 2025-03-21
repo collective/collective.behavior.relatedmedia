@@ -12,8 +12,9 @@ from zope.globalrequest import getRequest
 try:
     from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 except ImportError:
-    from plone.app.contenttypes.behaviors.leadimage import \
-        ILeadImage as ILeadImageBehavior
+    from plone.app.contenttypes.behaviors.leadimage import (
+        ILeadImage as ILeadImageBehavior,
+    )
 
 logger = getLogger(__name__)
 
