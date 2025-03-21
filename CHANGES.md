@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.7.3 (unreleased)
+## 3.7.3 (2025-03-21)
 
 
 - Refactor default settings value lookup.  @petschki
