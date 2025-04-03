@@ -5,7 +5,7 @@ Changelog
 ## 3.7.4 (unreleased)
 
 
-- Nothing changed yet.
+- Fix "display" templates of RelatedMediaWidgets -> use FormBrowserLayer to override p.a.z3cform.  @petschki
 
 
 ## 3.7.3 (2025-03-21)

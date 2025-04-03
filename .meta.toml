@@ -19,11 +19,13 @@ robot_*
 test_*
 """
 
+[tox]
+test_matrix = {"6.2" = ["3.13"], "6.1" = ["3.13"]}
+
 [github]
 jobs = [
-    "qa",
-    "release_ready",
-    ]
-
-[tox]
-constraints_file = "https://dist.plone.org/release/6.1-dev/constraints.txt"
+   "qa",
+   "coverage",
+   "release_ready",
+   "circular",
+]

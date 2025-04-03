@@ -85,10 +85,10 @@
       />
 
   <z3c:widgetTemplate
-      field="z3c.relationfield.interfaces.IRelationList"
       widget=".widget.IRelatedImagesWidget"
       template="widget_images_display.pt"
       mode="display"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaFormLayer"
       />
 
   <!-- related_attachments view/viewlet/widget -->
@@ -110,10 +110,10 @@
       />
 
   <z3c:widgetTemplate
-      field="z3c.relationfield.interfaces.IRelationList"
       widget=".widget.IRelatedAttachmentsWidget"
       template="widget_attachments_display.pt"
       mode="display"
+      layer=".interfaces.ICollectiveBehaviorRelatedmediaFormLayer"
       />
 
   <!-- auto-generated related_media_base_path on creation -->

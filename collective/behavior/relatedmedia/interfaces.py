@@ -1,10 +1,15 @@
 from collective.behavior.relatedmedia import messageFactory as _
+from plone.app.z3cform.interfaces import IPloneFormLayer
 from zope import schema
 from zope.interface import Interface
 
 
 class ICollectiveBehaviorRelatedmediaLayer(Interface):
     """browserlayer"""
+
+
+class ICollectiveBehaviorRelatedmediaFormLayer(IPloneFormLayer):
+    """form browserlayer"""
 
 
 class IRelatedMediaSettings(Interface):

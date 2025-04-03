@@ -191,4 +191,13 @@
       run_deps="True"
       />
 
+  <upgradeDepends
+      title="Add form browserlayer override"
+      profile="collective.behavior.relatedmedia:default"
+      source="3701"
+      destination="3702"
+      import_steps="browserlayer"
+      run_deps="True"
+      />
+
 </configure>
