@@ -19,11 +19,5 @@ robot_*
 test_*
 """
 
-[github]
-jobs = [
-    "qa",
-    "release_ready",
-    ]
-
 [tox]
-constraints_file = "https://dist.plone.org/release/6.1-dev/constraints.txt"
+test_matrix = {"6.2" = ["3.13"], "6.1" = ["3.13"], "6.0" = ["3.10"]}
