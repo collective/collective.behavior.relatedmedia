@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.7.5 (unreleased)
+## 3.7.5 (2025-05-05)
 
 
 - Do not break if the lead image adapter cannot be initialized (fixes [#25](https://github.com/collective/collective.behavior.relatedmedia/issues/25)). @ale-rt
