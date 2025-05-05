@@ -99,10 +99,16 @@ def update_leadimage(obj, event):
     if not imgs:
         return
 
-    if not ILeadImageBehavior(obj).image:
+    lead_image_adapter = ILeadImageBehavior(obj, None)
+    if lead_image_adapter is None:
+        # The lead image adapter could not be retrieved.
+        # This usually occurs if the FTI does not list the `plone.leadimage` behavior.
+        return
+
+    if not lead_image_adapter.image:
         # set first related image as lead image (incl. caption)
-        ILeadImageBehavior(obj).image = imgs[0].image
-        ILeadImageBehavior(obj).image_caption = safe_unicode(imgs[0].Title())
+        lead_image_adapter.image = imgs[0].image
+        lead_image_adapter.image_caption = safe_unicode(imgs[0].Title())
         obj.reindexObject()
 
 
