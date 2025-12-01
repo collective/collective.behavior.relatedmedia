@@ -5,7 +5,7 @@ Changelog
 ## 3.7.6 (unreleased)
 
 
-- Nothing changed yet.
+- Deduplicate lead image in gallery viewlet. Auto-add leadimage if not already in related images.  @petschki
 
 
 ## 3.7.5 (2025-05-05)
