@@ -2,6 +2,22 @@ Changelog
 =========
 
 
+## 3.8.1 (unreleased)
+
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 ## 3.8.0 (2025-12-01)
 
 
