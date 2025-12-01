@@ -85,11 +85,11 @@ I select a related image
     # Click the select button
     Click    //div[@id="formfield-form-widgets-IRelatedMediaBehavior-related_images"]//a[contains(@class, "btn-primary")]
     # Click first element in first column
-    Click item in contenbrowser column    1    1
+    Click item in contenbrowser column    1    2
     # Click first element in second column
     Click item in contenbrowser column    2    1
     # Click first element in third column
-    Click item in contenbrowser column    3    1
+    Click item in contenbrowser column    3    4
     # Click the select Button in the Toolbar of column 4
     # This selects the "Image 1"
     Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-outline-primary")]
@@ -98,11 +98,11 @@ I select a related attachment
     # Click the select button
     Click    //div[@id="formfield-form-widgets-IRelatedMediaBehavior-related_attachments"]//a[contains(@class, "btn-primary")]
     # Click first element in first column
-    Click item in contenbrowser column    1    1
+    Click item in contenbrowser column    1    2
     # Click first element in second column
     Click item in contenbrowser column    2    1
     # Click first element in third column
-    Click item in contenbrowser column    3    2
+    Click item in contenbrowser column    3    3
     # Click first element in fourth column
     Click item in contenbrowser column    4    1
     # Click the select Button in the Toolbar of column 4
@@ -114,13 +114,13 @@ I select a linked item
     # Click the select button
     Click  //div[@id="formfield-form-widgets-remoteUrl"]//a[contains(@class, "btn-primary")]
     # Click first element in first column
-    Click item in contenbrowser column    1    1
+    Click item in contenbrowser column    1    2
     # Click first element in second column
     Click item in contenbrowser column    2    1
     # Click first element in third column
-    Click item in contenbrowser column    3    1
+    Click item in contenbrowser column    3    4
     # Click the select Button in the Toolbar of column 4
-    # This selects the "Image 1"
+    # This selects the "News Item 1"
     Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-outline-primary")]
 
 I save the page
