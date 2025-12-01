@@ -45,7 +45,7 @@ setup(
     namespace_packages=["collective", "collective.behavior"],
     include_package_data=True,
     zip_safe=False,
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
