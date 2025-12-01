@@ -80,78 +80,68 @@ class RelatedImagesView(RelatedBaseView):
         context = aq_inner(self.context)
         imgs = get_related_media(context, portal_type="Image")
         show_caption = rm_behavior.show_titles_as_caption
-        first_img_title = ""
-        first_img_scales = None
-        first_img_description = ""
-        first_img_uuid = ""
         large_scale = getattr(rm_behavior, "large_image_scale", "large")
-        further_images = []
         gallery = {}
 
-        if rm_behavior.include_leadimage and ILeadImage.providedBy(context):
-            # include leadimage if no related images are defined
-            first_img_scales = context.restrictedTraverse("@@images")
-            first_img_title = ILeadImage(context).image_caption
-            first_img_uuid = context.UID()
-            further_images = imgs
-
-        if not first_img_scales and len(imgs):
-            first_img = imgs[0]
-            if first_img:
-                first_img_scales = first_img.restrictedTraverse("@@images")
-                first_img_title = first_img.Title()
-                first_img_description = first_img.Description()
-                first_img_uuid = first_img.UID()
-                further_images = imgs[1:]
-
-        if first_img_scales:
-            scale = first_img_scales.scale(
+        def add_to_gallery(obj, **kw):
+            if obj is None:
+                return
+            first = kw.get("first", False)
+            scales = obj.restrictedTraverse("@@images")
+            if obj.image is None or scales is None:
+                return
+            filename = obj.image.filename
+            if filename in gallery:
+                # deduplicate leadimage and related images
+                return
+            scale = scales.scale(
                 "image",
-                scale=rm_behavior.first_image_scale,
-                direction=rm_behavior.first_image_scale_direction
-                and "down"
-                or "thumbnail",
-            )
-            if scale:
-                large_scale_url = first_img_scales.scale("image", scale=large_scale).url
-                gallery[first_img_uuid] = dict(
-                    url=large_scale_url,
-                    tag=scale.tag(
-                        title=first_img_title,
-                        alt=first_img_title,
-                        css_class="img-fluid",
-                    ),
-                    caption=first_img_title,
-                    show_caption=show_caption,
-                    title=first_img_title,
-                    description=first_img_description,
-                    uuid=first_img_uuid,
-                    order=0,
-                )
-
-        for idx, img in enumerate(further_images, 1):
-            if img:
-                scales = img.restrictedTraverse("@@images")
-                scale = scales.scale(
-                    "image",
-                    scale=rm_behavior.preview_scale,
-                    direction=rm_behavior.preview_scale_direction
-                    and "down"
-                    or "thumbnail",
-                )
-                uuid = img.UID()
-                if scale:
-                    large_scale_url = scales.scale("image", scale=large_scale).url
-                    gallery[uuid] = dict(
-                        url=large_scale_url,
-                        tag=scale.tag(css_class="img-fluid"),
-                        caption=img.Title(),
-                        show_caption=show_caption,
-                        title=img.Title(),
-                        description=img.Description(),
-                        uuid=uuid,
-                        order=idx,
+                scale=(
+                    rm_behavior.first_image_scale
+                    if first
+                    else rm_behavior.preview_scale
+                ),
+                mode=(
+                    "cover"
+                    if (
+                        rm_behavior.first_image_scale_direction
+                        if first
+                        else rm_behavior.preview_scale_direction
                     )
+                    else "contain"
+                ),
+            )
+            uuid = obj.UID()
+            title = kw.get("title", obj.Title())
+            gallery[filename] = dict(
+                url=scales.scale("image", scale=large_scale).url,
+                tag=scale.tag(
+                    title=title,
+                    alt=title,
+                    css_class="img-fluid",
+                ),
+                show_caption=show_caption,
+                caption=title,
+                title=title,
+                description=kw.get("description", obj.Description()),
+                uuid=uuid,
+                order=kw.get("order", 0),
+            )
+
+        if ILeadImage.providedBy(context):
+            # include leadimage
+            add_to_gallery(
+                context,
+                first=True,
+                title=ILeadImage(context).image_caption,
+                description="",
+            )
+        elif len(imgs):
+            # no leadimage there but related images
+            add_to_gallery(imgs[0], first=True)
+
+        for idx, img in enumerate(imgs, 1):
+            add_to_gallery(img, order=idx)
 
         # pattern feature to filter special uuids to display with ?uuids=uuid1,uuid2,...
         uuid_filter = self.request.get("uuids")

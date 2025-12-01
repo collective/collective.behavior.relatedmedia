@@ -92,12 +92,6 @@ class IRelatedMediaSettings(Interface):
         required=False,
     )
 
-    include_leadimage_default = schema.Bool(
-        title=_("Include leadimage in image gallery?"),
-        default=False,
-        required=False,
-    )
-
     update_leadimage = schema.Bool(
         title=_("Set first related image as leadimage?"),
         description=_("This is applied on any change."),

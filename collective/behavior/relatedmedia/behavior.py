@@ -153,12 +153,6 @@ class IRelatedMediaBehavior(model.Schema):
         required=False,
     )
 
-    include_leadimage = schema.Bool(
-        title=_("Include leadimage in image gallery?"),
-        defaultFactory=DefaultSettingsValue("include_leadimage_default", False),
-        required=False,
-    )
-
     first_image_scale = schema.Choice(
         title=_("Gallery default scale for first image"),
         vocabulary="plone.app.vocabularies.ImagesScales",
@@ -230,7 +224,6 @@ class IRelatedMediaBehavior(model.Schema):
             "related_attachments",
             "show_images_viewlet",
             "show_titles_as_caption",
-            "include_leadimage",
             "first_image_scale",
             "first_image_scale_direction",
             "preview_scale",
@@ -250,7 +243,6 @@ if HAS_PAM:
     alsoProvides(
         IRelatedMediaBehavior["show_titles_as_caption"], ILanguageIndependentField
     )
-    alsoProvides(IRelatedMediaBehavior["include_leadimage"], ILanguageIndependentField)
     alsoProvides(IRelatedMediaBehavior["first_image_scale"], ILanguageIndependentField)
     alsoProvides(
         IRelatedMediaBehavior["first_image_scale_direction"], ILanguageIndependentField
