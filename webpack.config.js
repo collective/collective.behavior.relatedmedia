@@ -18,7 +18,7 @@ module.exports = () => {
         config: config,
         package_json: package_json,
     });
-    config.output.path = path.resolve(__dirname, "collective/behavior/relatedmedia/resources/bundles");
+    config.output.path = path.resolve(__dirname, "src/collective/behavior/relatedmedia/resources/bundles");
 
     config.plugins.push(
         mf_config({
