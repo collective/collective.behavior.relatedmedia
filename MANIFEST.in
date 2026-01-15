@@ -1,13 +1,14 @@
-recursive-include collective *
+recursive-include src *
 recursive-include docs *
-include *
 recursive-exclude resources *
-exclude *-mxdev.txt
-exclude .installed.txt
+include *.md
 exclude .*.js
 exclude .prettierignore
 exclude *.cfg
 exclude *.js
+exclude *.txt
+exclude *.lock
+exclude Makefile
 exclude package.json
 exclude pyproject.toml
 global-exclude *.pyc
