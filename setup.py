@@ -1,9 +1,8 @@
 from pathlib import Path
-from setuptools import find_packages
 from setuptools import setup
 
 
-version = "3.8.1.dev0"
+version = "4.0.0.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
@@ -24,8 +23,7 @@ setup(
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "Framework :: Plone :: 6.0",
-        "Framework :: Plone :: 6.1",
+        "Framework :: Plone :: 6.2",
         "Framework :: Plone :: Addon",
         "Framework :: Plone",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
@@ -41,8 +39,6 @@ setup(
     author_email="peter.mathis@kombinat.at",
     url="https://github.com/kombinat/collective.behavior.relatedmedia",
     license="gpl",
-    packages=find_packages(exclude=["ez_setup"]),
-    namespace_packages=["collective", "collective.behavior"],
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.10",
