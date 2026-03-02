@@ -5,17 +5,8 @@ Changelog
 ## 3.8.1 (unreleased)
 
 
-Breaking changes:
+- Related Media Statistics view including a purge method to cleanup unused media. @petschki
 
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
 
 
 ## 3.8.0 (2025-12-01)
