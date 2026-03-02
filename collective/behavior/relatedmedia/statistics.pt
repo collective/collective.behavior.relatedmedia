@@ -9,7 +9,7 @@
 
         <form action="./@@relatedmedia-statistics" method="post">
             <div class="mb-3">
-                <label>Filter keyword (Source/Target Title/Description)</label>
+                <label>Filter keyword (Source/Target Title/URL)</label>
                 <input type="text" name="filter" class="form-control" value="${request/filter|string:}" />
             </div>
             <div>
