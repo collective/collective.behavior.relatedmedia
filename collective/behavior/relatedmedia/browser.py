@@ -336,7 +336,7 @@ class StatisticsView(BrowserView):
 
                     source_obj = relation.from_object
 
-                    if filter_keyword and not match:
+                    if source_obj and filter_keyword and not match:
                         # check if source or target matches the filter keyword
                         match = (
                             filter_keyword in source_obj.title_or_id().lower()
@@ -351,8 +351,8 @@ class StatisticsView(BrowserView):
                                     url=obj.absolute_url_path(),
                                 ),
                                 target=dict(
-                                    title=source_obj.title_or_id(),
-                                    url=source_obj.absolute_url_path(),
+                                    title=source_obj.title_or_id() if source_obj else "-broken-",
+                                    url=source_obj.absolute_url_path() if source_obj else "#",
                                 ),
                             )
                         )
