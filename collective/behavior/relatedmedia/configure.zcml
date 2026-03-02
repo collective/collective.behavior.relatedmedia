@@ -5,6 +5,7 @@
     xmlns:gs="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="collective.behavior.relatedmedia"
     >
@@ -196,6 +197,25 @@
            *"
       name="related_images_filter"
       />
+
+    <browser:page
+    name="relatedmedia-statistics"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".browser.StatisticsView"
+    template="statistics.pt"
+    permission="cmf.ManagePortal"
+    layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+    />
+
+    <browser:page
+    name="relatedmedia-statistics"
+    for="collective.lineage.interfaces.IChildSite"
+    class=".browser.StatisticsView"
+    template="statistics.pt"
+    permission="cmf.ManagePortal"
+    layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+    zcml:condition="installed collective.lineage"
+    />
 
   <include file="upgrades.zcml" />
 

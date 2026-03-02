@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:tal="http://xml.zope.org/namespaces/tal"
+    metal:use-macro="context/@@main_template/macros/master" lang="en" xml:lang="en"
+    i18n:domain="collective.behavior.relatedmedia" i18n:ignore="">
+
+<body>
+    <metal:main fill-slot="main" tal:define="stats view/stats">
+        <h1>RelatedMedia Statistics</h1>
+
+        <form action="./@@relatedmedia-statistics" method="post">
+            <div class="mb-3">
+                <label>Filter keyword (Source/Target Title/URL)</label>
+                <input type="text" name="filter" class="form-control" value="${request/filter|string:}" />
+            </div>
+            <div>
+                <button class="btn btn-secondary" type="submit">Load Statistics</button>
+            </div>
+            <input type="hidden" name="form.submitted" value="1" />
+        </form>
+
+        <tal:if condition="stats">
+
+            <p>Total number of media in ${view/media_root_path}: ${stats/total}</p>
+
+            <div class="accordion" id="accordionStats">
+                <div class="accordion-item" tal:repeat="attr stats/relations">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse${attr}" aria-expanded="true" aria-controls="collapse${attr}">
+                            ${attr} (${python:len(stats['relations'][attr])})
+                        </button>
+                    </h2>
+                    <div id="collapse${attr}" class="accordion-collapse collapse" data-bs-parent="#accordionStats">
+                        <div class="accordion-body">
+                            <table class="w-100 table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="w-50">Source</th>
+                                        <th>Target</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr tal:repeat="rel python:stats['relations'][attr]">
+                                        <td>${rel/source/title}<br /><a href="${rel/source/url}" target="_blank">
+                                                <small>${rel/source/url}</small></a></td>
+                                        <td>${rel/target/title}<br /><a href="${rel/target/url}" target="_blank">
+                                                <small>${rel/target/url}</small></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <form action="./@@relatedmedia-statistics" method="post">
+                    <input type="hidden" name="purge_unrelated" value="1" />
+                    <input type="hidden" name="form.submitted" value="1" />
+                    <button class="btn btn-danger" type="submit" onclick="javascript:return(confirm('Are you sure?'));">Purge unused/unrelated Media</button>
+                </form>
+            </div>
+        </tal:if>
+
+    </metal:main>
+</body>
+
+</html>

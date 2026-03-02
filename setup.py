@@ -2,7 +2,6 @@ from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
-
 version = "3.6.8.dev0"
 
 this_directory = Path(__file__).parent
@@ -59,8 +58,6 @@ setup(
             "plone.app.testing[robot]",
             "plone.app.robotframework",
             "plone.app.contenttypes",
-            "robotframework-selenium2library",
-            "robotframework-selenium2screenshots",
         ],
     },
     entry_points="""

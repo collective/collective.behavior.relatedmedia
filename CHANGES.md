@@ -5,7 +5,8 @@ Changelog
 ## 3.6.8 (unreleased)
 
 
-- Nothing changed yet.
+- Related Media Statistics view including a purge method to cleanup unused media.
+  [petschki]
 
 
 ## 3.6.7 (2025-03-11)
