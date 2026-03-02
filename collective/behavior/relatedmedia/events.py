@@ -7,7 +7,6 @@ from Products.CMFPlone.utils import safe_unicode
 from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
 
-
 try:
     from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 except ImportError:

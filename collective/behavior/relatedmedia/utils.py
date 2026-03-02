@@ -7,7 +7,6 @@ from zope.interface import alsoProvides
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

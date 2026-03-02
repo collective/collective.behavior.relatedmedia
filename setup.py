@@ -2,7 +2,6 @@ from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
-
 version = "3.6.8.dev0"
 
 this_directory = Path(__file__).parent
