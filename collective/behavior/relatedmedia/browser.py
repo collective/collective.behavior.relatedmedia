@@ -24,6 +24,9 @@ from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class RelatedBaseView(BrowserView):
@@ -276,3 +279,89 @@ class UploadViewlet(ViewletBase):
         if not IViewView.providedBy(self.view):
             return ""
         return super().render()
+
+
+class StatisticsView(BrowserView):
+    def __call__(self):
+        self.stats = {}
+
+        if self.request.get("REQUEST_METHOD", "GET") == "POST" and self.request.get(
+            "form.submitted"
+        ):
+            media_root = get_media_root(self.context)
+            self.media_root_path = media_root.absolute_url_path()
+            items = self.context.portal_catalog.unrestrictedSearchResults(
+                path=self.media_root_path, portal_type=["Image", "File"]
+            )
+            _all = len(items)
+            filter_keyword = self.request.get("filter", "").lower()
+            unrelated = []
+            relation_stats = {}
+            purge = self.request.get("purge_unrelated", False)
+
+            for idx, it in enumerate(items, 1):
+                obj = it.getObject()
+                match = True
+
+                logger.info(f"Processing {idx}/{_all}: {obj.absolute_url()}")
+
+                if filter_keyword:
+                    match = (
+                        filter_keyword in obj.title_or_id().lower()
+                        or filter_keyword in obj.absolute_url()
+                    )
+
+                relations = api.relation.get(target=obj, unrestricted=True)
+
+                if not relations and match:
+
+                    if purge:
+                        media_root.manage_delObjects([obj.getId()])
+                        logger.warning(f"Purged unrelated media: {obj.absolute_url()}")
+                        continue
+
+                    unrelated.append(
+                        dict(
+                            source=dict(
+                                title=obj.title_or_id(), url=obj.absolute_url_path()
+                            ),
+                            target=dict(title=None, url=None),
+                        )
+                    )
+
+                for relation in relations:
+
+                    if relation.from_attribute not in relation_stats:
+                        relation_stats[relation.from_attribute] = []
+
+                    source_obj = relation.from_object
+
+                    if filter_keyword and not match:
+                        # check if source or target matches the filter keyword
+                        match = (
+                            filter_keyword in source_obj.title_or_id().lower()
+                            or filter_keyword in source_obj.absolute_url()
+                        )
+
+                    if match:
+                        relation_stats[relation.from_attribute].append(
+                            dict(
+                                source=dict(
+                                    title=obj.title_or_id(),
+                                    url=obj.absolute_url_path(),
+                                ),
+                                target=dict(
+                                    title=source_obj.title_or_id(),
+                                    url=source_obj.absolute_url_path(),
+                                ),
+                            )
+                        )
+
+            relation_stats["unrelated"] = unrelated
+
+            self.stats = {
+                "relations": relation_stats,
+                "total": _all,
+            }
+
+        return self.index()

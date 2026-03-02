@@ -197,6 +197,15 @@
       name="related_images_filter"
       />
 
+    <browser:page
+    name="relatedmedia-statistics"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".browser.StatisticsView"
+    template="statistics.pt"
+    permission="cmf.ManagePortal"
+    layer=".interfaces.ICollectiveBehaviorRelatedmediaLayer"
+    />
+
   <include file="upgrades.zcml" />
 
 </configure>
