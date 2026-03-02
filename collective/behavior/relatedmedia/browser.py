@@ -351,8 +351,16 @@ class StatisticsView(BrowserView):
                                     url=obj.absolute_url_path(),
                                 ),
                                 target=dict(
-                                    title=source_obj.title_or_id() if source_obj else "-broken-",
-                                    url=source_obj.absolute_url_path() if source_obj else "#",
+                                    title=(
+                                        source_obj.title_or_id()
+                                        if source_obj
+                                        else "-broken-"
+                                    ),
+                                    url=(
+                                        source_obj.absolute_url_path()
+                                        if source_obj
+                                        else "#"
+                                    ),
                                 ),
                             )
                         )
