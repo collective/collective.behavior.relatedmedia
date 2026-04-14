@@ -1,74 +1,100 @@
 
-# Upload and Manage Related Images and Attachments
+# collective.behavior.relatedmedia
+
+A Plone Dexterity behavior that lets editors upload, manage, and display related
+images and file attachments directly on content items — without leaving the edit
+form.
+
+## Features
+
+- **Dexterity behavior** — attach the behavior to any content type via the
+  control panel or ZCML; no custom content type required.
+- **Dedicated edit tab** — a *Related Media* tab appears on every content item
+  that has the behavior enabled.
+- **Inline upload & selection** — editors can upload new files or pick existing
+  Plone content objects through the relation widget; relation type (image vs.
+  attachment) is determined automatically from the file's MIME type.
+- **Drag-and-drop ordering** — items inside the widget can be reordered via
+  drag-and-drop; titles are editable inline.
+- **Configurable media container** — uploaded files are stored in a dedicated
+  folder whose path is defined in the *Related Media Settings* control panel.
+  Supports `plone.app.multilingual` (language-independent assets folder) and
+  per-object sub-containers.
+- **Viewlets for display** — two viewlets render the media on the content view:
+  - `collective.behavior.related_images` (default: `plone.belowcontenttitle`)
+  - `collective.behavior.related_attachments` (default: `plone.belowcontentbody`)
+- **Inline gallery via TinyMCE** — a toolbar button lets editors embed an image
+  gallery directly inside the rich-text body; placement, image selection, and
+  order are fully configurable without leaving the editor.
+- **Configurable image scales** — default scales for thumbnails, preview images,
+  and overlay images are set globally in the control panel.
+- **Gallery CSS classes** — a registry-controlled vocabulary provides the
+  available CSS classes for galleries; a default class can be pre-selected.
 
 
-This packages adds a dexterity behavior to upload and manage related images and attachments for rich media pages.
+## Installation
+
+```
+pip install collective.behavior.relatedmedia
+```
+
+or add the egg to your buildout configuration, then enable the add-on in the
+Plone **Add-ons** control panel.
 
 
-## Install
+## Configuration
 
-Add to buildout configuration or ``pip install collective.behavior.relatedmedia``.
+Open **Site Setup → Add-on Configuration → Related Media Settings** and:
 
-Enable it in Plone Add-on controlpanel.
-
-
-## Configure
-
-There is a ``Related Media Settings`` controlpanel in the Add-on configuration section.
-
-Make sure you set a valid ``Media Container`` path where all the media is stored.
+1. Set a valid **Media Container** path (relative to the site root or navigation
+   root) where uploaded files will be stored.
+2. Optionally enable **Create Media Container in Assets Folder** if you use
+   `plone.app.multilingual` and want language-independent storage.
+3. Adjust the default image scales and gallery CSS classes to match your theme.
 
 
-## Edit
+## Usage
 
-When you edit a Page go to the tab ``Related Media``.
+### Adding media to a content item
 
-In the relateditems widgets you can select existing content from your page, or you upload
-new content via the uploader. Relation type is selected via the mimetype of the media.
-You can change the titles of the relations in an input field and rearrange the order
-within the widget via drag/drop.
+1. Open the content item in edit mode.
+2. Switch to the **Related Media** tab.
+3. Use the *Related Images* widget to upload new images or select existing ones.
+   Use the *Related Attachments* widget for non-image files.
+4. Reorder items by dragging, edit titles inline, then save.
 
+### Embedding a gallery in the rich-text body
 
-## View
+1. Place the cursor in the text where the gallery should appear.
+2. Click the **Gallery** icon in the TinyMCE toolbar.
+3. Select the images and choose a gallery style; drag-and-drop to reorder.
+4. To modify an existing gallery, click inside the preview block and open the
+   toolbar icon again.
 
-The related media viewlets (image, attachment) are defined by:
-
-- ``collective.behavior.related_images`` -> plone.belowcontenttitle
-- ``collective.behavior.related_attachments`` -> plone.belowcontentbody
-
-
-Feel free to override the placement in your package zcml for example::
-
-    <include package="collective.behavior.relatedmedia" />
-    <configure package="collective.behavior.relatedmedia">
-        <browser:viewlet
-            name="collective.behavior.related_images"
-            for="*"
-            manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-            template="widget_images_display.pt"
-            permission="zope2.View" />
-    </configure>
-
-## TinyMCE Template
-
-We provide a TinyMCE toolbar icon to enable gallery placement inside the richtext editor::
-
-- create a new paragraph in your text where you want to place the gallery.
-- Click on the Gallery Icon in the toolbar
-- Choose the images you want inside your gallery. You can drag/drop reorder the images too.
-- Edit an existing gallery by clicking inside the preview block and click the toolbar icon again.
-
-NOTES:
-
-- make sure you disable the checkbox "Show images in viewlet" to prevent double rendered gallery.
-- When you add related images after you've inserted a gallery in TinyMCE you need to edit it again
-  and add the new images manually.
+> **Note:** If you embed a gallery in the text body, disable the
+> *Show images in viewlet* checkbox to avoid rendering images twice.
+> Images added to the behavior *after* inserting the gallery must be added to
+> the TinyMCE gallery manually.
 
 
-## Author
+## Overriding viewlet placement
+
+```xml
+<include package="collective.behavior.relatedmedia" />
+<configure package="collective.behavior.relatedmedia">
+    <browser:viewlet
+        name="collective.behavior.related_images"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        template="widget_images_display.pt"
+        permission="zope2.View" />
+</configure>
+```
+
+
+## Authors
 
 - Peter Mathis [petschki]
-
 
 ## Contributors
 
