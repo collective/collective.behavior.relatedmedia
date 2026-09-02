@@ -92,7 +92,7 @@ I select a related image
     Click item in contenbrowser column    3    4
     # Click the select Button in the Toolbar of column 4
     # This selects the "Image 1"
-    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-outline-primary")]
+    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-primary") or contains(@class, "btn-outline-primary")]
 
 I select a related attachment
     # Click the select button
@@ -107,7 +107,7 @@ I select a related attachment
     Click item in contenbrowser column    4    1
     # Click the select Button in the Toolbar of column 4
     # This selects the "File 1"
-    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[5]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-outline-primary")]
+    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[5]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-primary") or contains(@class, "btn-outline-primary")]
 
 
 I select a linked item
@@ -121,7 +121,7 @@ I select a linked item
     Click item in contenbrowser column    3    4
     # Click the select Button in the Toolbar of column 4
     # This selects the "News Item 1"
-    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-outline-primary")]
+    Click    //div[contains(@class, "content-browser-wrapper")]//div[contains(@class, "levelColumns")]/div[4]/div[contains(@class, "levelToolbar")]//button[contains(@class, "btn-primary") or contains(@class, "btn-outline-primary")]
 
 I save the page
     Click    //button[@name="form.buttons.save"]

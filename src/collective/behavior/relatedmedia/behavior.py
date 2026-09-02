@@ -19,7 +19,6 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import os
 
-
 try:
     from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 

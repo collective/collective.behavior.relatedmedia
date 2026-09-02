@@ -1,8 +1,7 @@
 from pathlib import Path
 from setuptools import setup
 
-
-version = "4.0.0.dev0"
+version = "3.9.0.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
@@ -31,13 +30,14 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords="plone richmedia relatedmedia",
     author="petschki",
     author_email="peter.mathis@kombinat.at",
-    url="https://github.com/kombinat/collective.behavior.relatedmedia",
+    url="https://github.com/collective/collective.behavior.relatedmedia",
     license="gpl",
     include_package_data=True,
     zip_safe=False,
@@ -48,6 +48,9 @@ setup(
         "plone.api",
         "plone.behavior",
         "plone.app.dexterity",
+        # mockup >= 5.6.9 shares the Svelte runtime with add-on bundles
+        # (plone/mockup#1624); the widget's Svelte 5 components need it.
+        "plone.staticresources>=3.0.5",
         "Products.CMFCore",
         "z3c.form",
     ],

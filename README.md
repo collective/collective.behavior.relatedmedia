@@ -29,7 +29,7 @@ form.
 - **Configurable image scales** — default scales for thumbnails, preview images,
   and overlay images are set globally in the control panel.
 - **Gallery CSS classes** — a registry-controlled vocabulary provides the
-  available CSS classes for galleries; a default class can be pre-selected.
+  available CSS classes for galleries; a default class can be preselected.
 
 
 ## Installation

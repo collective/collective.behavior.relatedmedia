@@ -2,19 +2,20 @@
     import { getContext } from "svelte";
     import { resolveIcon } from "@plone/mockup/src/pat/contentbrowser/src/utils";
 
-    // item data
-    export let item;
-    export let unselectItem;
+    // item data (Svelte 5 runes, mockup >= 5.6 / Plone 6.2)
+    let { item, unselectItem } = $props();
 
-    const item_path = item.path.replace(/\//g, '--');
+    let item_path = $derived(item.path.replace(/\//g, '--'));
 </script>
 
 <div class="selected-item border border-secondary-subtle rounded p-2 mb-1 bg-body-tertiary" data-uuid={item.UID}>
     <div class="item-info">
-        <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <button
             class="btn btn-link btn-sm link-secondary"
-            on:click={() => unselectItem(item.UID)}
+            type="button"
+            aria-label="remove"
+            onclick={(e) => { e.preventDefault(); unselectItem(item.UID); }}
             ><svg use:resolveIcon={{ iconName: "x-circle" }} /></button
         >
         <div class="flex-grow-1">
