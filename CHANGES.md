@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.9.0 (unreleased)
+## 3.9.0 (2026-09-02)
 
 
 - Rebuild the JavaScript bundle against mockup 5.6.9 / Svelte 5 so the selected
