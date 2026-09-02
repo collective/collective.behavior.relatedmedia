@@ -30,6 +30,7 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
@@ -40,7 +41,7 @@ setup(
     license="gpl",
     include_package_data=True,
     zip_safe=False,
-    python_requires=">=3.10, <3.14",
+    python_requires=">=3.10",
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-

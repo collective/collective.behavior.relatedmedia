@@ -16,7 +16,7 @@ Changelog
 - tox/CI install with the committed `constraints-mxdev.txt` (plone/meta `use_mxdev`),
   generated with `mxdev -c mx.ini` from the Plone 6.2 constraints plus the
   `plone.staticresources` override; robot test adapted to the content browser
-  markup of mockup 5.6.9. @petschki
+  markup of mockup 5.6.9. Test matrix covers Python 3.10 to 3.14. @petschki
 - Related Media Statistics view including a purge method to cleanup unused media. @petschki
 
 
