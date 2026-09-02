@@ -24,7 +24,6 @@ from zope.intid.interfaces import IIntIds
 import json
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

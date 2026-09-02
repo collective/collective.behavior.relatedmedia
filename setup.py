@@ -1,7 +1,6 @@
 from pathlib import Path
 from setuptools import setup
 
-
 version = "3.9.0.dev0"
 
 this_directory = Path(__file__).parent

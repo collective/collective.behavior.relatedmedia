@@ -8,7 +8,6 @@ from z3c.relationfield import create_relation
 from z3c.relationfield.event import _setRelation
 from zope.globalrequest import getRequest
 
-
 try:
     from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 except ImportError:
