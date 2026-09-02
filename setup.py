@@ -1,7 +1,7 @@
 from pathlib import Path
 from setuptools import setup
 
-version = "3.9.0"
+version = "3.9.1.dev0"
 
 this_directory = Path(__file__).parent
 long_description = (
