@@ -1,0 +1,27 @@
+# pnpm configuration — mirrors the known caveats of plone/mockup
+# (see the notes in mockup's webpack.config.js and pnpm-workspace.yaml):
+#
+# - shamefullyHoist: webpack module resolution needs a flat node_modules
+#   directory, see https://github.com/webpack/webpack/issues/5087
+# - allowBuilds: pnpm >= 10 blocks dependency build scripts by default;
+#   allow the ones we actually need. @plone/mockup's postinstall only
+#   patches select2, which we remove anyway (see overrides) — so: false.
+# - overrides: Patternslib and Mockup pull in "slick-carousel", "slides"
+#   and "select2" as git subdependencies, which pnpm blocks
+#   (blockExoticSubdeps). "slides" and "select2" are only needed by patterns
+#   this add-on does not import, so we remove them like mockup does.
+#   "slick-carousel" IS used by this theme (pat-energieinstitut + theme.scss),
+#   so we redirect it to the npm registry release instead of removing it.
+
+shamefullyHoist: true
+
+overrides:
+  "slick-carousel": "1.8.1"
+  "slides": "-"
+  "select2": "-"
+
+allowBuilds:
+  '@parcel/watcher': false
+  '@patternslib/dev': true
+  '@plone/mockup': true
+  yarn: false

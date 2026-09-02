@@ -8,6 +8,7 @@ exclude *.cfg
 exclude *.js
 exclude *.txt
 exclude *.lock
+exclude *.yaml
 exclude Makefile
 exclude package.json
 exclude pyproject.toml

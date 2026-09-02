@@ -2,9 +2,17 @@ Changelog
 =========
 
 
-## 3.8.1 (unreleased)
+## 3.9.0 (unreleased)
 
 
+- Rebuild the JavaScript bundle against mockup 5.6.9 / Svelte 5 so the selected
+  items of the related media widget show up again in Plone 6.2: the custom
+  `SelectedItem` components are Svelte 5 (runes) components now and consume the
+  Svelte runtime shared by the Plone bundle. Requires `plone.staticresources >= 3.0.5`
+  (Plone 6.2.1 pins 3.0.2, override it in your project). The Svelte compiler is
+  pinned to the runtime version of that release; a newer compiler emits helpers the
+  shared runtime does not have. @petschki
+- Switch the JavaScript build from yarn to pnpm. @petschki
 - Related Media Statistics view including a purge method to cleanup unused media. @petschki
 
 

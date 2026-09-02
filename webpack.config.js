@@ -30,6 +30,15 @@ module.exports = () => {
                 ...package_json_mockup.dependencies,
                 ...package_json.dependencies,
             },
+            // Consume the Svelte runtime shared by the Plone bundle (mockup >= 5.6.9,
+            // plone/mockup#1624): compiled components import "svelte/internal/client",
+            // which the plain "svelte" share entry does not cover.
+            shared: {
+                "svelte/": {
+                    singleton: true,
+                    requiredVersion: package_json.devDependencies.svelte,
+                },
+            },
         })
     );
 
@@ -55,9 +64,15 @@ module.exports = () => {
         },
     });
 
-    config.resolve.alias.svelte = path.resolve('node_modules', 'svelte/src/runtime')
     config.resolve.extensions = [".js", ".json", ".wasm", ".svelte"];
     config.resolve.mainFields = ["browser", "module", "main", "svelte"];
+    // "..." keeps webpack's default condition names. Must be written as an
+    // object literal: svelte-loader greps this file for `conditionNames: [`.
+    // https://github.com/sveltejs/svelte-loader#resolveconditionnames
+    config.resolve = {
+        ...config.resolve,
+        conditionNames: ["svelte", "..."],
+    };
 
     if (process.env.NODE_ENV === "development") {
         config.devServer.port = "8011";
