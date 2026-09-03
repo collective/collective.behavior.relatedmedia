@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.9.1 (unreleased)
+## 3.9.1 (2026-09-03)
 
 
 - Open the related images of the viewlet in Fancybox: bind the lightbox globally
