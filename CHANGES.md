@@ -5,6 +5,12 @@ Changelog
 ## 3.9.1 (unreleased)
 
 
+- Open the related images of the viewlet in Fancybox: bind the lightbox globally
+  and load its CSS in the bundle, not only inside the `pat-related-images`
+  gallery pattern. @petschki
+- Fix the "crop" options of the gallery: they produced uncropped scales and vice
+  versa, because plone.scale's `contain` mode crops while `cover` fits. @petschki
+
 - Nothing changed yet.
 
 

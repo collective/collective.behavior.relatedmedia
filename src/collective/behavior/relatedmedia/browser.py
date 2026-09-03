@@ -104,14 +104,16 @@ class RelatedImagesView(RelatedBaseView):
                     if first
                     else rm_behavior.preview_scale
                 ),
+                # plone.scale naming: "contain" crops to the exact scale size,
+                # "cover" fits the image into it without cropping.
                 mode=(
-                    "cover"
+                    "contain"
                     if (
                         rm_behavior.first_image_scale_direction
                         if first
                         else rm_behavior.preview_scale_direction
                     )
-                    else "contain"
+                    else "cover"
                 ),
             )
             uuid = obj.UID()
