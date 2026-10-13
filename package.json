@@ -3,25 +3,25 @@
   "version": "2.0.0",
   "license": "MIT",
   "engines": {
-    "node": ">=12.20.0"
+    "node": "^22.18.0 || >=24.11.0"
   },
   "dependencies": {
     "@fancyapps/ui": "6.1.7",
-    "@patternslib/patternslib": "9.10.6",
-    "@plone/mockup": "5.6.9",
-    "@plone/registry": "^2.0.0",
+    "@patternslib/patternslib": "9.11.0",
+    "@plone/mockup": "5.6.14",
+    "@plone/registry": "^2.7.3",
     "jquery": "3.7.1",
     "slick-carousel": "1.8.1"
   },
   "dependenciesComments": {
-    "@plone/mockup": "Same version as the plone.staticresources release we build for (3.0.5 -> mockup 5.6.9), which shares the Svelte runtime via module federation.",
-    "svelte": "Pinned exactly to the Svelte runtime of that plone.staticresources release (3.0.5 -> 5.56.10). The compiler must not be newer than the shared runtime: newer compilers emit runtime helpers (e.g. only_child in 5.57) that the host does not provide."
+    "@plone/mockup": "Same version as the plone.staticresources release we build for (3.0.9 -> mockup 5.6.14), which shares the Svelte runtime via module federation.",
+    "svelte": "Pinned exactly to the Svelte runtime of that plone.staticresources release (3.0.9 -> 5.57.0). The compiler must not be newer than the shared runtime: newer compilers emit runtime helpers that the host does not provide."
   },
   "devDependencies": {
-    "@patternslib/dev": "^3.8.1",
+    "@patternslib/dev": "^4.3.0",
     "sass": "1.77.8",
     "sass-loader": "^17.0.1",
-    "svelte": "5.56.10",
+    "svelte": "5.57.0",
     "svelte-loader": "^3.2.4"
   },
   "resolutions": {

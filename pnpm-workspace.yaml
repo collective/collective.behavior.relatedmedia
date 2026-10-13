@@ -24,4 +24,5 @@ allowBuilds:
   '@parcel/watcher': false
   '@patternslib/dev': true
   '@plone/mockup': true
+  unrs-resolver: false
   yarn: false

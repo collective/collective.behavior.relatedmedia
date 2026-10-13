@@ -2,10 +2,15 @@ Changelog
 =========
 
 
-## 3.9.2 (unreleased)
+## 3.10.0 (unreleased)
 
 
-- Nothing changed yet.
+- Module federation: the remote entry exports its bundle import as default
+  (`export default import("./bundle")`), so the Patternslib Module Federation
+  helper of @patternslib/dev >= 4.1 (plone.staticresources >= 3.0.8) waits for
+  the pattern and component registrations before the host's initial DOM scan.
+  Bundles rebuilt against plone.staticresources 3.0.9 (mockup 5.6.14, Svelte
+  runtime 5.57.0, @patternslib/dev 4.3). @petschki
 
 
 ## 3.9.1 (2026-09-03)
