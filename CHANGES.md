@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-## 3.10.0 (unreleased)
+## 3.10.0 (2026-10-13)
 
 
 - Module federation: the remote entry exports its bundle import as default
